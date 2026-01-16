@@ -1,0 +1,492 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow', sans-serif;
+}
+
+:root {
+    --primary-color: #000000;
+    --accent-color: #a200ff;
+}
+
+body {
+    background-color: rgb(0, 0, 0);
+    color: var(--primary-color);
+}
+
+.elenos {
+    height:50px;
+}
+
+.process-section {
+    padding: 5rem 10%;
+    background: #000;
+    color: #fff;
+    position: relative;
+}
+
+.process-section h3 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #fff;
+}
+
+.process-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 2rem 0;
+}
+
+/* Center timeline bar */
+.process-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #333;
+    transform: translateX(-50%);
+}
+
+/* Active timeline bar that fills on scroll */
+.process-container::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: var(--progress, 0%);
+    background: var(--accent-color);
+    transform: translateX(-50%);
+    transition: height 0.5s ease;
+}
+
+.process-container.animate::after {
+    height: 100%;
+}
+
+.process-step {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 10px;
+    width: calc(50% - 30px);
+    margin-bottom: 3rem;
+    position: relative;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+/* Position steps on alternating sides */
+.process-step:nth-child(odd) {
+    margin-left: 0;
+    margin-right: auto;
+    transform: translateX(-50px);
+}
+
+.process-step:nth-child(even) {
+    margin-left: auto;
+    margin-right: 0;
+    transform: translateX(50px);
+}
+
+/* Adjust circle positions for each side */
+.process-step::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    top: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.process-step:nth-child(odd)::before {
+    right: -36px;
+    transform: translate(50%, -50%);
+}
+
+.process-step:nth-child(even)::before {
+    left: -36px;
+    transform: translate(-50%, -50%);
+}
+
+/* Add connecting lines */
+.process-step::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: #333;
+    transition: background-color 0.3s ease;
+}
+
+.process-step:nth-child(odd)::after {
+    right: -30px;
+}
+
+.process-step:nth-child(even)::after {
+    left: -30px;
+}
+
+/* Active step styling */
+.process-step.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.process-step.active::before,
+.process-step.active::after {
+    background: var(--accent-color);
+}
+
+.step-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.process-step h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.process-step p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .process-container::before,
+    .process-container::after {
+        left: 20px;
+        transform: none;
+    }
+
+    .process-step {
+        width: calc(100% - 50px);
+        margin-left: 50px !important;
+        margin-right: 0 !important;
+    }
+
+    .process-step:nth-child(odd)::before,
+    .process-step:nth-child(even)::before {
+        left: -46px;
+        transform: translateY(-50%);
+        right: auto;
+    }
+
+    .process-step:nth-child(odd)::after,
+    .process-step:nth-child(even)::after {
+        left: -30px;
+        right: auto;
+    }
+
+    .process-step:nth-child(odd),
+    .process-step:nth-child(even) {
+        transform: translateX(50px);
+    }
+}
+
+nav {
+    background-color: rgb(7, 7, 7);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: none;
+}
+
+/* Header Styling */
+header {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    background-color: black;
+}
+
+header {
+    background: linear-gradient(to bottom, #a200ff 0%, #000 100%);
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* Static Section Styling */
+.static-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("gifs/abstract.gif");
+    background-size: cover;
+    opacity: 0.1;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 1;
+}
+
+/* Hero Section Styling */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 2rem;
+    color: #fff;
+    text-align:center;
+}
+
+/* Left Section (Text) */
+.hero-text {
+    flex: 1;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: #a200ff;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+}
+
+/* Right Section (Image) */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image-content {
+    max-width: 100%;
+    width: 80%; /* Control the image size */
+    height: auto;
+}
+
+
+section {
+    padding: 5rem 10%;
+}
+
+section > h3 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: white;
+    font-size: 2.5rem;
+}
+
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    transition: transform 0.3s, opacity 0.5s;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.service-card.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 3rem 10% 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    header {
+        flex-direction: column;
+        padding: 2rem 5%;
+        text-align: center;
+    }
+
+    .hero, .hero-image {
+        width: 100%;
+    }
+
+    .hero-image {
+        height: 40vh;
+        margin-top: 2rem;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 3rem 5%;
+    }
+}
+
+.booking-section {
+    background-color: #000;
+    padding: 5rem 10%;
+    color: #fff;
+}
+
+.booking-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.booking-text {
+    flex: 1;
+}
+
+.booking-text h4 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.booking-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.booking-calendar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.calendly-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.calendly-button:hover {
+    transform: translateY(-5px);
+}
+
+.calendly-button i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .booking-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+}
