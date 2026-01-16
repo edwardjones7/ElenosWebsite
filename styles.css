@@ -346,6 +346,17 @@ header {
     height: auto;
 }
 
+.mobile-hero {
+    display: none;
+}
+
+.mobile-hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+}
+
 
 section {
     padding: 5rem 10%;
@@ -587,6 +598,35 @@ footer {
     #services::before,
     .process-section::before {
         background: rgba(0, 0, 0, 0.45);
+    }
+
+    .static-section {
+        display: none;
+    }
+
+    .mobile-hero {
+        display: block;
+        padding: 6rem 5% 3rem;
+        min-height: calc(100vh - 72px);
+        background: linear-gradient(to bottom, #a200ff 0%, #000 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .mobile-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("gifs/abstract.gif");
+        background-size: cover;
+        opacity: 0.25;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .mobile-hero-content {
+        position: relative;
+        z-index: 1;
     }
 }
 
