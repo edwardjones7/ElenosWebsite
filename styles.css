@@ -14,6 +14,11 @@
 body {
     background-color: rgb(0, 0, 0);
     color: var(--primary-color);
+    overflow-x: hidden;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 .elenos {
@@ -211,8 +216,8 @@ body {
     }
 
     .process-step {
-        width: calc(100% - 50px);
-        margin-left: 50px !important;
+        width: calc(100% - 40px);
+        margin-left: 40px !important;
         margin-right: 0 !important;
     }
 
@@ -231,7 +236,7 @@ body {
 
     .process-step:nth-child(odd),
     .process-step:nth-child(even) {
-        transform: translateX(50px);
+        transform: translateX(0);
     }
 }
 
@@ -563,7 +568,7 @@ footer {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 900px) {
     nav {
         padding: 0.5rem 5%;
     }
@@ -600,33 +605,8 @@ footer {
         background: rgba(0, 0, 0, 0.45);
     }
 
-    .static-section {
-        display: none;
-    }
-
     .mobile-hero {
-        display: block;
-        padding: 6rem 5% 3rem;
-        min-height: calc(100vh - 72px);
-        background: linear-gradient(to bottom, #a200ff 0%, #000 100%);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .mobile-hero::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: url("gifs/abstract.gif");
-        background-size: cover;
-        opacity: 0.25;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .mobile-hero-content {
-        position: relative;
-        z-index: 1;
+        display: none;
     }
 }
 
