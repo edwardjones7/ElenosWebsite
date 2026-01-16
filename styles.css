@@ -475,7 +475,7 @@ footer {
     }
 
     .static-section {
-        padding-top: 70px;
+        padding-top: 80px;
     }
 
     .hero {
@@ -491,8 +491,8 @@ footer {
 
     header {
         height: auto;
-        min-height: 100vh;
-        padding: 6rem 5% 3rem;
+        min-height: calc(100vh - 80px);
+        padding: 4.5rem 5% 3rem;
     }
 
     .hero {
@@ -549,6 +549,44 @@ footer {
     #services::before,
     .process-section::before {
         background: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 0.5rem 5%;
+    }
+
+    .elenos {
+        height: 36px;
+    }
+
+    .static-section {
+        padding-top: 72px;
+    }
+
+    header {
+        min-height: calc(100vh - 72px);
+        padding-top: 4rem;
+    }
+
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    #services,
+    .process-section {
+        background-size: 120% auto;
+        background-position: top center;
+    }
+
+    #services::before,
+    .process-section::before {
+        background: rgba(0, 0, 0, 0.45);
     }
 }
 
