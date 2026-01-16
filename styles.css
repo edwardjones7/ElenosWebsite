@@ -473,6 +473,15 @@ footer {
     .clients-grid {
         grid-template-columns: 1fr;
     }
+
+    .static-section {
+        padding-top: 70px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
 @media (max-width: 600px) {
@@ -530,6 +539,16 @@ footer {
     .calendly-button {
         width: 100%;
         justify-content: center;
+    }
+
+    #services,
+    .process-section {
+        background-size: 100% auto;
+    }
+
+    #services::before,
+    .process-section::before {
+        background: rgba(0, 0, 0, 0.5);
     }
 }
 
