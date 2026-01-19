@@ -54,4 +54,58 @@ function handleServicesAnimation() {
 document.addEventListener('DOMContentLoaded', () => {
     handleProcessAnimation();
     handleServicesAnimation();
+
+    const track = document.querySelector('.clients-track');
+    const prevBtn = document.querySelector('.slider-prev');
+    const nextBtn = document.querySelector('.slider-next');
+
+    if (track && prevBtn && nextBtn) {
+        const getScrollAmount = () => {
+            const card = track.querySelector('.client-card');
+            if (!card) return 0;
+            const gap = parseFloat(getComputedStyle(track).gap) || 0;
+            return card.offsetWidth + gap;
+        };
+
+        const updateButtons = () => {
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            prevBtn.disabled = track.scrollLeft <= 0;
+            nextBtn.disabled = track.scrollLeft >= maxScroll - 1;
+        };
+
+        prevBtn.addEventListener('click', () => {
+            track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+
+        track.addEventListener('scroll', updateButtons);
+        window.addEventListener('resize', updateButtons);
+        updateButtons();
+    }
+
+    const starLayer = document.createElement('div');
+    starLayer.className = 'mouse-stars';
+    document.body.appendChild(starLayer);
+
+    let lastStarTime = 0;
+    const minInterval = 60;
+
+    window.addEventListener('mousemove', (event) => {
+        const now = Date.now();
+        if (now - lastStarTime < minInterval) return;
+        lastStarTime = now;
+
+        const star = document.createElement('span');
+        star.className = 'mouse-star';
+        star.style.left = `${event.clientX}px`;
+        star.style.top = `${event.clientY}px`;
+        starLayer.appendChild(star);
+
+        star.addEventListener('animationend', () => {
+            star.remove();
+        });
+    });
 }); 

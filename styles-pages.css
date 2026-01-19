@@ -1,0 +1,102 @@
+/* Page templates */
+.page-hero {
+    padding: 8rem 10% 4rem;
+    background: linear-gradient(to bottom, #a200ff 0%, #000 100%);
+    color: #fff;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.page-hero p {
+    font-size: 1.1rem;
+    color: #ddd;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-content {
+    padding: 4rem 10% 6rem;
+    background: #000;
+    color: #fff;
+}
+
+.content-block {
+    max-width: 900px;
+    margin: 0 auto 2.5rem;
+}
+
+.content-block h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent-color);
+}
+
+.content-block p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.project-form {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 720px;
+    margin: 2rem auto 0;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.form-row label {
+    font-weight: 600;
+    color: #fff;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #fff;
+    padding: 0.75rem 0.9rem;
+    font-size: 1rem;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    outline: 2px solid rgba(162, 0, 255, 0.6);
+    border-color: transparent;
+}
+
+.project-form .calendly-button {
+    justify-content: center;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 7rem 5% 3rem;
+    }
+
+    .page-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .page-content {
+        padding: 3rem 5% 4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-hero h1 {
+        font-size: 1.9rem;
+    }
+}
