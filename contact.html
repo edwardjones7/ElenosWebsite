@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact - Elenos AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="header">
+        <div class="logo">
+            <a href="index.html"><img class="elenos" src="images/ElenosPNGWS.png" alt="Elenos"></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <span class="hero-eyebrow">Get Started</span>
+            <h1>Start a Project</h1>
+            <p>Share a few details and we will review your request before scheduling a call. We prioritize email-first communication to keep requests organized and ensure we can help you effectively.</p>
+        </div>
+    </section>
+
+    <section class="contact-intro">
+        <div class="contact-intro-content">
+            <div class="contact-intro-text">
+                <span class="section-eyebrow">How It Works</span>
+                <h2>Simple Process, Fast Response</h2>
+                <p>We've streamlined our intake process to make it easy for you to get started. Fill out the form below, and we'll review your project details within 1-2 business days.</p>
+                <p>We only schedule calls for projects that align with our expertise and capacity, ensuring we can deliver the best results for you.</p>
+            </div>
+            <div class="contact-process-steps">
+                <div class="contact-step">
+                    <div class="contact-step-number">1</div>
+                    <div class="contact-step-content">
+                        <h4>Submit Form</h4>
+                        <p>Share your project details and requirements</p>
+                    </div>
+                </div>
+                <div class="contact-step">
+                    <div class="contact-step-number">2</div>
+                    <div class="contact-step-content">
+                        <h4>We Review</h4>
+                        <p>Our team reviews your request within 1-2 days</p>
+                    </div>
+                </div>
+                <div class="contact-step">
+                    <div class="contact-step-number">3</div>
+                    <div class="contact-step-content">
+                        <h4>Call Scheduled</h4>
+                        <p>If it's a good fit, we'll schedule a call to discuss</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-form-section">
+        <div class="contact-form-wrapper">
+            <div class="contact-form-header">
+                <span class="section-eyebrow">Project Intake</span>
+                <h2>Tell Us About Your Project</h2>
+                <p>Fill out the form below with your project details. The more information you provide, the better we can understand your needs.</p>
+            </div>
+            <div id="project-form" class="contact-form-container">
+                <form class="project-form-modern" action="mailto:info@elenosai.com" method="post" enctype="text/plain">
+                    <div class="form-grid">
+                        <div class="form-row">
+                            <label for="name">
+                                <i class="fas fa-user"></i>
+                                Name <span class="required">*</span>
+                            </label>
+                            <input id="name" name="name" type="text" required placeholder="Your full name">
+                        </div>
+                        <div class="form-row">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i>
+                                Email <span class="required">*</span>
+                            </label>
+                            <input id="email" name="email" type="email" required placeholder="your.email@company.com">
+                        </div>
+                        <div class="form-row">
+                            <label for="company">
+                                <i class="fas fa-building"></i>
+                                Company
+                            </label>
+                            <input id="company" name="company" type="text" placeholder="Your company name">
+                        </div>
+                        <div class="form-row">
+                            <label for="service">
+                                <i class="fas fa-briefcase"></i>
+                                What do you need? <span class="required">*</span>
+                            </label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service...</option>
+                                <option value="design-systems">Design Systems</option>
+                                <option value="software-apps">Software &amp; Apps</option>
+                                <option value="automation-intelligence">Automation &amp; Intelligence</option>
+                                <option value="not-sure">Not sure yet</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="timeline">
+                                <i class="fas fa-calendar"></i>
+                                Timeline
+                            </label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select timeline...</option>
+                                <option value="asap">ASAP</option>
+                                <option value="1-2-months">1-2 months</option>
+                                <option value="3-4-months">3-4 months</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="budget">
+                                <i class="fas fa-dollar-sign"></i>
+                                Estimated Budget
+                            </label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range...</option>
+                                <option value="under-10k">Under $10k</option>
+                                <option value="10-25k">$10k - $25k</option>
+                                <option value="25-50k">$25k - $50k</option>
+                                <option value="50k-plus">$50k+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row full-width">
+                        <label for="details">
+                            <i class="fas fa-file-alt"></i>
+                            Project Details <span class="required">*</span>
+                        </label>
+                        <textarea id="details" name="details" rows="6" required placeholder="Tell us about your project goals, challenges, and what you're hoping to achieve..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit-button">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-info">
+        <div class="contact-info-content">
+            <div class="contact-info-header">
+                <span class="section-eyebrow">Other Ways to Reach Us</span>
+                <h2>Get in Touch</h2>
+            </div>
+            <div class="contact-info-grid">
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h4>Email</h4>
+                    <p>info@elenosai.com</p>
+                    <a href="mailto:info@elenosai.com" class="contact-link">Send Email</a>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h4>Phone</h4>
+                    <p>(555) 123-4567</p>
+                    <a href="tel:+15551234567" class="contact-link">Call Us</a>
+                </div>
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4>Response Time</h4>
+                    <p>1-2 business days</p>
+                    <span class="contact-link-disabled">We'll get back to you soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Elenos AI</h4>
+                <p>Innovative Software Solutions</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@elenosai.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elenos AI. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
