@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles-pages.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <nav class="header">
@@ -26,8 +26,7 @@
     <section class="page-hero">
         <div class="page-hero-content">
             <span class="hero-eyebrow">Our Products</span>
-            <h1>Innovative Solutions</h1>
-            <p>We're building the next generation of productivity tools designed to simplify your workflow and amplify your potential.</p>
+            <p>We're building the next generation of tools designed to simplify your workflow and amplify your potential.</p>
         </div>
     </section>
 
@@ -54,10 +53,10 @@
                     <div class="assistant-features-grid">
                         <div class="assistant-feature-item">
                             <div class="assistant-feature-icon">
-                                <i class="fas fa-comments"></i>
+                                <i class="fas fa-newspaper"></i>
                             </div>
-                            <h4>Unified Communication</h4>
-                            <p>Chat, email, messaging, and video calls—all integrated in one interface.</p>
+                            <h4>Live News</h4>
+                            <p>Stay informed with personalized news feeds and real-time updates from trusted sources.</p>
                         </div>
                         <div class="assistant-feature-item">
                             <div class="assistant-feature-icon">
@@ -82,24 +81,24 @@
                         </div>
                         <div class="assistant-feature-item">
                             <div class="assistant-feature-icon">
-                                <i class="fas fa-link"></i>
+                                <i class="fas fa-cloud-sun"></i>
                             </div>
-                            <h4>Seamless Integration</h4>
-                            <p>Connect with all your favorite tools and services.</p>
+                            <h4>Weather</h4>
+                            <p>Get accurate weather forecasts and alerts tailored to your location and schedule.</p>
                         </div>
                         <div class="assistant-feature-item">
                             <div class="assistant-feature-icon">
-                                <i class="fas fa-shield-alt"></i>
+                                <i class="fas fa-chart-line"></i>
                             </div>
-                            <h4>Privacy First</h4>
-                            <p>Built with privacy and security as foundational principles.</p>
+                            <h4>Portfolio</h4>
+                            <p>Track and manage your investments with real-time stock and cryptocurrency portfolio monitoring.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="assistant-vision-section">
                     <h3>Our Vision</h3>
-                    <p>We're building Assistant+ because we believe technology should make your life simpler, not more complicated. Instead of managing dozens of apps, you'll have one intelligent assistant that understands you and adapts to your workflow.</p>
+                    <p>We're building Assistant+ because we believe technology should make your life simpler, not more complicated. Instead of managing dozens of apps, you'll have one intelligent assistant that understands you.</p>
                     <div class="vision-points">
                         <div class="vision-point">
                             <i class="fas fa-check-circle"></i>
@@ -127,8 +126,13 @@
                     <h3>Be the First to Know</h3>
                     <p>Join our waitlist to get early access when Assistant+ launches. Be among the first to experience the future of productivity.</p>
                     <div class="hero-actions">
-                        <a class="cta-button" href="contact.html#project-form">Join Waitlist</a>
-                        <a class="cta-secondary" href="about.html">Learn More About Us</a>
+                        <button type="button" class="cta-button" id="join-waitlist-btn">Join Waitlist</button>
+                    </div>
+                    <div class="waitlist-form-container" id="waitlist-form" style="display: none;">
+                        <form class="waitlist-form" id="waitlist-form-element" name="waitlist-form">
+                            <input type="email" id="waitlist-email" name="email" class="waitlist-email-input" placeholder="Enter your email address" required>
+                            <button type="submit" class="waitlist-submit-btn">Submit</button>
+                        </form>
                     </div>
                     <p class="cta-note">We'll notify you as soon as Assistant+ is ready. No spam, just updates on our progress.</p>
                 </div>
@@ -141,45 +145,14 @@
             <div class="upcoming-projects-header">
                 <span class="section-eyebrow">What's Next</span>
                 <h2>More Exciting Projects Coming Soon</h2>
-                <p>We're constantly working on new innovations. Here's a glimpse of what we're building next.</p>
+                <p>We're constantly working on new innovations.</p>
             </div>
-            <div class="upcoming-projects-grid">
-                <div class="upcoming-project-card">
-                    <div class="upcoming-project-icon">
-                        <i class="fas fa-cube"></i>
-                    </div>
-                    <h3>Project Alpha</h3>
-                    <p>An innovative solution designed to streamline complex workflows and enhance team collaboration.</p>
-                    <div class="upcoming-badge">In Development</div>
-                </div>
-                <div class="upcoming-project-card">
-                    <div class="upcoming-project-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3>Project Beta</h3>
-                    <p>A powerful platform that connects disparate systems and creates seamless integrations.</p>
-                    <div class="upcoming-badge">Early Stage</div>
-                </div>
-                <div class="upcoming-project-card">
-                    <div class="upcoming-project-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Project Gamma</h3>
-                    <p>Revolutionary technology that will transform how teams approach problem-solving.</p>
-                    <div class="upcoming-badge">Concept Phase</div>
-                </div>
-            </div>
-            <div class="upcoming-cta">
-                <p>Want to stay updated on our latest projects?</p>
-                <a href="contact.html#project-form" class="cta-secondary">Get Notified</a>
-            </div>
-        </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Elenos AI</h4>
+                <h4>Elenos</h4>
                 <p>Innovative Software Solutions</p>
             </div>
             <div class="footer-section">
@@ -190,16 +163,19 @@
             <div class="footer-section">
                 <h4>Follow Us</h4>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/elenos.ai" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/elenos_ai" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://discord.gg/H3f33s4GYA" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i></a>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Elenos AI. All rights reserved.</p>
+        <div class="footer-bottom"> 
+            <p>&copy; 2026 Elenos. All rights reserved.</p>
         </div>
     </footer>
+    <div class="copyright-tag">
+        <p>&copy; 2026 Elenos. All rights reserved.</p>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

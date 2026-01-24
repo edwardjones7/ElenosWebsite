@@ -1,0 +1,13 @@
+{
+  "name": "elenos-website",
+  "version": "1.0.0",
+  "description": "Elenos website with waitlist functionality",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
