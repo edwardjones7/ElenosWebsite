@@ -129,10 +129,11 @@
 @media (max-width: 768px) {
     .page-hero {
         padding: 2rem 1.5rem;
-        margin-top: 2rem;
+        margin-top: 0;
         margin-bottom: 1rem;
         min-height: 300px;
         max-height: 500px;
+        padding-top: 90px;
     }
 
     .page-hero h1 {
@@ -145,6 +146,7 @@
 
     .page-content {
         padding: 2rem 5% 3rem;
+        padding-top: 90px;
     }
 }
 
@@ -1665,18 +1667,21 @@
 
     .page-content {
         padding: 2rem 5% 3rem;
+        padding-top: 90px;
     }
 
     .page-hero {
         padding: 2rem 1.5rem;
-        margin-top: 2rem;
+        margin-top: 0;
         margin-bottom: 1rem;
         min-height: 300px;
         max-height: 500px;
+        padding-top: 90px;
     }
 
     .about-intro {
         padding: 8rem 5% 4rem;
+        padding-top: 90px;
         min-height: 400px;
     }
 
@@ -2682,7 +2687,11 @@
 }
 
 @media (max-width: 768px) {
-    .contact-intro,
+    .contact-intro {
+        padding: 4rem 5%;
+        padding-top: 90px;
+    }
+    
     .contact-form-section,
     .contact-info {
         padding: 4rem 5%;
@@ -3267,7 +3276,8 @@
 @media (max-width: 768px) {
     .products-showcase {
         padding: 2rem 5%;
-        margin-top: 2rem;
+        padding-top: 90px;
+        margin-top: 0;
         margin-bottom: 2rem;
     }
 
