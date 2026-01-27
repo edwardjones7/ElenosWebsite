@@ -201,6 +201,87 @@ function setActiveNavLink() {
     window.addEventListener('load', setupWaitlistForm);
 })();
 
+// Contact form functionality
+(function() {
+    function setupContactForm() {
+        const contactForm = document.querySelector('.project-form-modern');
+        
+        if (!contactForm) {
+            return;
+        }
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name')?.value.trim() || '',
+                email: document.getElementById('email')?.value.trim() || '',
+                company: document.getElementById('company')?.value.trim() || '',
+                service: document.getElementById('service')?.value || '',
+                timeline: document.getElementById('timeline')?.value || '',
+                budget: document.getElementById('budget')?.value || '',
+                details: document.getElementById('details')?.value.trim() || ''
+            };
+
+            // Validate required fields
+            if (!formData.name || !formData.email || !formData.details) {
+                alert('Please fill in all required fields (Name, Email, and Project Details).');
+                return;
+            }
+
+            if (!formData.email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Disable submit button during submission
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+            // Send form data to server
+            fetch('http://localhost:3000/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Thank you! We\'ve received your project request and will review it within 1-2 business days.');
+                    contactForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Request';
+                } else {
+                    alert(data.error || 'There was an error submitting your request. Please try again.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your request. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            });
+        });
+    }
+
+    // Try multiple initialization points
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupContactForm);
+    } else {
+        setupContactForm();
+    }
+    
+    window.addEventListener('load', setupContactForm);
+})();
+
 // Initialize both animations when page loads
 document.addEventListener('DOMContentLoaded', () => {
     setActiveNavLink();

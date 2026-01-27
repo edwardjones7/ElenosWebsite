@@ -1,5 +1,6 @@
-# Waitlist data
+# Data files
 waitlist.csv
+contact.csv
 
 # Node modules (if you install any dependencies)
 node_modules/

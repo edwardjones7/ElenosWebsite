@@ -1,6 +1,8 @@
 /* Page templates */
 .page-hero {
-    padding: 6rem 4rem 4rem;
+    padding: 4rem 4rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
     min-height: 500px;
     max-height: 700px;
     display: flex;
@@ -126,17 +128,23 @@
 
 @media (max-width: 768px) {
     .page-hero {
-        padding: 5rem 3rem 3rem;
-        min-height: 400px;
-        max-height: 600px;
+        padding: 2rem 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        min-height: 300px;
+        max-height: 500px;
     }
 
     .page-hero h1 {
-        font-size: 2.2rem;
+        font-size: 1.9rem;
+    }
+    
+    .page-hero p {
+        font-size: 1rem;
     }
 
     .page-content {
-        padding: 3rem 5% 4rem;
+        padding: 2rem 5% 3rem;
     }
 }
 
@@ -1515,7 +1523,9 @@
 }
 
 .services-cta {
-    padding: 5rem 10%;
+    padding: 4rem 10%;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
     background-color: #000;
     background-image: url("../gifs/stars.gif");
     background-position: center;
@@ -1642,7 +1652,9 @@
 
 @media (max-width: 768px) {
     .page-hero {
-        padding: 5rem 3rem 3rem;
+        padding: 3rem 3rem;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
         min-height: 400px;
         max-height: 600px;
     }
@@ -1652,7 +1664,15 @@
     }
 
     .page-content {
-        padding: 3rem 5% 4rem;
+        padding: 2rem 5% 3rem;
+    }
+
+    .page-hero {
+        padding: 2rem 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        min-height: 300px;
+        max-height: 500px;
     }
 
     .about-intro {
@@ -1665,14 +1685,21 @@
     .about-approach,
     .about-cta,
     .services-main {
-        padding: 5rem 5%;
+        padding: 2rem 5%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
     
     .services-process,
     .services-benefits,
-    .services-projects,
+    .services-projects {
+        padding: 2rem 5%;
+    }
+    
     .services-cta {
-        padding: 4rem 5%;
+        padding: 2rem 5%;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
     }
 
     .about-stats-grid {
@@ -1689,7 +1716,35 @@
     .services-benefits-header h2,
     .services-projects-header h2,
     .services-cta h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+    }
+    
+    .service-card-modern {
+        padding: 1.5rem;
+    }
+    
+    .service-card-modern h3 {
+        font-size: 1.4rem;
+    }
+    
+    .service-card-modern p {
+        font-size: 0.95rem;
+    }
+    
+    .process-step-modern {
+        padding: 1rem;
+    }
+    
+    .step-number-modern {
+        font-size: 2rem;
+    }
+    
+    .step-content h4 {
+        font-size: 1.2rem;
+    }
+    
+    .step-content p {
+        font-size: 0.9rem;
     }
 
     .benefits-grid-compact {
@@ -3016,7 +3071,9 @@
 
 /* Upcoming Projects Section */
 .upcoming-projects {
-    padding: 5rem 10%;
+    padding: 4rem 10%;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
     background-color: #000;
     background-image: url("../gifs/stars.gif");
     background-position: center;
@@ -3209,12 +3266,14 @@
 
 @media (max-width: 768px) {
     .products-showcase {
-        padding: 5rem 5%;
+        padding: 2rem 5%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 
     .assistant-product-box {
-        padding: 2.5rem;
-        border-radius: 16px;
+        padding: 1.5rem;
+        border-radius: 12px;
     }
 
     .assistant-features-grid {
@@ -3222,21 +3281,34 @@
     }
 
     .assistant-title-section h2 {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     .assistant-tagline {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .assistant-description {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
 
     .assistant-features-section h3,
     .assistant-vision-section h3,
     .assistant-cta-section h3 {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
+    }
+    
+    .assistant-feature-item {
+        padding: 1rem;
+    }
+    
+    .assistant-feature-item h4 {
+        font-size: 1.1rem;
+    }
+    
+    .assistant-feature-item p {
+        font-size: 0.9rem;
     }
 
     .waitlist-form {
@@ -3250,7 +3322,9 @@
     }
 
     .upcoming-projects {
-        padding: 4rem 5%;
+        padding: 2rem 5%;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
     }
 
     .upcoming-projects-grid {
@@ -3258,6 +3332,10 @@
     }
 
     .upcoming-projects-header h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+    }
+    
+    .upcoming-projects-header p {
+        font-size: 0.95rem;
     }
 }
