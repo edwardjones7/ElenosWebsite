@@ -160,7 +160,7 @@ function setActiveNavLink() {
                     submitBtn.textContent = 'Submitting...';
 
                     // Send email to server
-                    fetch('http://localhost:3000/api/waitlist', {
+                    fetch('/api/waitlist', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -243,7 +243,7 @@ function setActiveNavLink() {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
             // Send form data to server
-            fetch('http://localhost:3000/api/contact', {
+            fetch('/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -321,9 +321,32 @@ function setActiveNavLink() {
     }
 })();
 
+// Mobile layout reordering for home page
+function reorderMobileLayout() {
+    if (window.innerWidth <= 768) {
+        const heroPanel = document.querySelector('.hero-panel');
+        const processSection = document.querySelector('.process-section');
+        
+        if (heroPanel && processSection && !heroPanel.classList.contains('mobile-moved')) {
+            // Clone and move hero-panel after process-section
+            const clonedPanel = heroPanel.cloneNode(true);
+            clonedPanel.classList.add('mobile-moved');
+            processSection.parentNode.insertBefore(clonedPanel, processSection.nextSibling);
+        }
+    } else {
+        // Remove cloned panel on desktop
+        const movedPanel = document.querySelector('.hero-panel.mobile-moved');
+        if (movedPanel) {
+            movedPanel.remove();
+        }
+    }
+}
+
 // Initialize both animations when page loads
 document.addEventListener('DOMContentLoaded', () => {
     setActiveNavLink();
     handleProcessAnimation();
     handleServicesAnimation();
+    reorderMobileLayout();
+    window.addEventListener('resize', reorderMobileLayout);
 }); 
