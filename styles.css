@@ -1202,20 +1202,133 @@ footer > * {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    /* Fix navbar positioning */
+    /* ========== Mobile nav: fixed-height bar, dropdown below ========== */
     nav.header {
         top: 0;
         left: 0;
         width: 100%;
+        height: 56px;
+        min-height: 56px;
+        max-height: 56px;
+        padding: 0 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
     }
     
-    /* Home page hero spacing - mobile only */
+    nav.header .logo {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    nav.header .logo img.elenos {
+        height: 28px;
+        width: auto;
+        max-height: 28px;
+        display: block;
+    }
+    
+    nav.header .mobile-menu-toggle {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        padding: 0;
+        margin: 0;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        cursor: pointer;
+        gap: 5px;
+    }
+    
+    nav.header .mobile-menu-toggle span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #fff;
+        border-radius: 1px;
+    }
+    
+    /* Dropdown: out of flow, below nav only when open */
+    nav.header .nav-links {
+        position: absolute;
+        top: 100%;
+        left: auto;
+        right: 1rem;
+        margin-top: 0.5rem;
+        display: none;
+        flex-direction: column;
+        min-width: 150px;
+        padding: 0.5rem 0;
+        background: #0c0c0c;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+        z-index: 1001;
+        gap: 0;
+    }
+    
+    nav.header .nav-links.active {
+        display: flex;
+    }
+    
+    nav.header .nav-links a {
+        display: block;
+        padding: 0.65rem 1.25rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    
+    nav.header .nav-links a:hover {
+        color: var(--accent-color);
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    nav.header .nav-links a.active {
+        color: var(--accent-color);
+    }
+    
+    nav.header .nav-links a.active::after {
+        display: none;
+    }
+    
+    /* Hide duplicate mobile-hero; use static-section hero only */
+    .mobile-hero {
+        display: none !important;
+    }
+    
+    /* Home page hero - mobile: single centered column, no grid */
     .static-section {
         margin-top: 0;
         padding-top: 0;
         min-height: auto;
         max-height: none;
         position: relative;
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+    
+    .static-section header {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
     }
     
     header {
@@ -1228,12 +1341,16 @@ footer > * {
     }
     
     .hero {
-        padding-top: 5rem;
-        padding-bottom: 2rem;
-        padding-left: 2rem;
-        padding-right: 2rem;
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 8.5rem 1.5rem 4.5rem;
+        gap: 0;
+        box-sizing: border-box;
     }
     
     .process-section {
@@ -1330,19 +1447,36 @@ footer > * {
     }
     
     .hero-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-        padding: 0 0.75rem;
+        width: 100%;
         max-width: 100%;
+        padding: 0 1rem;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    .hero-text .hero-eyebrow,
+    .hero-text h1,
+    .hero-text p {
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .hero h1 {
-        font-size: 1.35rem !important;
+        font-size: 1.75rem !important;
         line-height: 1.3 !important;
+        margin-bottom: 1rem !important;
     }
     
     .hero p {
-        font-size: 0.85rem !important;
-        line-height: 1.5 !important;
+        font-size: 1rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 1.5rem !important;
     }
     
     /* Hide discovery/design/delivery boxes on mobile */
@@ -1433,6 +1567,205 @@ footer > * {
     .hero-text {
         position: relative;
         z-index: 10;
+    }
+    
+    /* Teams We Have Supported - mobile redesign */
+    .clients-section {
+        padding: 2.5rem 1.25rem 3rem;
+        background-size: 80% auto;
+    }
+    
+    .clients-section::before {
+        background: rgba(0, 0, 0, 0.6);
+    }
+    
+    .clients-header {
+        margin-bottom: 2rem;
+    }
+    
+    .clients-header .section-eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+    }
+    
+    .clients-header h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.25;
+    }
+    
+    .clients-header p {
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .clients-stats-modern {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        max-width: 100%;
+    }
+    
+    .client-stat-card {
+        padding: 1rem 1.25rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        text-align: left;
+        border-width: 1px;
+        box-shadow: none;
+    }
+    
+    .client-stat-number {
+        font-size: 1.75rem;
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+    
+    .client-stat-label {
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+        text-align: left;
+        line-height: 1.3;
+    }
+    
+    .clients-grid-modern {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    
+    .client-card-modern {
+        padding: 1.5rem 1.25rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(12, 12, 12, 0.95);
+    }
+    
+    .client-card-modern::before {
+        height: 2px;
+    }
+    
+    .client-tag-modern {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.65rem;
+        margin-bottom: 0.75rem;
+        border-radius: 6px;
+    }
+    
+    .client-card-modern h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+    
+    .client-card-modern p {
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.75);
+    }
+    
+    /* Request a Quote / Booking section - mobile */
+    .booking-section {
+        padding: 2.5rem 1.25rem 3rem;
+        background-size: 80% auto;
+    }
+    
+    .booking-section::before {
+        background: rgba(0, 0, 0, 0.65);
+    }
+    
+    .booking-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        max-width: 100%;
+    }
+    
+    /* Steps above CTA on mobile */
+    .booking-content .booking-steps {
+        order: -1;
+    }
+    
+    .booking-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        max-width: 320px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    .step-pill {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .step-pill span {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .step-pill p {
+        font-size: 0.9rem;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.85);
+    }
+    
+    .booking-card {
+        padding: 2rem 1.5rem 2.25rem;
+        border-radius: 16px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+    
+    .booking-card .section-eyebrow {
+        margin-bottom: 0.5rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+    }
+    
+    .booking-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+    }
+    
+    .booking-card p {
+        font-size: 0.95rem;
+        margin-bottom: 1.75rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.85);
+    }
+    
+    .booking-card .hero-actions {
+        justify-content: center;
+        margin-bottom: 0;
+    }
+    
+    .booking-card .calendly-button {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        justify-content: center;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+    
+    .booking-card .calendly-button i {
+        font-size: 1.1rem;
     }
 }
 

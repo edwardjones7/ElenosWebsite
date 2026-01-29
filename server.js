@@ -3,26 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const WAITLIST_CSV = path.join(__dirname, 'waitlist.csv');
 const CONTACT_CSV = path.join(__dirname, 'contact.csv');
-
-// MIME types for static files
-const MIME_TYPES = {
-    '.html': 'text/html',
-    '.css': 'text/css',
-    '.js': 'application/javascript',
-    '.json': 'application/json',
-    '.png': 'image/png',
-    '.jpg': 'image/jpeg',
-    '.jpeg': 'image/jpeg',
-    '.gif': 'image/gif',
-    '.ico': 'image/x-icon',
-    '.svg': 'image/svg+xml',
-    '.webp': 'image/webp',
-    '.woff': 'font/woff',
-    '.woff2': 'font/woff2'
-};
 
 // Ensure CSV files exist with headers if they don't exist
 if (!fs.existsSync(WAITLIST_CSV)) {
@@ -36,7 +19,7 @@ if (!fs.existsSync(CONTACT_CSV)) {
 const server = http.createServer((req, res) => {
     // Enable CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     if (req.method === 'OPTIONS') {
@@ -76,7 +59,7 @@ const server = http.createServer((req, res) => {
                 res.end(JSON.stringify({ success: false, error: 'Server error' }));
             }
         });
-    } else if (req.method === 'POST' && (req.url === '/api/contact' || req.url.startsWith('/api/contact'))) {
+    } else if (req.method === 'POST' && req.url === '/api/contact') {
         let body = '';
         
         req.on('data', chunk => {
@@ -129,42 +112,14 @@ const server = http.createServer((req, res) => {
                 res.end(JSON.stringify({ success: false, error: 'Server error' }));
             }
         });
-    } else if (req.method === 'GET') {
-        let reqPath = url.parse(req.url, true).pathname;
-        if (reqPath === '/') reqPath = '/index.html';
-        const filePath = path.join(__dirname, reqPath.replace(/^\//, ''));
-
-        const resolved = path.resolve(filePath);
-        if (!resolved.startsWith(path.resolve(__dirname))) {
-            res.writeHead(403);
-            res.end('Forbidden');
-            return;
-        }
-
-        fs.readFile(filePath, (err, data) => {
-            if (err) {
-                if (err.code === 'ENOENT') {
-                    res.writeHead(404, { 'Content-Type': 'text/plain' });
-                    res.end('Not found');
-                } else {
-                    res.writeHead(500);
-                    res.end('Server error');
-                }
-                return;
-            }
-            const ext = path.extname(filePath);
-            const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-            res.setHeader('Content-Type', contentType);
-            res.end(data);
-        });
     } else {
         res.writeHead(404, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: 'Not found' }));
     }
 });
 
-server.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}/`);
-    console.log(`Every waitlist signup is saved to: ${WAITLIST_CSV}`);
-    console.log(`Every contact form submission is saved to: ${CONTACT_CSV}`);
+    console.log(`Waitlist emails will be saved to: ${WAITLIST_CSV}`);
+    console.log(`Contact form submissions will be saved to: ${CONTACT_CSV}`);
 });

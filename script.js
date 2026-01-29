@@ -160,7 +160,7 @@ function setActiveNavLink() {
                     submitBtn.textContent = 'Submitting...';
 
                     // Send email to server
-                    fetch('/api/waitlist', {
+                    fetch('http://localhost:3000/api/waitlist', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -243,7 +243,7 @@ function setActiveNavLink() {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
             // Send form data to server
-            fetch('/api/contact', {
+            fetch('http://localhost:3000/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -292,12 +292,12 @@ function setActiveNavLink() {
             return;
         }
         
-        menuToggle.addEventListener('click', function() {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
             menuToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
         
-        // Close menu when clicking on a link
         navLinks.addEventListener('click', function(e) {
             if (e.target.tagName === 'A') {
                 menuToggle.classList.remove('active');
@@ -305,8 +305,8 @@ function setActiveNavLink() {
             }
         });
         
-        // Close menu when clicking outside
         document.addEventListener('click', function(e) {
+            if (!navLinks.classList.contains('active')) return;
             if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
                 menuToggle.classList.remove('active');
                 navLinks.classList.remove('active');
@@ -324,20 +324,32 @@ function setActiveNavLink() {
 // Mobile layout reordering for home page
 function reorderMobileLayout() {
     if (window.innerWidth <= 768) {
-        const heroPanel = document.querySelector('.hero-panel');
+        const heroPanel = document.querySelector('.hero-panel:not(.mobile-moved)');
         const processSection = document.querySelector('.process-section');
+        const alreadyMoved = document.querySelector('.hero-panel.mobile-moved');
         
-        if (heroPanel && processSection && !heroPanel.classList.contains('mobile-moved')) {
-            // Clone and move hero-panel after process-section
+        if (heroPanel && processSection && !alreadyMoved) {
             const clonedPanel = heroPanel.cloneNode(true);
             clonedPanel.classList.add('mobile-moved');
             processSection.parentNode.insertBefore(clonedPanel, processSection.nextSibling);
         }
     } else {
-        // Remove cloned panel on desktop
-        const movedPanel = document.querySelector('.hero-panel.mobile-moved');
-        if (movedPanel) {
-            movedPanel.remove();
+        const movedPanels = document.querySelectorAll('.hero-panel.mobile-moved');
+        movedPanels.forEach(function(p) { p.remove(); });
+    }
+
+    // On mobile: put Teams We Have Supported (clients) under Request a Quote (booking) via DOM order (no body flex, so process animation is unchanged)
+    const clientsSection = document.getElementById('clients');
+    const bookingSection = document.getElementById('booking');
+    if (!clientsSection || !bookingSection) return;
+
+    if (window.innerWidth <= 768) {
+        if (bookingSection.nextSibling !== clientsSection) {
+            bookingSection.parentNode.insertBefore(clientsSection, bookingSection.nextSibling);
+        }
+    } else {
+        if (bookingSection.previousSibling !== clientsSection) {
+            bookingSection.parentNode.insertBefore(clientsSection, bookingSection);
         }
     }
 }
