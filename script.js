@@ -1,4 +1,5 @@
 
+
 const FORMSPREE_CONTACT = 'https://formspree.io/f/xrekvbqr';
 const FORMSPREE_WAITLIST = 'https://formspree.io/f/xnjvyndr';
 
@@ -202,17 +203,18 @@ function setActiveNavLink() {
     }
 })();
 
-// Stay Connected (newsletter) – same Formspree endpoint as waitlist
+// Stay Connected (newsletter) – submits to same Waitlist form as Products page
 (function() {
     function setupStayConnectedForm() {
         const form = document.getElementById('stay-connected-form');
-        if (!form) return;
+        const emailInput = document.getElementById('stay-connected-email');
+        if (!form || !emailInput) return;
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            const input = form.querySelector('input[name="email"]');
-            const email = input ? input.value.trim() : '';
+
+            const email = emailInput.value.trim();
             if (!email || !email.includes('@')) {
                 alert('Please enter a valid email address.');
                 return;
@@ -230,10 +232,14 @@ function setActiveNavLink() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: email })
             })
-            .then(response => response.json().then(data => ({ ok: response.ok, data })))
-            .then(({ ok }) => {
-                if (ok) {
-                    alert('Thanks for subscribing! We\'ll keep you updated.');
+            .then(function(response) {
+                return response.json().then(function(data) {
+                    return { ok: response.ok, data: data };
+                });
+            })
+            .then(function(result) {
+                if (result.ok) {
+                    alert('Thank you! You\'re on the list. We\'ll keep you updated.');
                     form.reset();
                 } else {
                     alert('Something went wrong. Please try again.');
