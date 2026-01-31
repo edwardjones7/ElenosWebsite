@@ -1,7 +1,4 @@
-// Form submissions: use Formspree so CSV/data is saved without running a server.
-// 1. Sign up at https://formspree.io and create two forms (Contact + Waitlist).
-// 2. Replace the IDs below with your form IDs (e.g. xyzabc from https://formspree.io/f/xyzabc).
-// 3. In Formspree dashboard you can export submissions as CSV.
+
 const FORMSPREE_CONTACT = 'https://formspree.io/f/xrekvbqr';
 const FORMSPREE_WAITLIST = 'https://formspree.io/f/xnjvyndr';
 
@@ -198,14 +195,69 @@ function setActiveNavLink() {
         }
     }
 
-    // Try multiple initialization points
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', setupWaitlistForm);
     } else {
         setupWaitlistForm();
     }
-    
-    window.addEventListener('load', setupWaitlistForm);
+})();
+
+// Stay Connected (newsletter) – same Formspree endpoint as waitlist
+(function() {
+    function setupStayConnectedForm() {
+        const form = document.getElementById('stay-connected-form');
+        if (!form) return;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const input = form.querySelector('input[name="email"]');
+            const email = input ? input.value.trim() : '';
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn ? submitBtn.textContent : 'Subscribe';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+            }
+
+            fetch(FORMSPREE_WAITLIST, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json().then(data => ({ ok: response.ok, data })))
+            .then(({ ok }) => {
+                if (ok) {
+                    alert('Thanks for subscribing! We\'ll keep you updated.');
+                    form.reset();
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            })
+            .catch(function() {
+                alert('Something went wrong. Please try again.');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupStayConnectedForm);
+    } else {
+        setupStayConnectedForm();
+    }
 })();
 
 // Contact form functionality
@@ -279,14 +331,11 @@ function setActiveNavLink() {
         });
     }
 
-    // Try multiple initialization points
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', setupContactForm);
     } else {
         setupContactForm();
     }
-    
-    window.addEventListener('load', setupContactForm);
 })();
 
 // Mobile menu toggle functionality
