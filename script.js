@@ -2,8 +2,8 @@
 // 1. Sign up at https://formspree.io and create two forms (Contact + Waitlist).
 // 2. Replace the IDs below with your form IDs (e.g. xyzabc from https://formspree.io/f/xyzabc).
 // 3. In Formspree dashboard you can export submissions as CSV.
-const FORMSPREE_CONTACT = 'https://formspree.io/f/YOUR_CONTACT_FORM_ID';
-const FORMSPREE_WAITLIST = 'https://formspree.io/f/YOUR_WAITLIST_FORM_ID';
+const FORMSPREE_CONTACT = 'https://formspree.io/f/xrekvbqr';
+const FORMSPREE_WAITLIST = 'https://formspree.io/f/xnjvyndr';
 
 // Process section animation
 function handleProcessAnimation() {

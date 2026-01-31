@@ -451,7 +451,7 @@ header > * {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 8rem 4rem 4rem;
+    padding: 9rem 4rem 16.25rem;
     color: #fff;
 }
 
@@ -472,18 +472,20 @@ header > * {
     letter-spacing: 0.2rem;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1rem;
+    margin-bottom: 0.85rem;
 }
 
 .hero h1 {
     font-size: 3.4rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
 }
 
 .hero p {
     font-size: 1.15rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
     color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
 }
 
 .cta-button {
@@ -550,7 +552,7 @@ header > * {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin-top: 1rem;
+    margin-top: 0;
 }
 
 .highlight {
@@ -603,9 +605,35 @@ header > * {
 }
 
 @media (min-width: 769px) {
+    .hero-panel {
+        width: 100%;
+        max-width: 100%;
+        gap: 1.25rem;
+        align-self: center;
+        max-height: 100%;
+    }
     .panel-card {
         text-align: left;
-        padding: 2rem 1.75rem;
+        padding: 1.5rem 1.35rem;
+        border-radius: 14px;
+    }
+    .panel-card h4 {
+        font-size: 1.05rem;
+        margin-bottom: 0.6rem;
+    }
+    .panel-card p,
+    .panel-card li {
+        font-size: 0.875rem;
+        line-height: 1.55;
+    }
+    .panel-card ul {
+        padding-left: 1rem;
+    }
+    .panel-card ul li {
+        margin-bottom: 0.4rem;
+    }
+    .panel-card ul li::before {
+        left: -1rem;
     }
 }
 
@@ -1215,6 +1243,25 @@ footer > * {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+    /* Mobile: body background = stars gif so it shows across the page */
+    body {
+        background-color: #000;
+        background-image: url("gifs/stars.gif");
+        background-position: center;
+        background-repeat: repeat;
+        background-size: 60% auto;
+    }
+    
+    /* Sections transparent so body stars show through */
+    .static-section,
+    header,
+    .process-section,
+    .clients-section,
+    .booking-section {
+        background-color: transparent !important;
+        background-image: none !important;
+    }
+    
     /* ========== Mobile nav: fixed-height bar, dropdown below ========== */
     nav.header {
         top: 0;
@@ -1338,6 +1385,12 @@ footer > * {
         box-sizing: border-box;
     }
     
+    /* Mobile: remove black overlays so star gif shows through entirely */
+    header::before,
+    .process-section::before {
+        background: transparent;
+    }
+    
     .static-section header {
         width: 100%;
         max-width: 100%;
@@ -1402,17 +1455,28 @@ footer > * {
         transform: translateX(0) !important;
     }
     
-    /* All steps align to the right on mobile */
+    /* All steps align to the right on mobile - stagnant, no scroll animation */
     .process-step {
         width: calc(100% - 2rem) !important;
         margin-left: auto !important;
         margin-right: 0 !important;
         padding: 1.25rem;
-        transform: translateX(30px);
+        opacity: 1;
+        transform: translateX(0) !important;
+        transition: none;
     }
     
     .process-step.active {
         transform: translateX(0) !important;
+    }
+    
+    /* Timeline and dots visible from start on mobile (no scroll-triggered animation) */
+    .process-container::after {
+        height: 100% !important;
+    }
+    .process-section .process-step::before,
+    .process-section .process-step::after {
+        background: var(--accent-color);
     }
     
     /* Circles on the left side */
@@ -1712,7 +1776,7 @@ footer > * {
     }
     
     .booking-section::before {
-        background: rgba(0, 0, 0, 0.65);
+        background: transparent;
     }
     
     .booking-content {
