@@ -1,3 +1,10 @@
+// Form submissions: use Formspree so CSV/data is saved without running a server.
+// 1. Sign up at https://formspree.io and create two forms (Contact + Waitlist).
+// 2. Replace the IDs below with your form IDs (e.g. xyzabc from https://formspree.io/f/xyzabc).
+// 3. In Formspree dashboard you can export submissions as CSV.
+const FORMSPREE_CONTACT = 'https://formspree.io/f/YOUR_CONTACT_FORM_ID';
+const FORMSPREE_WAITLIST = 'https://formspree.io/f/YOUR_WAITLIST_FORM_ID';
+
 // Process section animation
 function handleProcessAnimation() {
     const processSteps = document.querySelectorAll('.process-step');
@@ -159,17 +166,17 @@ function setActiveNavLink() {
                     submitBtn.disabled = true;
                     submitBtn.textContent = 'Submitting...';
 
-                    // Send email to server
-                    fetch('http://localhost:3000/api/waitlist', {
+                    // Send email to Formspree (no server to run; export CSV from Formspree dashboard)
+                    fetch(FORMSPREE_WAITLIST, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({ email: email })
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
+                    .then(response => response.json().then(data => ({ ok: response.ok, data })))
+                    .then(({ ok }) => {
+                        if (ok) {
                             alert('Thank you! We\'ll notify you when Assistant+ is ready.');
                             waitlistFormElement.reset();
                             waitlistForm.style.display = 'none';
@@ -242,17 +249,17 @@ function setActiveNavLink() {
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
-            // Send form data to server
-            fetch('http://localhost:3000/api/contact', {
+            // Send form data to Formspree (no server to run; export CSV from Formspree dashboard)
+            fetch(FORMSPREE_CONTACT, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+            .then(response => response.json().then(data => ({ ok: response.ok, data })))
+            .then(({ ok, data }) => {
+                if (ok) {
                     alert('Thank you! We\'ve received your project request and will review it within 1-2 business days.');
                     contactForm.reset();
                     submitBtn.disabled = false;
@@ -260,7 +267,7 @@ function setActiveNavLink() {
                 } else {
                     alert(data.error || 'There was an error submitting your request. Please try again.');
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Request';
                 }
             })
             .catch(error => {
