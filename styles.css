@@ -806,6 +806,102 @@ section > h3 {
     font-size: 1.5rem;
 }
 
+/* Stay Connected – email CTA (home page) */
+.stay-connected {
+    background-color: #000;
+    background-image: url("gifs/stars.gif");
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 60% auto;
+    color: #fff;
+    padding: 4rem 1.5rem;
+    position: relative;
+    text-align: center;
+}
+
+.stay-connected::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+.stay-connected > * {
+    position: relative;
+    z-index: 1;
+}
+
+.stay-connected-inner {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.stay-connected .section-eyebrow {
+    margin-bottom: 0.5rem;
+}
+
+.stay-connected h2 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    color: #fff;
+}
+
+.stay-connected p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    margin-bottom: 1.75rem;
+    line-height: 1.6;
+}
+
+.stay-connected-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.stay-connected-input {
+    flex: 1;
+    min-width: 200px;
+    max-width: 320px;
+    padding: 0.9rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    background: rgba(10, 10, 10, 0.9);
+    color: #fff;
+    font-size: 1rem;
+    font-family: 'Barlow', sans-serif;
+}
+
+.stay-connected-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.stay-connected-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.stay-connected-btn {
+    padding: 0.9rem 1.5rem;
+    background: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Barlow', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.stay-connected-btn:hover {
+    transform: translateY(-2px);
+    background: #b81aff;
+}
+
 footer {
     background-color: var(--primary-color);
     background-image: url("gifs/stars.gif");
