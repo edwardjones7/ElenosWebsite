@@ -455,6 +455,13 @@ header > * {
     color: #fff;
 }
 
+@media (min-width: 1440px) {
+    .hero {
+        padding-top: 36rem;
+        padding-bottom: 32rem;
+    }
+}
+
 @media (max-width: 768px) {
     .hero {
         grid-template-columns: 1fr;
