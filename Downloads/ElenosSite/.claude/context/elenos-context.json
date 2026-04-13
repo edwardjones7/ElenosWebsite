@@ -1,0 +1,574 @@
+{
+    "meta": {
+      "schema_name": "elenos-context",
+      "schema_version": "1.0.0",
+      "last_updated": "2026-03-12",
+      "source_scope": [
+        "uploaded_business_plan",
+        "current_conversation",
+        "long-term_user_context"
+      ],
+      "purpose": "Master operating context for Elenos AI across planning, branding, software development, automation, product strategy, content generation, documentation, and AI system behavior."
+    },
+    "organization": {
+      "name": "Elenos AI",
+      "legal_name": "Elenos.ai",
+      "domain": "elenos.ai",
+      "taglines": [
+        "Designing scalable digital systems.",
+        "Streamlining processes through AI-powered solutions.",
+        "Designing scalable digital systems powered by AI operators."
+      ],
+      "company_type": "AI Systems & Automation Company",
+      "industry": [
+        "Tech",
+        "Design",
+        "Software",
+        "SaaS",
+        "Apps",
+        "Digital Products",
+        "AI Automation"
+      ],
+      "founder": {
+        "name": "Edward Jones",
+        "roles": [
+          "Founder",
+          "Builder",
+          "AI Systems Developer",
+          "Designer",
+          "Operator"
+        ]
+      },
+      "mission": "To build intelligent systems that combine software, automation, design, and AI operators to transform ideas into scalable, reusable, automated, and marketable systems.",
+      "vision": "Elenos AI exists to create scalable digital systems and deploy AI-powered operators that automate business processes, scale products, and help businesses and individuals operate more efficiently.",
+      "core_thesis": "Services generate cash flow, systems capture the process, operators automate execution, and products turn that leverage into recurring revenue.",
+      "positioning": {
+        "short": "Elenos AI builds scalable digital systems and AI operators.",
+        "market_position": "A hybrid design, software, and AI automation company focused on building intelligent, self-operating digital infrastructure.",
+        "category": [
+          "AI systems",
+          "automation infrastructure",
+          "micro SaaS",
+          "digital product studio",
+          "operator-based software"
+        ]
+      }
+    },
+    "brand_identity": {
+      "name_style": "elenos.ai",
+      "primary_color": "#a200ff",
+      "visual_direction": [
+        "futuristic",
+        "minimal",
+        "clean",
+        "intelligent",
+        "dark modern",
+        "high contrast",
+        "system-oriented"
+      ],
+      "brand_attributes": [
+        "technical",
+        "innovative",
+        "professional",
+        "scalable",
+        "high-leverage",
+        "AI-native"
+      ],
+      "tone_of_voice": {
+        "traits": [
+          "clear",
+          "confident",
+          "smart",
+          "systematic",
+          "professional",
+          "future-focused"
+        ],
+        "avoid": [
+          "hype with no substance",
+          "generic agency language",
+          "overly corporate jargon",
+          "vague AI buzzwords"
+        ]
+      },
+      "messaging_pillars": [
+        "Scalable systems over one-off work",
+        "Automation over repetitive labor",
+        "Design plus software plus AI under one brand",
+        "Products and operators as leverage",
+        "Intelligent execution with clean systems"
+      ]
+    },
+    "strategic_model": {
+      "business_model": {
+        "branches": [
+          {
+            "name": "Services",
+            "purpose": "Generate cash flow, validate demand, create case studies, and build reusable systems."
+          },
+          {
+            "name": "Products",
+            "purpose": "Create scalable digital assets, SaaS tools, apps, and repeatable revenue streams."
+          },
+          {
+            "name": "AI Operators",
+            "purpose": "Deploy automated digital workers that execute defined workflows with minimal human oversight."
+          }
+        ],
+        "revenue_flow": [
+          "Services -> cash flow",
+          "Systems -> reusable process assets",
+          "Operators -> automated execution",
+          "Products -> scalable recurring revenue"
+        ],
+        "operating_principle": "Every service should either become a reusable workflow, a product feature, an AI operator, or a case study that compounds future growth."
+      },
+      "ai_operator_model": {
+        "definition": "AI operators are automated digital workers designed to execute specific repeatable tasks across business, content, analytics, customer support, lead generation, data monitoring, and internal operations.",
+        "thesis": "Elenos does not just build software; it builds software systems that can operate with AI-assisted or AI-led execution.",
+        "operator_properties": [
+          "narrow scope",
+          "clear inputs and outputs",
+          "SOP-backed behavior",
+          "automation-first design",
+          "human override when needed",
+          "measurable performance"
+        ],
+        "strategic_role": [
+          "reduce manual execution",
+          "increase output capacity",
+          "turn workflows into products",
+          "improve margins",
+          "enable scale without proportional headcount"
+        ]
+      }
+    },
+    "target_market": {
+      "primary_segments": [
+        "Medium to larger businesses needing automation or software systems",
+        "Entrepreneurs and startups seeking scalable digital infrastructure",
+        "Creators and operators who need AI-assisted workflows",
+        "Businesses that want niche tools to improve operations",
+        "Users needing productivity, analytics, or workflow software",
+        "Businesses that can easily afford a good service",
+        "You can reach the decision maker directly"
+      ],
+      "secondary_segments": [
+        "Developers",
+        "Crypto traders",
+        "Data analysts",
+        "Design-forward founders",
+        "Local service businesses"
+      ],
+      "ideal_customer_profile": {
+        "traits": [
+          "has repeatable digital workflows",
+          "values efficiency and leverage",
+          "needs better systems or automation",
+          "open to AI integration",
+          "either service-heavy or ops-heavy",
+          "Spend $50,000 or more per year on services",
+          "Spend to solve problems",
+          "Capable of generating an extra $100,000 or more per year using better systems",
+          "Easy to reach"
+        ],
+        "pain_points": [
+          "manual repetitive work",
+          "messy internal processes",
+          "lack of systemization",
+          "slow content or lead generation",
+          "limited visibility into operations",
+          "too much owner dependence"
+        ]
+      },
+      "market_trends": [
+        "Growing demand for AI automation and agent-based systems",
+        "Micro SaaS remains attractive due to low overhead and niche scalability",
+        "Businesses increasingly adopt AI for productivity and workflow support",
+        "Automation plus design plus software is a differentiated offering"
+      ]
+    },
+    "competitive_advantages": {
+      "advantages": [
+        "Combines software, design, marketing sense, and AI systems under one brand",
+        "Founder has direct experience building bots, apps, automation, and digital products",
+        "Strong productization mindset",
+        "Operator model enables leverage beyond traditional service businesses",
+        "Able to move between branding, frontend, backend, and system design"
+      ],
+      "moat_hypotheses": [
+        "Reusable internal systems",
+        "brand consistency across technical and design output",
+        "operator templates and SOPs",
+        "fast iteration from founder-led execution",
+        "portfolio of interconnected products"
+      ]
+    },
+    "products_and_ecosystem": {
+      "core_products": [
+        {
+          "name": "Assistant+",
+          "status": "active concept / in development",
+          "type": "AI personal assistant platform",
+          "summary": "A multi-tool assistant app that combines chat, calendar, notes, news, and financial tracking into one system.",
+          "features": [
+            "AI chat",
+            "calendar integration",
+            "notes",
+            "news section",
+            "top cryptocurrency tracking",
+            "stock tracking"
+          ],
+          "role_in_ecosystem": "Flagship user-facing AI assistant product."
+        },
+        {
+          "name": "EdTheStatMan",
+          "status": "active concept / in development",
+          "type": "Sports data analytics platform",
+          "focus": [
+            "college football analytics",
+            "sports statistics",
+            "data visualization"
+          ],
+          "role_in_ecosystem": "Data product and content-driven analytics brand."
+        }
+      ],
+      "service_offerings": [
+        "AI automation consulting",
+        "website development",
+        "software development",
+        "UI/UX design",
+        "brand systems",
+        "media content and design assets",
+        "digital system architecture",
+        "workflow automation",
+        "AI operator deployment",
+        "design consultation and creative direction"
+      ],
+      "digital_products": [
+        "templates",
+        "design systems",
+        "UI kits",
+        "automation workflows",
+        "packaged frameworks"
+      ],
+      "micro_saas_opportunities": [
+        "marketing automation tools",
+        "design automation systems",
+        "lead generation tools",
+        "productivity utilities",
+        "analytics dashboards",
+        "niche operator-backed apps"
+      ],
+      "ecosystem_goal": "Create a connected portfolio where service knowledge becomes systems, systems become operators, and operators become products."
+    },
+    "ai_operators": {
+      "planned_operator_types": [
+        {
+          "name": "Lead Generation Operator",
+          "purpose": "Find leads, analyze public business presence, and support outreach workflows.",
+          "functions": [
+            "identify prospects",
+            "inspect online presence",
+            "segment targets",
+            "prepare outreach data",
+            "support email campaigns"
+          ]
+        },
+        {
+          "name": "Content Operator",
+          "purpose": "Support content creation, repurposing, scheduling, and optimization.",
+          "functions": [
+            "generate content drafts",
+            "repurpose formats",
+            "suggest posting strategy",
+            "track engagement inputs"
+          ]
+        },
+        {
+          "name": "Analytics Operator",
+          "purpose": "Track metrics and turn data into usable operational insight.",
+          "functions": [
+            "collect metrics",
+            "generate reports",
+            "surface anomalies",
+            "recommend improvements"
+          ]
+        },
+        {
+          "name": "Customer Support Operator",
+          "purpose": "Handle common support and onboarding workflows.",
+          "functions": [
+            "answer FAQs",
+            "route requests",
+            "assist onboarding",
+            "collect issue context"
+          ]
+        },
+        {
+          "name": "Crypto/Data Operator",
+          "purpose": "Monitor crypto or other real-time data sources and generate alerts or insights.",
+          "functions": [
+            "watch market activity",
+            "send alerts",
+            "summarize movements",
+            "flag risk"
+          ]
+        },
+        {
+          "name": "Internal Operations Operator",
+          "purpose": "Assist internal execution and reduce routine founder workload.",
+          "functions": [
+            "task organization",
+            "workflow reminders",
+            "documentation support",
+            "status rollups"
+          ]
+        }
+      ],
+      "operator_design_rules": [
+        "Each operator must have a specific scope",
+        "Each operator must map to a documented SOP",
+        "Each operator should support human oversight",
+        "Each operator should have measurable success criteria",
+        "Operators should be reusable across clients or products when possible"
+      ]
+    },
+    "technical_stack": {
+      "languages": [
+        "Python",
+        "JavaScript",
+        "TypeScript",
+        "Java",
+        "C++"
+      ],
+      "frameworks_and_platforms": [
+        "Node.js",
+        "React",
+        "Next.js"
+      ],
+      "infrastructure": [
+        "TrueNAS",
+        "Ubuntu",
+        "Docker",
+        "Vercel"
+      ],
+      "databases_and_backend": [
+        "Supabase",
+        "PostgreSQL"
+      ],
+      "ai_tools_and_models": [
+        "OpenAI API",
+        "Anthropic Claude API",
+        "Gemini API"
+      ],
+      "other_tools": [
+        "Discord",
+        "Telegram",
+        "GitHub",
+        "Notion",
+        "Stripe"
+      ],
+      "operating_style": "Use AI-assisted development, modular architecture, API-first workflows, and automation-first system design."
+    },
+    "infrastructure_context": {
+      "homelab": {
+        "summary": "Founder maintains a hands-on local infrastructure setup used for experimentation, hosting, automation, and development.",
+        "components": [
+          "TrueNAS server",
+          "Ubuntu micro-PC",
+          "Raspberry Pi devices",
+          "network switch and mesh networking",
+          "SSH and Samba-based workflows"
+        ],
+        "value_to_elenos": [
+          "local automation testing",
+          "self-hosted experimentation",
+          "infrastructure learning",
+          "operator deployment sandbox"
+        ]
+      }
+    },
+    "development_philosophy": {
+      "principles": [
+        "automation-first design",
+        "AI-assisted development",
+        "modular architecture",
+        "scalable systems",
+        "build for leverage",
+        "document before delegating",
+        "productize repeatable work"
+      ],
+      "execution_style": [
+        "ship practical systems",
+        "start narrow and validate demand",
+        "turn custom work into reusable infrastructure",
+        "prioritize systems that reduce future manual effort"
+      ],
+      "quality_bar": [
+        "clean UX",
+        "clear functionality",
+        "real-world usefulness",
+        "maintainable structure",
+        "brand consistency"
+      ]
+    },
+    "marketing_and_distribution": {
+      "brand_strategy": {
+        "primary_brand": "Elenos AI",
+        "focus": "Credibility, intelligence, technical execution, and system-oriented results."
+      },
+      "channels": [
+        "Instagram",
+        "LinkedIn",
+        "TikTok",
+        "X",
+        "GitHub",
+        "SEO",
+        "email marketing"
+      ],
+      "content_themes": [
+        "AI automation",
+        "building in public",
+        "system design",
+        "product development",
+        "workflow efficiency",
+        "operator-based business systems"
+      ],
+      "sales_approach": {
+        "services": [
+          "inbound leads",
+          "referrals",
+          "portfolio outreach",
+          "cold outreach"
+        ],
+        "products": [
+          "direct-to-consumer digital marketing",
+          "organic content",
+          "SEO",
+          "launch-based distribution"
+        ],
+        "operators": [
+          "demonstration-based selling",
+          "case studies",
+          "before-and-after efficiency examples"
+        ]
+      }
+    },
+    "financial_model": {
+      "revenue_streams": [
+        "services",
+        "products",
+        "AI operator systems",
+        "subscriptions",
+        "digital products"
+      ],
+      "initial_cost_estimate": {
+        "range_usd_per_year": [
+          500,
+          1000
+        ],
+        "categories": [
+          "domain",
+          "hosting",
+          "software tools",
+          "AI APIs"
+        ]
+      }
+    },
+    "founder_context": {
+      "name": "Edward Jones",
+      "education": {
+        "status": "Computer Science student",
+        "school": "Rowan College of South Jersey",
+        "path": "Associate's degree then transfer for bachelor's degree"
+      },
+      "technical_skills": [
+        "Python",
+        "C++",
+        "Java",
+        "software development",
+        "algorithmic thinking",
+        "automation systems"
+      ],
+      "creative_skills": [
+        "graphic design",
+        "branding",
+        "UI/UX",
+        "content design",
+        "creative direction"
+      ],
+      "professional_background": [
+        "worked with 100+ design clients",
+        "Adobe-based design work",
+        "business-building mindset",
+        "hands-on operator and builder"
+      ],
+      "founder_strengths": [
+        "technical and creative crossover",
+        "high agency",
+        "systems thinking",
+        "fast iteration",
+        "productization mindset",
+        "entrepreneurial drive"
+      ]
+    },
+    "related_brands_and_projects": {
+      "umbrella_relationship": "Elenos AI is the primary umbrella brand for technical, product, and automation initiatives.",
+      "related_entities": [
+        {
+          "name": "Assistant+",
+          "relationship": "Elenos product"
+        },
+        {
+          "name": "EdTheStatMan",
+          "relationship": "Data/product brand"
+        },
+        {
+          "name": "EddieJVisuals",
+          "relationship": "Founder design identity and service history"
+        }
+      ]
+    },
+    "ideal_output_rules": {
+      "for_ai_assistants": [
+        "Treat Elenos AI as an AI systems and automation company, not just a design studio",
+        "Favor scalable systems, AI operators, reusable workflows, and recurring revenue thinking",
+        "Tie recommendations back to leverage, productization, and systemization",
+        "Keep branding aligned with futuristic, intelligent, clean, and technical aesthetics",
+        "Prefer practical execution over vague strategy",
+        "Assume the founder values learning, speed, and hands-on building"
+      ],
+      "for_product_strategy": [
+        "Prioritize products that can become repeatable systems",
+        "Design services so they generate reusable assets",
+        "Prefer niches where automation reduces high-friction manual work",
+        "Use AI as an execution layer, not just a marketing label"
+      ],
+      "for_content_generation": [
+        "Use smart, clean, founder-operator language",
+        "Avoid exaggerated startup clichés",
+        "Show competence through specificity",
+        "Emphasize systems, automation, scalability, and product leverage"
+      ],
+      "for_design_direction": [
+        "Use #a200ff as the core accent when appropriate",
+        "Aim for modern, premium, intelligent visuals",
+        "Blend design clarity with futuristic technical branding"
+      ]
+    },
+    "master_takeaways": [
+      "Elenos AI is built around leverage.",
+      "Services are a funding and validation engine, not the end state.",
+      "AI operators are a core strategic layer, not a side feature.",
+      "Products should emerge from real workflows and documented systems.",
+      "The long-term goal is a portfolio of business we worked with to generate more revenue because of our systems."
+    ],
+    "open_assumptions": [
+      "Legal business structure has not been explicitly defined here.",
+      "No official launch dates for products are confirmed in this context file.",
+      "Financial projections are directional and should be updated with real operating data over time.",
+      "Some ecosystem items are active concepts or in-development initiatives rather than fully launched products."
+    ]
+}
+
+
