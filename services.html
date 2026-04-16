@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Services — Elenos</title>
+    <meta name="description" content="Websites, custom software, AI integration, systems audits — the four disciplines of Elenos.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,50..100;1,9..144,300..700,50..100&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <canvas id="scene-canvas" class="scene-canvas" aria-hidden="true"></canvas>
+
+    <nav class="nav" data-nav>
+        <a href="index.html" class="nav-brand" aria-label="Elenos home">
+            <span class="nav-mark" aria-hidden="true"></span>
+            <span class="nav-wordmark">ELENOS</span>
+        </a>
+        <div class="nav-links">
+            <a href="work.html">Work</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call →</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main class="shell page-fade">
+        <section class="services-hero">
+            <div class="reveal">
+                <span class="eyebrow">Services / Four Disciplines</span>
+            </div>
+            <h1 class="display display-xl reveal" data-delay="120">Build once.<br>Compound forever.</h1>
+            <p class="lede reveal" data-delay="240">Every engagement starts with a system — not a deliverable. Here's how we partition the work.</p>
+        </section>
+
+        <section class="services-list">
+            <article class="service-row reveal">
+                <div class="service-num">01</div>
+                <div class="service-title">
+                    <h3>Websites &amp;<br>Web Apps</h3>
+                    <div class="tagline">Our primary offering</div>
+                </div>
+                <div class="service-body">
+                    <p>From cinematic marketing sites to production web apps. We design and engineer the full stack — brand system, interaction design, performance, SEO, CMS, and deployment.</p>
+                    <ul>
+                        <li>→ Marketing &amp; portfolio sites</li>
+                        <li>→ Production web applications</li>
+                        <li>→ Cinematic &amp; interactive experiences</li>
+                        <li>→ CMS &amp; content workflows</li>
+                        <li>→ Performance, SEO &amp; analytics</li>
+                    </ul>
+                </div>
+                <div class="service-cta">
+                    <a class="btn btn-ghost" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call →</a>
+                </div>
+            </article>
+
+            <article class="service-row reveal">
+                <div class="service-num">02</div>
+                <div class="service-title">
+                    <h3>Custom Software<br>&amp; Internal Tools</h3>
+                    <div class="tagline">Replace the spreadsheet stack</div>
+                </div>
+                <div class="service-body">
+                    <p>The operational software that keeps a business running — CRMs, dashboards, internal admin panels, booking systems, data platforms. We design them to scale and integrate with the stack you already live in.</p>
+                    <ul>
+                        <li>→ CRMs &amp; client systems</li>
+                        <li>→ Operational dashboards</li>
+                        <li>→ Internal admin &amp; tooling</li>
+                        <li>→ Booking, billing &amp; payments</li>
+                        <li>→ Data pipelines &amp; integrations</li>
+                    </ul>
+                </div>
+                <div class="service-cta">
+                    <a class="btn btn-ghost" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call →</a>
+                </div>
+            </article>
+
+            <article class="service-row reveal">
+                <div class="service-num">03</div>
+                <div class="service-title">
+                    <h3>AI Integration<br>&amp; Automation</h3>
+                    <div class="tagline">Operators, not chatbots</div>
+                </div>
+                <div class="service-body">
+                    <p>AI that replaces the recurring manual task — not the human. We build focused operators that live inside a workflow: lead qualification, content generation, support triage, internal analytics, ops automation.</p>
+                    <ul>
+                        <li>→ AI operators &amp; agents</li>
+                        <li>→ Workflow &amp; process automation</li>
+                        <li>→ Document &amp; data intelligence</li>
+                        <li>→ Internal AI tooling</li>
+                        <li>→ Responsible deployment &amp; guardrails</li>
+                    </ul>
+                </div>
+                <div class="service-cta">
+                    <a class="btn btn-ghost" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call →</a>
+                </div>
+            </article>
+
+            <article class="service-row reveal">
+                <div class="service-num">04</div>
+                <div class="service-title">
+                    <h3>Systems Audits<br>&amp; Consulting</h3>
+                    <div class="tagline">Diagnose before you build</div>
+                </div>
+                <div class="service-body">
+                    <p>A structured audit of where your business is leaking capital — manual handoffs, data silos, tools that don't talk, processes that don't scale. We map the leaks, quantify them, and hand you a prioritized build plan.</p>
+                    <ul>
+                        <li>→ Operations &amp; revenue audits</li>
+                        <li>→ Process mapping &amp; gap analysis</li>
+                        <li>→ Build roadmap &amp; ROI modeling</li>
+                        <li>→ Vendor &amp; stack rationalization</li>
+                        <li>→ Fractional CTO engagements</li>
+                    </ul>
+                </div>
+                <div class="service-cta">
+                    <a class="btn btn-ghost" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call →</a>
+                </div>
+            </article>
+        </section>
+
+        <section class="final-cta">
+            <div class="final-cta-glow" aria-hidden="true"></div>
+            <span class="eyebrow">Ready</span>
+            <h2 class="display display-xl reveal">Let's talk about<br>the leaks.</h2>
+            <p class="reveal" data-delay="120">A 30-minute discovery call, no commitment. We'll tell you what we'd build and whether we're the studio to build it.</p>
+            <a class="btn btn-primary reveal" data-delay="200" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">
+                Book a discovery call <span class="btn-arrow">→</span>
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>Elenos</h3>
+                <p>A software studio building websites, custom systems, and AI operators for compounding businesses.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Studio</h5>
+                <ul>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call</a></li>
+                    <li><a href="contact.html">Start a project</a></li>
+                    <li><a href="mailto:ed@elenos.ai">ed@elenos.ai</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Signal</h5>
+                <ul>
+                    <li><a href="https://www.instagram.com/elenos.ai" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://x.com/elenos_ai" target="_blank" rel="noopener">X / Twitter</a></li>
+                    <li><a href="https://discord.gg/UH3a34eUvd" target="_blank" rel="noopener">Discord</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© <span data-year>2026</span> ELENOS SYSTEMS CO. · ALL RIGHTS RESERVED</span>
+            <span>elenos.ai</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/scene-services.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Products — Elenos</title>
+    <meta name="description" content="The products Elenos builds for itself — starting with AcuityIQ.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,50..100;1,9..144,300..700,50..100&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <canvas id="scene-canvas" class="scene-canvas" aria-hidden="true"></canvas>
+
+    <nav class="nav" data-nav>
+        <a href="index.html" class="nav-brand" aria-label="Elenos home">
+            <span class="nav-mark" aria-hidden="true"></span>
+            <span class="nav-wordmark">ELENOS</span>
+        </a>
+        <div class="nav-links">
+            <a href="work.html">Work</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call →</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main class="shell page-fade">
+        <section class="products-hero">
+            <div class="reveal">
+                <span class="eyebrow">Products / Our Own Transmissions</span>
+            </div>
+            <h1 class="display display-xl reveal" data-delay="120">We build for<br>ourselves too.</h1>
+            <p class="lede reveal" data-delay="240">The studio ships its own products — proof that we can take an idea from first sketch to payments processed. Here's what's live and what's transmitting soon.</p>
+        </section>
+
+        <section class="products-list">
+            <article class="product-card reveal">
+                <div class="product-visual">
+                    <img src="images/acuityiq-preview.png" alt="AcuityIQ preview">
+                </div>
+                <div class="product-body">
+                    <span class="product-status live">Live</span>
+                    <h2 class="product-name">AcuityIQ</h2>
+                    <p class="product-tagline">A fast, honest IQ assessment. $2.99.</p>
+                    <p class="product-description">Our first production product. Short, scored, shareable. Built end-to-end by the studio — from assessment design through payments — to prove the loop works.</p>
+                    <div class="work-actions">
+                        <a class="btn btn-primary" href="https://acuityiq.live" target="_blank" rel="noopener">
+                            Take the test <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card reversed reveal" data-delay="120">
+                <div class="product-visual">
+                    <img src="images/bot.png" alt="Assistant+ preview">
+                </div>
+                <div class="product-body">
+                    <span class="product-status soon">Coming Transmission</span>
+                    <h2 class="product-name">Assistant+</h2>
+                    <p class="product-tagline">An AI personal assistant designed to actually remove work.</p>
+                    <p class="product-description">Email triage, scheduling, and the small tasks that drain a week — handled by an agent tuned to your workflow. In development.</p>
+                    <div class="work-actions">
+                        <a class="btn btn-ghost" href="contact.html">
+                            Join the waitlist <span class="btn-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card reveal" data-delay="240">
+                <div class="product-visual product-visual-icon">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <div class="product-body">
+                    <span class="product-status soon">Coming Transmission</span>
+                    <h2 class="product-name">EmailAuto</h2>
+                    <p class="product-tagline">Outbound email automation that sounds like you, not a bot.</p>
+                    <p class="product-description">Built on everything the studio has learned from client email systems. Pipeline, personalization, and deliverability — one cohesive product.</p>
+                    <div class="work-actions">
+                        <a class="btn btn-ghost" href="contact.html">
+                            Join the waitlist <span class="btn-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="final-cta">
+            <div class="final-cta-glow" aria-hidden="true"></div>
+            <span class="eyebrow">Need your own?</span>
+            <h2 class="display display-xl reveal">We build products<br>for others, too.</h2>
+            <p class="reveal" data-delay="120">If you've got an idea and a runway, we'll help you ship it the same way we ship ours.</p>
+            <a class="btn btn-primary reveal" data-delay="200" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">
+                Book a discovery call <span class="btn-arrow">→</span>
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>Elenos</h3>
+                <p>A software studio building websites, custom systems, and AI operators for compounding businesses.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Studio</h5>
+                <ul>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call</a></li>
+                    <li><a href="contact.html">Start a project</a></li>
+                    <li><a href="mailto:ed@elenos.ai">ed@elenos.ai</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Signal</h5>
+                <ul>
+                    <li><a href="https://www.instagram.com/elenos.ai" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://x.com/elenos_ai" target="_blank" rel="noopener">X / Twitter</a></li>
+                    <li><a href="https://discord.gg/UH3a34eUvd" target="_blank" rel="noopener">Discord</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© <span data-year>2026</span> ELENOS SYSTEMS CO. · ALL RIGHTS RESERVED</span>
+            <span>elenos.ai</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/scene-products.js"></script>
+</body>
+</html>

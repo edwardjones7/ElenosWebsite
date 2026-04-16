@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About — Elenos</title>
+    <meta name="description" content="The people, the thesis, and the principles behind Elenos.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,50..100;1,9..144,300..700,50..100&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <canvas id="scene-canvas" class="scene-canvas" aria-hidden="true"></canvas>
+
+    <nav class="nav" data-nav>
+        <a href="index.html" class="nav-brand" aria-label="Elenos home">
+            <span class="nav-mark" aria-hidden="true"></span>
+            <span class="nav-wordmark">ELENOS</span>
+        </a>
+        <div class="nav-links">
+            <a href="work.html">Work</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call →</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main class="shell page-fade">
+        <section class="about-hero">
+            <div class="reveal">
+                <span class="eyebrow">About / Origin</span>
+            </div>
+            <h1 class="display display-xl reveal" data-delay="120">A studio for<br>the businesses<br>building next.</h1>
+            <p class="lede reveal" data-delay="240">Elenos is a small team doing careful work. We're founder-led, remote, and we ship production systems for the people who plan to be around a long time.</p>
+        </section>
+
+        <section class="about-story">
+            <p data-lit>Most businesses aren't broken.</p>
+            <p data-lit>They're <em>leaking.</em></p>
+            <p data-lit>Data buried in spreadsheets. Customers lost between tools. Hours poured into tasks that shouldn't need humans anymore.</p>
+            <p data-lit>Elenos exists to close those leaks — with software that's as careful as the business running it.</p>
+            <p data-lit>We build websites that convert, systems that scale, and AI operators that earn their keep.</p>
+            <p data-lit>Then we do it again. And again. Until the leaks stop.</p>
+        </section>
+
+        <section class="founders">
+            <div class="founders-head reveal">
+                <span class="eyebrow">The Team</span>
+                <h2 class="display display-lg">Behind the scenes.</h2>
+            </div>
+            <article class="founder reveal">
+                <div class="founder-portrait">
+                    <img src="images/ed.jpg" alt="Edward Jones, Founder">
+                </div>
+                <div class="founder-info">
+                    <div class="founder-name">Edward Jones</div>
+                    <div class="founder-role">Founder · CEO</div>
+                    <p class="founder-bio">Full-stack builder with a bias for shipping. Leads studio strategy, client engagements, and most of what makes it onto production.</p>
+                    <div class="founder-socials">
+                        <a href="mailto:ed@elenos.ai" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://x.com/edjonesv" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/edjonesv" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="values">
+            <div class="values-head reveal">
+                <span class="eyebrow">Operating Principles</span>
+                <h2 class="display display-lg">Three rules we don't break.</h2>
+            </div>
+            <div class="values-list">
+                <div class="value-row reveal">
+                    <span class="value-num">01</span>
+                    <div class="value-content">
+                        <h3 class="value-title">Craft over <em>speed</em>.</h3>
+                        <p>We would rather ship one thing that's right than three things that are almost. Compounding starts with the quality of the first surface.</p>
+                    </div>
+                </div>
+                <div class="value-row reveal" data-delay="100">
+                    <span class="value-num">02</span>
+                    <div class="value-content">
+                        <h3 class="value-title"><em>Transparency</em>.</h3>
+                        <p>If a project won't work, we say so. If our pricing is hard, we'll tell you why. Honesty scales further than flattery.</p>
+                    </div>
+                </div>
+                <div class="value-row reveal" data-delay="200">
+                    <span class="value-num">03</span>
+                    <div class="value-content">
+                        <h3 class="value-title"><em>Leverage</em>.</h3>
+                        <p>Every deliverable is designed to outlive the engagement. Reusable systems, clear docs, and infrastructure that doesn't require us to run it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta">
+            <div class="final-cta-glow" aria-hidden="true"></div>
+            <span class="eyebrow">Begin</span>
+            <h2 class="display display-xl reveal">Let's meet.</h2>
+            <p class="reveal" data-delay="120">A single call. No slides. We'll listen first, then tell you what we'd build.</p>
+            <a class="btn btn-primary reveal" data-delay="200" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">
+                Book a discovery call <span class="btn-arrow">→</span>
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>Elenos</h3>
+                <p>A software studio building websites, custom systems, and AI operators for compounding businesses.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Studio</h5>
+                <ul>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call</a></li>
+                    <li><a href="contact.html">Start a project</a></li>
+                    <li><a href="mailto:ed@elenos.ai">ed@elenos.ai</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Signal</h5>
+                <ul>
+                    <li><a href="https://www.instagram.com/elenos.ai" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://x.com/elenos_ai" target="_blank" rel="noopener">X / Twitter</a></li>
+                    <li><a href="https://discord.gg/UH3a34eUvd" target="_blank" rel="noopener">Discord</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© <span data-year>2026</span> ELENOS SYSTEMS CO. · ALL RIGHTS RESERVED</span>
+            <span>elenos.ai</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/scene-about.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact — Elenos</title>
+    <meta name="description" content="Start a project with Elenos. Book a discovery call or send a brief.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,50..100;1,9..144,300..700,50..100&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <canvas id="scene-canvas" class="scene-canvas" aria-hidden="true"></canvas>
+
+    <nav class="nav" data-nav>
+        <a href="index.html" class="nav-brand" aria-label="Elenos home">
+            <span class="nav-mark" aria-hidden="true"></span>
+            <span class="nav-wordmark">ELENOS</span>
+        </a>
+        <div class="nav-links">
+            <a href="work.html">Work</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call →</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main class="shell page-fade">
+        <section class="contact-wrap">
+            <div class="contact-left">
+                <div class="reveal"><span class="eyebrow">Contact / Begin</span></div>
+                <h1 class="display display-xl reveal" data-delay="120">Let's talk.</h1>
+                <p class="lede reveal" data-delay="240">The fastest way in is a 30-minute discovery call. If you'd rather write first, the brief below lands in our inbox within minutes.</p>
+                <div class="contact-points reveal" data-delay="360">
+                    <div class="contact-point">
+                        <span class="label">Email</span>
+                        <span class="value"><a href="mailto:ed@elenos.ai">ed@elenos.ai</a></span>
+                    </div>
+                    <div class="contact-point">
+                        <span class="label">Response</span>
+                        <span class="value">Within 1–2 business days</span>
+                    </div>
+                    <div class="contact-point">
+                        <span class="label">Availability</span>
+                        <span class="value">Accepting 2 projects · Q2/Q3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-right reveal" data-delay="180">
+                <h3>Book a discovery call</h3>
+                <p>30 minutes. No slides. We listen, then tell you what we'd build.</p>
+                <div class="contact-cta-block">
+                    <a class="btn btn-primary" href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">
+                        Open Calendly <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+
+                <div class="contact-divider">or send a brief</div>
+
+                <form id="contact-form" class="contact-form" novalidate>
+                    <div class="contact-form-row">
+                        <div>
+                            <label for="c-name">Name</label>
+                            <input id="c-name" name="name" type="text" required>
+                        </div>
+                        <div>
+                            <label for="c-email">Email</label>
+                            <input id="c-email" name="email" type="email" required>
+                        </div>
+                    </div>
+                    <div class="contact-form-row">
+                        <div>
+                            <label for="c-company">Company</label>
+                            <input id="c-company" name="company" type="text">
+                        </div>
+                        <div>
+                            <label for="c-type">Project type</label>
+                            <select id="c-type" name="project_type">
+                                <option>Website or web app</option>
+                                <option>Custom software / internal tool</option>
+                                <option>AI integration / automation</option>
+                                <option>Systems audit / consulting</option>
+                                <option>Not sure yet</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="c-brief">Project brief</label>
+                        <textarea id="c-brief" name="message" placeholder="What are you trying to build, why now, and what does success look like?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Transmit brief <span class="btn-arrow">→</span>
+                    </button>
+                    <div id="contact-status" class="mono mute" style="margin-top: 0.5rem;"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>Elenos</h3>
+                <p>A software studio building websites, custom systems, and AI operators for compounding businesses.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Studio</h5>
+                <ul>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="https://calendly.com/ed-elenos/30min" target="_blank" rel="noopener">Book a call</a></li>
+                    <li><a href="contact.html">Start a project</a></li>
+                    <li><a href="mailto:ed@elenos.ai">ed@elenos.ai</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Signal</h5>
+                <ul>
+                    <li><a href="https://www.instagram.com/elenos.ai" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://x.com/elenos_ai" target="_blank" rel="noopener">X / Twitter</a></li>
+                    <li><a href="https://discord.gg/UH3a34eUvd" target="_blank" rel="noopener">Discord</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© <span data-year>2026</span> ELENOS SYSTEMS CO. · ALL RIGHTS RESERVED</span>
+            <span>elenos.ai</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/scene-ambient.js"></script>
+</body>
+</html>
