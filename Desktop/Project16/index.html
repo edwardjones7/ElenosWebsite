@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Project 16 — Premium residential and commercial contracting. Bathrooms, kitchens, sunrooms, decks, and custom woodwork. 5-star rated on Google.">
+  <title>Project 16 | Premium Contracting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="images/logo/438559031_281100985055678_8897271753802224133_n_upscayl_4x_realesrgan-x4plus.png" alt="Project 16 Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Work</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Free Estimate</a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Work</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="mobile-cta">Free Estimate</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero -->
+  <section id="hero" class="hero">
+    <div class="hero-inner">
+      <!-- Left: Text -->
+      <div class="hero-text">
+        <div class="hero-badge reveal-hero" style="--delay: 0.15s">
+          <span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>5.0 on Google &middot; 8 Reviews</span>
+        </div>
+        <h1 class="reveal-hero" style="--delay: 0.35s">We Build<br>Spaces You'll<br><em>Love</em></h1>
+        <p class="hero-sub reveal-hero" style="--delay: 0.55s">Premium renovations and custom builds. Honest work, clean results, and communication you can count on.</p>
+        <div class="hero-buttons reveal-hero" style="--delay: 0.75s">
+          <a href="#contact" class="btn btn-primary btn-lg">Get a Free Estimate</a>
+          <a href="#gallery" class="btn btn-outline-dark btn-lg">See Our Work</a>
+        </div>
+        <div class="hero-trust reveal-hero" style="--delay: 0.9s">
+          <div class="trust-avatars">
+            <span class="trust-avatar">CS</span>
+            <span class="trust-avatar">AG</span>
+            <span class="trust-avatar">TW</span>
+            <span class="trust-avatar">EM</span>
+          </div>
+          <span class="trust-label">Trusted by homeowners<br>across the metro area</span>
+        </div>
+      </div>
+      <!-- Right: Image Showcase -->
+      <div class="hero-showcase reveal-hero" style="--delay: 0.3s">
+        <div class="showcase-main">
+          <div class="showcase-slider" id="heroSlider">
+            <img class="showcase-img active" src="images/bathroom/project1/Full bathroom renovation completed.New tile flooringRecessed lightingCustom wainscotingNew vanit (6).jpg" alt="Bathroom renovation">
+            <img class="showcase-img" src="images/kitchen/Just finished up our latest project. Kitchen refresh that brightened the space and improved flow (3).jpg" alt="Kitchen refresh">
+            <img class="showcase-img" src="images/sunroon/Our first job of 2026 is a wrap! We took this sunroom remodel all the way down to the framing. T.jpg" alt="Sunroom remodel">
+            <img class="showcase-img" src="images/customDesk/Custom walnut front desk for a retail location. This is fully custom to fit the needs of a speci.jpg" alt="Custom walnut desk">
+            <img class="showcase-img" src="images/deck/Quick deck refresh just in time for fall. We cleaned, removed mold and mildew, and applied a fre (2).jpg" alt="Deck refresh">
+          </div>
+          <div class="showcase-progress">
+            <div class="showcase-bar" id="heroBar"></div>
+          </div>
+          <div class="showcase-label" id="heroLabel">Bathroom Renovation</div>
+        </div>
+        <div class="showcase-thumbnails">
+          <div class="showcase-thumb active" data-index="0">
+            <img src="images/bathroom/project1/Full bathroom renovation completed.New tile flooringRecessed lightingCustom wainscotingNew vanit (5).jpg" alt="" loading="lazy">
+          </div>
+          <div class="showcase-thumb" data-index="1">
+            <img src="images/kitchen/Just finished up our latest project. Kitchen refresh that brightened the space and improved flow (1).jpg" alt="" loading="lazy">
+          </div>
+          <div class="showcase-thumb" data-index="2">
+            <img src="images/sunroon/Our first job of 2026 is a wrap! We took this sunroom remodel all the way down to the framing. T (1).jpg" alt="" loading="lazy">
+          </div>
+        </div>
+        <!-- Floating accent card -->
+        <div class="showcase-float">
+          <strong>50+</strong>
+          <span>Projects Completed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-left reveal">
+          <span class="tag">About Project 16</span>
+          <h2>Quality Craftsmanship.<br>Every Detail. Every Time.</h2>
+          <p>Led by Justin and Ryan, Project 16 is built on a simple philosophy: show up on time, communicate clearly, and deliver work you're proud to stand behind.</p>
+          <p>From full bathroom renovations to custom walnut furniture, we handle every project with the same level of care and precision — whether it's your first remodel or your fifth.</p>
+          <div class="about-stats">
+            <div class="mini-stat">
+              <strong data-target="50" data-suffix="+" class="counter">0</strong>
+              <span>Projects</span>
+            </div>
+            <div class="mini-stat">
+              <strong data-target="5" data-suffix="+" class="counter">0</strong>
+              <span>Years</span>
+            </div>
+            <div class="mini-stat">
+              <strong data-target="5" data-suffix=".0" class="counter">0</strong>
+              <span>Google Rating</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-right reveal">
+          <div class="about-img-grid">
+            <img src="images/bathroom/project1/Full bathroom renovation completed.New tile flooringRecessed lightingCustom wainscotingNew vanit (1).jpg" alt="Bathroom renovation" class="img-tall" loading="lazy">
+            <img src="images/customDesk/Custom walnut front desk for a retail location. This is fully custom to fit the needs of a speci.jpg" alt="Custom walnut desk" class="img-short-top" loading="lazy">
+            <img src="images/deck/Quick deck refresh just in time for fall. We cleaned, removed mold and mildew, and applied a fre (2).jpg" alt="Deck refinishing" class="img-short-bottom" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section section-dark">
+    <div class="container">
+      <div class="section-intro reveal">
+        <span class="tag tag-light">What We Do</span>
+        <h2>Services Built Around<br>Your Home</h2>
+        <p class="intro-sub">Every home is different. We tailor our approach to your space, your style, and your budget.</p>
+      </div>
+      <div class="services-grid">
+        <a href="#gallery" class="service-card reveal" data-filter="bathroom">
+          <div class="service-number">01</div>
+          <h3>Bathroom Renovations</h3>
+          <p>Custom tile, wainscoting, vanities, recessed lighting — full transformations from floor to ceiling.</p>
+          <span class="service-arrow">&rarr;</span>
+        </a>
+        <a href="#gallery" class="service-card reveal" data-filter="kitchen">
+          <div class="service-number">02</div>
+          <h3>Kitchen Refreshes</h3>
+          <p>Updated layouts, modern lighting, improved flow — making the heart of your home shine.</p>
+          <span class="service-arrow">&rarr;</span>
+        </a>
+        <a href="#gallery" class="service-card reveal" data-filter="sunroom">
+          <div class="service-number">03</div>
+          <h3>Sunroom Remodels</h3>
+          <p>Down-to-framing rebuilds with premium flooring, windows, and recessed lighting throughout.</p>
+          <span class="service-arrow">&rarr;</span>
+        </a>
+        <a href="#gallery" class="service-card reveal" data-filter="deck">
+          <div class="service-number">04</div>
+          <h3>Deck Refinishing</h3>
+          <p>Professional cleaning, mold removal, and fresh staining to protect and restore your outdoor space.</p>
+          <span class="service-arrow">&rarr;</span>
+        </a>
+        <a href="#gallery" class="service-card reveal" data-filter="custom">
+          <div class="service-number">05</div>
+          <h3>Custom Woodwork</h3>
+          <p>Bespoke furniture and fixtures in premium hardwoods, built to your exact specs.</p>
+          <span class="service-arrow">&rarr;</span>
+        </a>
+        <a href="#contact" class="service-card service-card-cta reveal">
+          <div class="service-number">&#9737;</div>
+          <h3>Something Else?</h3>
+          <p>Have a project in mind that doesn't fit neatly into a box? Let's talk about it.</p>
+          <span class="service-arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section-intro reveal">
+        <span class="tag">Our Work</span>
+        <h2>See the Results</h2>
+      </div>
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="bathroom">Bathrooms</button>
+        <button class="filter-btn" data-filter="kitchen">Kitchen</button>
+        <button class="filter-btn" data-filter="sunroom">Sunroom</button>
+        <button class="filter-btn" data-filter="deck">Deck</button>
+        <button class="filter-btn" data-filter="custom">Custom</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <span class="lightbox-counter"><span id="lbCurrent">1</span> / <span id="lbTotal">1</span></span>
+    <button class="lightbox-arrow lightbox-prev" aria-label="Previous">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="lightbox-arrow lightbox-next" aria-label="Next">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <div class="lightbox-main">
+      <img id="lbImage" src="" alt="">
+    </div>
+    <div class="lightbox-footer">
+      <h3 id="lbTitle"></h3>
+      <p id="lbDesc"></p>
+    </div>
+    <div class="lightbox-thumbs" id="lbThumbs"></div>
+  </div>
+
+  <!-- Reviews -->
+  <section id="reviews" class="section section-blue">
+    <div class="container">
+      <div class="section-intro reveal">
+        <span class="tag tag-dark">Reviews</span>
+        <h2>What Our Clients Say</h2>
+        <div class="google-rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <strong>5.0</strong>
+          <span class="rating-count">on Google &middot; 8 reviews</span>
+        </div>
+      </div>
+      <div class="reviews-carousel" id="reviewsCarousel">
+        <div class="reviews-track" id="reviewsTrack">
+
+          <div class="review-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Ryan and Justin went over and above to help me create my dream bathroom. Even when my toilet came in missing parts — they called every Home Depot in the area and found one. Exceeded expectations on every level! Absolute perfection."</p>
+            <div class="review-author">
+              <div class="author-avatar">CS</div>
+              <div>
+                <strong>Catherine Salvano</strong>
+                <span>Bathroom Renovation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Beautiful pocket door that Ryan and Justin built for my wife and I. They did excellent work! They are great at communication and show up on time every day which is a big thing for us. I recommend them for all your home projects."</p>
+            <div class="review-author">
+              <div class="author-avatar">AG</div>
+              <div>
+                <strong>Alfonce Gatti</strong>
+                <span>Custom Door Installation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Justin and Ryan are awesome! They do amazing work! I originally had them come for my master bathroom due to leaking issues and they were more than willing to work with my insurance company and offer any suggestions."</p>
+            <div class="review-author">
+              <div class="author-avatar">EM</div>
+              <div>
+                <strong>Emily McBee</strong>
+                <span>Bathroom Repair</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Justin did great work. He's punctual, tidy, and a perfectionist. We wouldn't hesitate to hire him again. The transformation on our stairs is unbelievable."</p>
+            <div class="review-author">
+              <div class="author-avatar">TW</div>
+              <div>
+                <strong>Todd W</strong>
+                <span>Stair Renovation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Justin and his crew did an amazing job building out my home gym. They were very detailed and completed the job faster than expected. I would definitely recommend them for any home remodeling projects."</p>
+            <div class="review-author">
+              <div class="author-avatar">MC</div>
+              <div>
+                <strong>Mks Courier</strong>
+                <span>Home Gym Build</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Project 16 is the Best and I highly recommend! Justin was easy to work with, reliable and professional. His workmanship was top notch. He did painting and flooring and I am beyond happy. This has been the best experience."</p>
+            <div class="review-author">
+              <div class="author-avatar">MM</div>
+              <div>
+                <strong>mikeandjanet maloney</strong>
+                <span>Painting &amp; Flooring</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Had an awesome experience with Justin and Project 16. Needed new flooring in my kitchen as well as some other minor fixes. He did everything together for a great price. Really genuine guy, and quality work. Couldn't give a higher recommendation."</p>
+            <div class="review-author">
+              <div class="author-avatar">FG</div>
+              <div>
+                <strong>Flash Gordon</strong>
+                <span>Kitchen Flooring</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Our new custom front desk is perfect!"</p>
+            <div class="review-author">
+              <div class="author-avatar">NB</div>
+              <div>
+                <strong>Nick Borrelli</strong>
+                <span>Custom Woodwork</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn carousel-prev" aria-label="Previous reviews">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn carousel-next" aria-label="Next reviews">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section section-dark">
+    <div class="container">
+      <div class="contact-cta reveal">
+        <span class="tag tag-light">Start Your Project</span>
+        <h2>Ready to Transform<br>Your Space?</h2>
+        <p class="cta-sub">Give us a call for a free estimate. No pressure, no obligations — just honest advice and a clear plan for your project.</p>
+        <a href="tel:+15551234567" class="cta-phone">
+          <div class="cta-phone-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <span class="cta-phone-number">(555) 123-4567</span>
+          <span class="cta-phone-label">Tap to Call</span>
+        </a>
+        <div class="cta-details">
+          <div class="cta-detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>Mon–Fri 7AM–6PM &middot; Sat 8AM–2PM</span>
+          </div>
+          <div class="cta-detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Serving the Greater Metro Area</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="footer-logo">
+            <img src="images/logo/438559031_281100985055678_8897271753802224133_n_upscayl_4x_realesrgan-x4plus.png" alt="Project 16">
+          </a>
+          <p>Premium contracting services for homes and businesses. Quality craftsmanship, honest communication, and results you can trust.</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Navigation</h4>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#gallery">Work</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-services">
+          <h4>Services</h4>
+          <a href="#services">Bathroom Renovations</a>
+          <a href="#services">Kitchen Refreshes</a>
+          <a href="#services">Sunroom Remodels</a>
+          <a href="#services">Deck Refinishing</a>
+          <a href="#services">Custom Woodwork</a>
+        </div>
+        <div class="footer-cta">
+          <h4>Ready to Start?</h4>
+          <p>Get a free estimate on your next project.</p>
+          <a href="#contact" class="btn btn-primary">Contact Us</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Project 16 Contracting. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
