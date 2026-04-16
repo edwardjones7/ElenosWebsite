@@ -1488,4 +1488,7 @@
     .home-hero-title { font-size: clamp(3.5rem, 18vw, 6rem); }
     .contact-form-row { grid-template-columns: 1fr; }
     .journey-progress { top: calc(var(--nav-h) + var(--sp-2)); right: var(--sp-4); width: 44px; height: 44px; }
+    .founder { grid-template-columns: 1fr; }
+    .founder-portrait { display: none; }
+    .founder-info { padding-top: 0; }
 }
