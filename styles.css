@@ -556,6 +556,60 @@ body::-webkit-scrollbar-thumb:hover { background: rgba(162, 0, 255, 0.5); }
 .page-fade.in { opacity: 1; }
 
 /* ============================================================
+   INTRO OVERLAY — first-visit minimal brand fade
+   ============================================================ */
+html.intro-active, html.intro-active body { overflow: hidden; }
+
+.intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #000;
+    display: grid;
+    place-items: center;
+    opacity: 1;
+    transition: opacity 0.7s var(--ease-out);
+    pointer-events: none;
+}
+.intro-overlay.done { opacity: 0; }
+
+.intro-wordmark {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.intro-overlay.in .intro-wordmark {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.intro-brand {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    letter-spacing: 0.26em;
+    line-height: 1;
+    color: var(--ink);
+}
+.intro-line {
+    display: block;
+    width: min(220px, 50vw);
+    height: 1px;
+    margin: 1.1rem auto 0;
+    background: var(--line-2);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.9s var(--ease-out) 0.2s;
+}
+.intro-overlay.in .intro-line { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-wordmark, .intro-line { transition-duration: 0.3s; }
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 

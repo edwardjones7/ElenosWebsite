@@ -1,7 +1,7 @@
 // Home "selected work" grid — lazy-load live iframe previews when tiles
 // scroll into view, and scale each iframe to show a desktop viewport.
 (function () {
-    const projects = document.querySelectorAll('.selected-grid .project[data-preview-url]');
+    const projects = document.querySelectorAll('[data-preview-url]');
     if (!projects.length) return;
 
     const IFRAME_W = 1440;

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles-pages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="js/intro.js"></script>
 </head>
 <body>
     <canvas id="scene-canvas" class="scene-canvas" aria-hidden="true"></canvas>
@@ -60,8 +61,12 @@
                 <h2 class="display display-lg">Behind the scenes.</h2>
             </div>
             <article class="founder reveal">
-                <div class="founder-portrait">
-                    <img src="images/ed.jpg" alt="Edward Jones, Founder" loading="lazy">
+                <div class="founder-portrait" data-initials="EJ">
+                    <span class="founder-initials" aria-hidden="true">EJ</span>
+                    <picture>
+                        <source srcset="images/ed.webp" type="image/webp">
+                        <img src="images/ed.jpg" alt="Edward Jones, Founder" loading="lazy" onerror="this.style.display='none'">
+                    </picture>
                 </div>
                 <div class="founder-info">
                     <div class="founder-name">Edward Jones</div>

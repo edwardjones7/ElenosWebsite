@@ -102,6 +102,18 @@
         });
     }
 
+    // Product image fallback for missing assets
+    document.querySelectorAll('.product-visual img').forEach((img) => {
+        const parent = img.closest('.product-visual');
+        img.addEventListener('load', () => {
+            if (parent) parent.dataset.fallback = '';
+        });
+        img.addEventListener('error', () => {
+            img.style.display = 'none';
+            if (parent) parent.dataset.fallback = img.alt || 'Preview unavailable';
+        });
+    });
+
     // Footer year
     const year = document.querySelector('[data-year]');
     if (year) year.textContent = new Date().getFullYear();

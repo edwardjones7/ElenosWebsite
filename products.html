@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles-pages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="js/intro.js"></script>
 </head>
 <body>
     <canvas id="scene-canvas" class="scene-canvas" aria-hidden="true"></canvas>
@@ -47,8 +48,10 @@
 
         <section class="products-list">
             <article class="product-card reveal">
-                <div class="product-visual">
-                    <img src="images/acuityiq-preview.png" alt="AcuityIQ preview">
+                <div class="product-visual product-visual-preview" data-preview-url="https://acuityiq.live">
+                    <div class="project-preview">
+                        <iframe data-src="https://acuityiq.live" title="AcuityIQ preview" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
+                    </div>
                 </div>
                 <div class="product-body">
                     <span class="product-status live">Live</span>
@@ -64,8 +67,8 @@
             </article>
 
             <article class="product-card reversed reveal" data-delay="120">
-                <div class="product-visual">
-                    <img src="images/bot.png" alt="Assistant+ preview">
+                <div class="product-visual product-visual-icon">
+                    <i class="fas fa-robot"></i>
                 </div>
                 <div class="product-body">
                     <span class="product-status soon">Coming Transmission</span>
@@ -152,5 +155,6 @@
     <script src="script.js"></script>
     <script src="js/scroll.js"></script>
     <script src="js/scene-products.js"></script>
+    <script src="js/home-projects.js"></script>
 </body>
 </html>
