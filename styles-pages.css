@@ -845,42 +845,6 @@
 }
 .work-final p { color: var(--ink-2); max-width: 40ch; margin: 0 auto var(--sp-7); font-size: var(--fs-md); }
 
-/* work page scroll progress HUD */
-.journey-hud {
-    position: fixed;
-    left: var(--pad-x);
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 20;
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.6s var(--ease-out);
-}
-.journey-hud.visible { opacity: 1; }
-.hud-item {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-    font-family: var(--font-mono);
-    font-size: 0.54rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-4);
-    transition: color 0.3s var(--ease-out);
-}
-.hud-item::before {
-    content: "";
-    width: 10px;
-    height: 1px;
-    background: var(--ink-4);
-    transition: width 0.3s var(--ease-out), background 0.3s var(--ease-out);
-}
-.hud-item.active { color: var(--ink); }
-.hud-item.active::before { width: 20px; background: var(--accent); }
-
 /* journey progress ring (top right) */
 .journey-progress {
     position: fixed;
@@ -1523,7 +1487,6 @@
     .work-section[data-side="right"],
     .work-section[data-side="left"] { justify-content: center; }
     .work-panel { max-width: 100%; }
-    .journey-hud { display: none; }
     .home-hero-meta { gap: var(--sp-4); }
     .home-hero-meta > div { flex: 1 1 45%; }
 }
