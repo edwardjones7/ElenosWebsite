@@ -1490,6 +1490,21 @@
     .home-hero-meta { gap: var(--sp-4); }
     .home-hero-meta > div { flex: 1 1 45%; }
     .scroll-indicator { display: none; }
+
+    /* Mobile iframe guard — heavy scroll-driven previews (e.g. SR-71)
+       must not capture page-scroll gestures. pointer-events:none is
+       already set; touch-action:none forbids the iframe from claiming
+       any gesture, and content-visibility:auto lets the browser skip
+       painting the preview when it's off-screen. */
+    .project-preview iframe,
+    .work-preview iframe {
+        touch-action: none;
+    }
+    .project,
+    .work-preview {
+        content-visibility: auto;
+        contain-intrinsic-size: 320px 220px;
+    }
 }
 
 @media (max-width: 600px) {
