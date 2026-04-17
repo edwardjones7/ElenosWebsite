@@ -1489,6 +1489,7 @@
     .work-panel { max-width: 100%; }
     .home-hero-meta { gap: var(--sp-4); }
     .home-hero-meta > div { flex: 1 1 45%; }
+    .scroll-indicator { display: none; }
 }
 
 @media (max-width: 600px) {
