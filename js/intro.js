@@ -10,6 +10,7 @@
     overlay.setAttribute('aria-hidden', 'true');
     overlay.innerHTML = `
         <div class="intro-wordmark">
+            <img class="intro-mark" src="images/favicon.png" alt="" aria-hidden="true">
             <span class="intro-brand">ELENOS</span>
             <span class="intro-line"></span>
         </div>
