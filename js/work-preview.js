@@ -31,6 +31,17 @@
         const preview = section.querySelector('.work-preview');
         if (!preview || preview.dataset.state === 'opening' || preview.dataset.state === 'open') return;
 
+        // SR-71 is a heavy Three.js + ScrollTrigger site; combined with the
+        // parent page's scene.js WebGL context it crashes mobile GPUs. Skip
+        // loading its preview on narrow viewports — the panel's Visit-site
+        // CTA is the mobile experience.
+        if (
+            window.matchMedia('(max-width: 1000px)').matches &&
+            section.dataset.previewHost === 'sr-71'
+        ) {
+            return;
+        }
+
         // Cancel any pending close
         const t = timers.get(section);
         if (t) { clearTimeout(t); timers.delete(section); }

@@ -826,6 +826,9 @@
         justify-content: center;
         gap: var(--sp-6);
     }
+    /* SR-71 preview is skipped on mobile (WebGL crash) — hide the empty box */
+    .work-section[data-preview-host="sr-71"] .work-preview { display: none; }
+    .work-section[data-preview-host="sr-71"] { gap: 0; }
 }
 
 .work-final {
