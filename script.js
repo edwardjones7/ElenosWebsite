@@ -49,12 +49,11 @@
         });
     }
 
-    // Active nav link
-    const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    // Active nav link — match first path segment (e.g. /work/ → "work")
+    const pathSeg = (location.pathname.split('/').filter(Boolean)[0] || '').toLowerCase();
     document.querySelectorAll('.nav-links a').forEach((a) => {
-        const href = (a.getAttribute('href') || '').split('/').pop().toLowerCase();
-        if (href && href === path) a.classList.add('active');
-        if (path === '' && href === 'index.html') a.classList.add('active');
+        const hrefSeg = ((a.getAttribute('href') || '').split('/').filter(Boolean)[0] || '').toLowerCase();
+        if (pathSeg === hrefSeg) a.classList.add('active');
     });
 
     // Page fade-in
