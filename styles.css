@@ -139,7 +139,7 @@ body::-webkit-scrollbar-thumb:hover { background: rgba(162, 0, 255, 0.5); }
 .display {
     font-family: var(--font-display);
     font-weight: 380;
-    line-height: 1.02;
+    line-height: 1.08;
     letter-spacing: -0.015em;
     font-variation-settings: "opsz" 144, "SOFT" 80;
 }
