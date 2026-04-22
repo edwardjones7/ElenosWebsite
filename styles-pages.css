@@ -32,6 +32,7 @@
 .home-hero-title .line {
     display: block;
     overflow: hidden;
+    padding-bottom: 0.15em;
 }
 .home-hero-title .line > span {
     display: inline-block;
