@@ -531,6 +531,7 @@
     text-transform: uppercase;
 }
 .work-intro-meta b { color: var(--ink); font-weight: 500; }
+.work-intro .scroll-indicator { bottom: var(--sp-6); }
 
 .work-journey {
     position: relative;
