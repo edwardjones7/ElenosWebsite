@@ -33,6 +33,7 @@
     display: block;
     overflow: hidden;
     padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
 }
 .home-hero-title .line > span {
     display: inline-block;
@@ -41,6 +42,7 @@
 .home-hero-meta {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--sp-6);
     margin-top: var(--sp-7);
     padding-top: var(--sp-5);
@@ -50,6 +52,7 @@
     letter-spacing: 0.14em;
     color: var(--ink-3);
     text-transform: uppercase;
+    text-align: center;
 }
 .home-hero-meta > div { display: flex; flex-direction: column; gap: 0.3rem; }
 .home-hero-meta b { color: var(--ink); font-weight: 500; }
@@ -72,7 +75,7 @@
 /* scroll indicator */
 .scroll-indicator {
     position: absolute;
-    bottom: var(--sp-6);
+    bottom: var(--sp-10);
     left: 50%;
     transform: translateX(-50%);
     display: flex;
