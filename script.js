@@ -146,6 +146,41 @@
         });
     }
 
+    // Newsletter signup (footer, present on all pages)
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm && API_BASE) {
+        const status = document.getElementById('newsletter-status');
+        const input = document.getElementById('newsletter-email');
+        const button = newsletterForm.querySelector('button[type="submit"]');
+        newsletterForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = (input && input.value || '').trim();
+            if (!email) return;
+            if (button) button.disabled = true;
+            if (status) { status.textContent = 'Subscribing…'; status.style.color = ''; }
+            try {
+                const res = await fetch(API_BASE + '/api/subscribe/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, source_path: location.pathname }),
+                });
+                if (res.ok) {
+                    if (status) { status.textContent = 'Subscribed. Thanks.'; status.style.color = '#6effbf'; }
+                    newsletterForm.reset();
+                    track('form_submit', { kind: 'newsletter' });
+                } else {
+                    const j = await res.json().catch(() => ({}));
+                    const msg = j && j.error === 'invalid_email' ? 'Enter a valid email.' : 'Try again later.';
+                    if (status) { status.textContent = msg; status.style.color = '#ff8a8a'; }
+                }
+            } catch (_) {
+                if (status) { status.textContent = 'Network error.'; status.style.color = '#ff8a8a'; }
+            } finally {
+                if (button) button.disabled = false;
+            }
+        });
+    }
+
     // Product image fallback for missing assets
     document.querySelectorAll('.product-visual img').forEach((img) => {
         const parent = img.closest('.product-visual');

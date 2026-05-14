@@ -7,6 +7,7 @@ import { ThemeToggle } from "./ThemeToggle";
 const nav = [
   { label: "Overview", href: "/admin" },
   { label: "Inbox", href: "/admin/inbox" },
+  { label: "Subscribers", href: "/admin/subscribers" },
 ];
 
 export function Shell({ children }: { children: ReactNode }) {
