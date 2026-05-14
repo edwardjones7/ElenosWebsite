@@ -459,7 +459,7 @@ body::-webkit-scrollbar-thumb:hover { background: rgba(162, 0, 255, 0.5); }
     max-width: var(--max);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr 1.4fr;
     gap: var(--sp-7);
 }
 .footer-mark {
@@ -479,8 +479,7 @@ body::-webkit-scrollbar-thumb:hover { background: rgba(162, 0, 255, 0.5); }
 .footer-brand p { color: var(--ink-3); max-width: 28ch; }
 
 .newsletter-form {
-    margin-top: var(--sp-5);
-    max-width: 28ch;
+    max-width: 32ch;
 }
 .newsletter-label {
     display: block;
@@ -724,6 +723,7 @@ html.intro-active, html.intro-active body { overflow: hidden; }
 
     .footer-inner { grid-template-columns: 1fr 1fr; gap: var(--sp-6); }
     .footer-brand { grid-column: 1 / -1; }
+    .footer-col-newsletter { grid-column: 1 / -1; }
     .footer-bottom { flex-direction: column; gap: var(--sp-3); text-align: center; }
     .section { padding: var(--sp-8) var(--pad-x); }
 }
