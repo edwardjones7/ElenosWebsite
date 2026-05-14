@@ -166,6 +166,14 @@
                 <img class="footer-mark" src="/images/favicon.png" alt="" aria-hidden="true">
                 <h3>Elenos</h3>
                 <p>A software studio building websites, custom systems, and AI operators for compounding businesses.</p>
+                <form id="newsletter-form" class="newsletter-form" novalidate>
+                    <label class="newsletter-label" for="newsletter-email">Get updates</label>
+                    <div class="newsletter-row">
+                        <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                        <button type="submit" aria-label="Subscribe">→</button>
+                    </div>
+                    <span id="newsletter-status" class="newsletter-status" aria-live="polite"></span>
+                </form>
             </div>
             <div class="footer-col">
                 <h5>Studio</h5>
