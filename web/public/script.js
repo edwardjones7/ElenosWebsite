@@ -1,11 +1,6 @@
 // Shared site behavior — nav, mobile menu, active link, button hover, forms
 (function () {
     const FORMSPREE_CONTACT = 'https://formspree.io/f/xrekvbqr';
-    const API_BASE = (window.ELENOS_API_BASE || '').replace(/\/$/, '');
-
-    function track(type, meta) {
-        if (typeof window.elenosTrack === 'function') window.elenosTrack(type, meta || null);
-    }
 
     // Nav — auto-hide on downward scroll, reveal on upward scroll
     const nav = document.querySelector('.nav');
@@ -75,18 +70,6 @@
         });
     });
 
-    // CTA / Calendly click tracking
-    document.querySelectorAll('a').forEach((a) => {
-        const href = a.getAttribute('href') || '';
-        const isCalendly = /calendly\.com/i.test(href);
-        const isCta = a.classList.contains('btn-primary') || a.classList.contains('nav-cta');
-        if (!isCalendly && !isCta) return;
-        a.addEventListener('click', () => {
-            if (isCalendly) track('calendly_click', { href });
-            else track('cta_click', { href, label: (a.textContent || '').trim().slice(0, 60) });
-        });
-    });
-
     // Contact form (if present)
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -94,52 +77,24 @@
             e.preventDefault();
             const status = document.getElementById('contact-status');
             const data = new FormData(contactForm);
-
-            let ok = false;
-            if (API_BASE) {
-                try {
-                    const payload = {
-                        name: data.get('name') || '',
-                        email: data.get('email') || '',
-                        company: data.get('company') || '',
-                        project_type: data.get('project_type') || '',
-                        message: data.get('message') || '',
-                        source_path: location.pathname,
-                    };
-                    const res = await fetch(API_BASE + '/api/contact', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-                        body: JSON.stringify(payload),
-                    });
-                    ok = res.ok;
-                } catch (_) {
-                    ok = false;
+            try {
+                const res = await fetch(FORMSPREE_CONTACT, {
+                    method: 'POST',
+                    body: data,
+                    headers: { Accept: 'application/json' },
+                });
+                if (res.ok) {
+                    if (status) {
+                        status.textContent = 'Transmission received. We will respond within 1–2 business days.';
+                        status.style.color = '#6effbf';
+                    }
+                    contactForm.reset();
+                } else {
+                    throw new Error('bad response');
                 }
-            }
-
-            if (!ok) {
-                try {
-                    const res = await fetch(FORMSPREE_CONTACT, {
-                        method: 'POST',
-                        body: data,
-                        headers: { Accept: 'application/json' },
-                    });
-                    ok = res.ok;
-                } catch (_) {
-                    ok = false;
-                }
-            }
-
-            if (ok) {
+            } catch (err) {
                 if (status) {
-                    status.textContent = 'Thanks — we’ll respond within 1–2 business days.';
-                    status.style.color = '#6effbf';
-                }
-                contactForm.reset();
-                track('form_submit');
-            } else {
-                if (status) {
-                    status.textContent = 'Submission failed. Email ed@elenos.ai directly.';
+                    status.textContent = 'Transmission failed. Email ed@elenos.ai directly.';
                     status.style.color = '#ff6868';
                 }
             }
