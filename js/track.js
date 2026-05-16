@@ -43,12 +43,5 @@
   }
 
   window.elenosTrack = send;
-
-  if (document.readyState === "complete") {
-    send("pageview");
-  } else {
-    window.addEventListener("load", function () {
-      send("pageview");
-    });
-  }
+  send("pageview");
 })();

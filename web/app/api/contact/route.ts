@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { preflight, withCors } from "@/lib/cors";
+import { notifyDiscord } from "@/lib/discord";
 
 export const runtime = "nodejs";
 
@@ -44,6 +45,18 @@ export async function POST(req: NextRequest) {
   if (error) {
     return withCors(req, NextResponse.json({ ok: false, error: "db" }, { status: 500 }));
   }
+
+  await notifyDiscord({
+    title: "New contact form submission",
+    fields: [
+      { name: "Name", value: name, inline: true },
+      { name: "Email", value: email, inline: true },
+      { name: "Company", value: company ?? "", inline: true },
+      { name: "Project type", value: projectType ?? "", inline: true },
+      { name: "Source", value: sourcePath ?? "", inline: true },
+      { name: "Message", value: message },
+    ],
+  });
 
   return withCors(req, NextResponse.json({ ok: true }));
 }
