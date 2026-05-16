@@ -90,20 +90,26 @@ export default async function AdminOverview({
 
             <div className="widget">
               <div className="widget-head">
-                <span className="widget-title">Funnel</span>
+                <span className="widget-title">Conversion rates</span>
               </div>
               <div className="widget-row">
-                <span className="label">pageview → cta_click</span>
-                <span className="value">{pct(data.funnel.ctaClicks, data.funnel.pageviews)}</span>
-              </div>
-              <div className="widget-row">
-                <span className="label">cta_click → calendly_click</span>
+                <span className="label">Any click (CTA + Calendly)</span>
                 <span className="value">
-                  {pct(data.funnel.calendlyClicks, data.funnel.ctaClicks)}
+                  {pct(data.funnel.ctaClicks + data.funnel.calendlyClicks, data.funnel.pageviews)}
                 </span>
               </div>
               <div className="widget-row">
-                <span className="label">pageview → form_submit</span>
+                <span className="label">Calendly clicks</span>
+                <span className="value">
+                  {pct(data.funnel.calendlyClicks, data.funnel.pageviews)}
+                </span>
+              </div>
+              <div className="widget-row">
+                <span className="label">Other CTA clicks</span>
+                <span className="value">{pct(data.funnel.ctaClicks, data.funnel.pageviews)}</span>
+              </div>
+              <div className="widget-row">
+                <span className="label">Form submits</span>
                 <span className="value">{pct(data.funnel.formSubmits, data.funnel.pageviews)}</span>
               </div>
             </div>
