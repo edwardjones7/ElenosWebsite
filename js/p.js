@@ -25,7 +25,7 @@
       meta: meta || null,
     };
     var json = JSON.stringify(body);
-    var url = API_BASE.replace(/\/$/, "") + "/api/track/";
+    var url = API_BASE.replace(/\/$/, "") + "/api/e/";
 
     if (navigator.sendBeacon) {
       try {
