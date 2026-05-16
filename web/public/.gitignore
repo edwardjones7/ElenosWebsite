@@ -1,0 +1,7 @@
+# Marketing assets — synced from repo root by scripts/sync-assets.mjs
+# (runs as predev / prebuild). Source of truth lives at ../../<name>.
+images/
+js/
+script.js
+styles.css
+styles-pages.css
