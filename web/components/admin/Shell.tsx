@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { ThemeToggle } from "./ThemeToggle";
@@ -35,9 +36,9 @@ export function Shell({ children }: { children: ReactNode }) {
                 ? pathname === "/admin" || pathname === "/admin/"
                 : pathname === item.href || pathname.startsWith(item.href + "/");
             return (
-              <a key={item.href} href={item.href} className={active ? "active" : ""}>
+              <Link key={item.href} href={item.href} className={active ? "active" : ""}>
                 {item.label}
-              </a>
+              </Link>
             );
           })}
         </nav>
