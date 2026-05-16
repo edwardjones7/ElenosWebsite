@@ -1,2 +1,17 @@
+# Claude Code local config
 .claude
 CLAUDE.md
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs
+*.log
+npm-debug.log*
