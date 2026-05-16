@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { clientIp, hashIp } from "@/lib/track-headers";
 import { preflight, withCors } from "@/lib/cors";
+import { notifyDiscord } from "@/lib/discord";
 
 export const runtime = "nodejs";
 
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest) {
     return withCors(req, NextResponse.json({ ok: false, error: "invalid_email" }, { status: 400 }));
   }
 
-  const { error } = await getSupabase()
+  const { data, error } = await getSupabase()
     .from("subscribers")
     .upsert(
       {
@@ -36,10 +37,21 @@ export async function POST(req: NextRequest) {
         status: "active",
       },
       { onConflict: "email", ignoreDuplicates: true },
-    );
+    )
+    .select("email");
 
   if (error) {
     return withCors(req, NextResponse.json({ ok: false, error: "db" }, { status: 500 }));
+  }
+
+  if (data && data.length > 0) {
+    await notifyDiscord({
+      title: "New newsletter subscriber",
+      fields: [
+        { name: "Email", value: email, inline: true },
+        { name: "Source", value: sourcePath ?? "", inline: true },
+      ],
+    });
   }
 
   return withCors(req, NextResponse.json({ ok: true }));
