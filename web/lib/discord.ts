@@ -6,10 +6,22 @@ type Notification = {
   fields: Field[];
 };
 
+/** Which webhook channel to post to. Falls back to DISCORD_WEBHOOK_URL if the
+ *  channel-specific var isn't set, so a single legacy var keeps working. */
+type Channel = "contacts" | "subscribers";
+
 const BRAND_PURPLE = 0xa200ff;
 
-export async function notifyDiscord(n: Notification): Promise<void> {
-  const url = process.env.DISCORD_WEBHOOK_URL;
+function webhookFor(channel: Channel): string | undefined {
+  const specific =
+    channel === "contacts"
+      ? process.env.DISCORD_WEBHOOK_URL_CONTACTS
+      : process.env.DISCORD_WEBHOOK_URL_SUBSCRIBERS;
+  return specific || process.env.DISCORD_WEBHOOK_URL;
+}
+
+export async function notifyDiscord(channel: Channel, n: Notification): Promise<void> {
+  const url = webhookFor(channel);
   if (!url) return;
 
   const payload = {

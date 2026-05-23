@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
     return withCors(req, NextResponse.json({ ok: false, error: "db" }, { status: 500 }));
   }
 
-  await notifyDiscord({
+  await notifyDiscord("contacts", {
     title: "New contact form submission",
     fields: [
       { name: "Name", value: name, inline: true },
