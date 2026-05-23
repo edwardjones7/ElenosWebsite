@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
   }
 
   if (data && data.length > 0) {
-    await notifyDiscord({
+    await notifyDiscord("subscribers", {
       title: "New newsletter subscriber",
       fields: [
         { name: "Email", value: email, inline: true },
