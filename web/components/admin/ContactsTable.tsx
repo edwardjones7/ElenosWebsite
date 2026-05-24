@@ -57,9 +57,16 @@ export function ContactsTable({ items }: { items: Contact[] }) {
     if (!confirm(`Delete contact from ${name}? This can't be undone.`)) return;
     setBusyId(id);
     try {
-      await fetch(`/api/admin/contacts/${id}/`, { method: "DELETE" });
+      const res = await fetch(`/api/admin/contacts/${id}/`, { method: "DELETE" });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        alert(`Delete failed (${res.status}): ${body.error || "unknown"}${body.message ? " — " + body.message : ""}`);
+        return;
+      }
       setOpenId((v) => (v === id ? null : v));
       startTransition(() => router.refresh());
+    } catch (e) {
+      alert(`Delete failed: ${(e as Error).message}`);
     } finally {
       setBusyId(null);
     }

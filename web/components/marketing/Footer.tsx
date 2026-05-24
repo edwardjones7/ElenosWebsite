@@ -3,7 +3,7 @@ export function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <img className="footer-mark" src="/images/favicon.png" alt="" aria-hidden="true" />
+          <img className="footer-mark" src="/images/logo.png" alt="" aria-hidden="true" />
           <h3>Elenos</h3>
           <p>
             A software studio building websites, custom systems, and AI operators for compounding
