@@ -22,10 +22,16 @@ function truncate(s: string, n = 80): string {
 export function ContactsTable({ items }: { items: Contact[] }) {
   const [openId, setOpenId] = useState<number | null>(null);
   const [busyId, setBusyId] = useState<number | null>(null);
+  // Rows we've deleted client-side. We can't rely on router.refresh() alone
+  // because Next's RSC payload sometimes doesn't pick up the fresh list, so
+  // we filter these out locally for an instant UX.
+  const [hiddenIds, setHiddenIds] = useState<Set<number>>(new Set());
   const [, startTransition] = useTransition();
   const router = useRouter();
 
-  if (items.length === 0) {
+  const visible = items.filter((c) => !hiddenIds.has(c.id));
+
+  if (visible.length === 0) {
     return (
       <table className="data-table">
         <tbody>
@@ -64,6 +70,11 @@ export function ContactsTable({ items }: { items: Contact[] }) {
         alert(`Delete failed (${res.status}): ${body.error || "unknown"}${body.message ? " — " + body.message : ""}`);
         return;
       }
+      setHiddenIds((prev) => {
+        const next = new Set(prev);
+        next.add(id);
+        return next;
+      });
       setOpenId((v) => (v === id ? null : v));
       startTransition(() => router.refresh());
     } catch (e) {
@@ -87,7 +98,7 @@ export function ContactsTable({ items }: { items: Contact[] }) {
         </tr>
       </thead>
       <tbody>
-        {items.map((c) => {
+        {visible.map((c) => {
           const open = c.id === openId;
           return (
             <Fragment key={c.id}>
