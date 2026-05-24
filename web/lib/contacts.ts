@@ -28,7 +28,11 @@ export async function updateContactStatus(id: number, status: ContactStatus): Pr
   if (error) throw error;
 }
 
-export async function deleteContact(id: number): Promise<void> {
-  const { error } = await getSupabase().from("contacts").delete().eq("id", id);
+export async function deleteContact(id: number): Promise<number> {
+  const { error, count } = await getSupabase()
+    .from("contacts")
+    .delete({ count: "exact" })
+    .eq("id", id);
   if (error) throw error;
+  return count ?? 0;
 }
