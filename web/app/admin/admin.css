@@ -489,6 +489,16 @@ select {
   font-size: 12px;
 }
 
+.btn-danger {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger);
+  color: #fff;
+}
+
 /* ---------- Expanded row ---------- */
 
 .row-detail {

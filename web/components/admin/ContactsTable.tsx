@@ -53,6 +53,18 @@ export function ContactsTable({ items }: { items: Contact[] }) {
     }
   }
 
+  async function remove(id: number, name: string) {
+    if (!confirm(`Delete contact from ${name}? This can't be undone.`)) return;
+    setBusyId(id);
+    try {
+      await fetch(`/api/admin/contacts/${id}/`, { method: "DELETE" });
+      setOpenId((v) => (v === id ? null : v));
+      startTransition(() => router.refresh());
+    } finally {
+      setBusyId(null);
+    }
+  }
+
   return (
     <table className="data-table">
       <thead>
@@ -116,6 +128,13 @@ export function ContactsTable({ items }: { items: Contact[] }) {
                           Mark new
                         </button>
                       )}
+                      <button
+                        className="btn btn-sm btn-danger"
+                        disabled={busyId === c.id}
+                        onClick={() => remove(c.id, c.name)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>
