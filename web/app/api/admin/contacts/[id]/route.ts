@@ -45,8 +45,11 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   }
 
   try {
-    await deleteContact(id);
-    return NextResponse.json({ ok: true });
+    const deleted = await deleteContact(id);
+    if (deleted === 0) {
+      return NextResponse.json({ error: "not_found", message: `no row with id ${id}` }, { status: 404 });
+    }
+    return NextResponse.json({ ok: true, deleted });
   } catch (e) {
     return NextResponse.json({ error: "db", message: (e as Error).message }, { status: 500 });
   }
