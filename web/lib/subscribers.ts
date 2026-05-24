@@ -19,3 +19,8 @@ export async function listSubscribers(status?: SubscriberStatus | "all"): Promis
   if (error) throw error;
   return (data || []) as Subscriber[];
 }
+
+export async function deleteSubscriber(id: number): Promise<void> {
+  const { error } = await getSupabase().from("subscribers").delete().eq("id", id);
+  if (error) throw error;
+}

@@ -27,3 +27,8 @@ export async function updateContactStatus(id: number, status: ContactStatus): Pr
   const { error } = await getSupabase().from("contacts").update({ status }).eq("id", id);
   if (error) throw error;
 }
+
+export async function deleteContact(id: number): Promise<void> {
+  const { error } = await getSupabase().from("contacts").delete().eq("id", id);
+  if (error) throw error;
+}
