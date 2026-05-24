@@ -58,7 +58,8 @@ export function ContactsTable({ items }: { items: Contact[] }) {
     setBusyId(id);
     try {
       const res = await fetch(`/api/admin/contacts/${id}/`, { method: "DELETE" });
-      if (!res.ok) {
+      // 404 = row already gone (stale UI). Drop the phantom row instead of alerting.
+      if (!res.ok && res.status !== 404) {
         const body = await res.json().catch(() => ({}));
         alert(`Delete failed (${res.status}): ${body.error || "unknown"}${body.message ? " — " + body.message : ""}`);
         return;
