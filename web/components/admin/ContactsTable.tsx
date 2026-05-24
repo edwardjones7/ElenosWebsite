@@ -30,7 +30,7 @@ export function ContactsTable({ items }: { items: Contact[] }) {
       <table className="data-table">
         <tbody>
           <tr>
-            <td className="empty-cell" colSpan={6}>
+            <td className="empty-cell" colSpan={7}>
               No contacts yet.
             </td>
           </tr>
@@ -75,6 +75,7 @@ export function ContactsTable({ items }: { items: Contact[] }) {
           <th>Project</th>
           <th>Message</th>
           <th>Status</th>
+          <th aria-label="Actions" />
         </tr>
       </thead>
       <tbody>
@@ -91,10 +92,19 @@ export function ContactsTable({ items }: { items: Contact[] }) {
                 <td>
                   <span className={`pill pill-${c.status}`}>{c.status}</span>
                 </td>
+                <td style={{ textAlign: "right" }} onClick={(e) => e.stopPropagation()}>
+                  <button
+                    className="btn btn-sm btn-danger"
+                    disabled={busyId === c.id}
+                    onClick={() => remove(c.id, c.name)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
               {open && (
                 <tr className="row-detail">
-                  <td colSpan={6}>
+                  <td colSpan={7}>
                     <div className="meta">
                       <span>From: {c.name} &lt;{c.email}&gt;</span>
                       {c.company && <span>Company: {c.company}</span>}
@@ -128,13 +138,6 @@ export function ContactsTable({ items }: { items: Contact[] }) {
                           Mark new
                         </button>
                       )}
-                      <button
-                        className="btn btn-sm btn-danger"
-                        disabled={busyId === c.id}
-                        onClick={() => remove(c.id, c.name)}
-                      >
-                        Delete
-                      </button>
                     </div>
                   </td>
                 </tr>
