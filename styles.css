@@ -252,6 +252,7 @@ body::-webkit-scrollbar-thumb:hover { background: rgba(162, 0, 255, 0.5); }
 .nav-mark {
     width: 24px; height: 24px;
     background: url('images/favicon.png') center / contain no-repeat;
+    border-radius: 25%;
     filter: drop-shadow(0 0 8px rgba(162, 0, 255, 0.55));
     animation: navPulse 3.4s var(--ease-in-out) infinite;
     align-self: center;
@@ -467,6 +468,7 @@ body::-webkit-scrollbar-thumb:hover { background: rgba(162, 0, 255, 0.5); }
     width: 48px;
     height: 48px;
     margin-bottom: var(--sp-4);
+    border-radius: 25%;
     filter: drop-shadow(0 0 14px rgba(162, 0, 255, 0.4));
 }
 .footer-brand h3 {
