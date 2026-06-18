@@ -34,6 +34,7 @@ export function Footer() {
             </li>
             <li><a href="/contact/">Start a project</a></li>
             <li><a href="mailto:ed@elenos.ai">ed@elenos.ai</a></li>
+            <li><a href="tel:+18564421180">Call: (856) 442-1180</a></li>
           </ul>
         </div>
         <div className="footer-col">
