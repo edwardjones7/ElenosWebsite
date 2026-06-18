@@ -2,30 +2,31 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Elenos — A software studio building systems that compound.",
+  title: "Elenos — New Jersey Software, Web & AI Studio",
   description:
-    "Elenos is a software studio building websites, custom software, and AI systems for businesses that want to compound revenue.",
+    "Elenos is a New Jersey software studio building websites, custom software, and AI systems for businesses across NJ that want to compound revenue.",
+  alternates: { canonical: "https://elenos.ai/" },
   openGraph: {
     type: "website",
     siteName: "Elenos",
-    title: "Elenos — A software studio building systems that compound.",
+    title: "Elenos — New Jersey Software, Web & AI Studio",
     description:
-      "Elenos is a software studio building websites, custom software, and AI systems for businesses that want to compound revenue.",
+      "Elenos is a New Jersey software studio building websites, custom software, and AI systems for businesses across NJ that want to compound revenue.",
     url: "https://elenos.ai/",
     images: [
       {
         url: "https://elenos.ai/images/og-cover.jpg",
         width: 1200,
         height: 630,
-        alt: "Elenos — a software studio building systems that compound revenue.",
+        alt: "Elenos — a New Jersey software studio building systems that compound revenue.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Elenos — A software studio building systems that compound.",
+    title: "Elenos — New Jersey Software, Web & AI Studio",
     description:
-      "Elenos is a software studio building websites, custom software, and AI systems for businesses that want to compound revenue.",
+      "Elenos is a New Jersey software studio building websites, custom software, and AI systems for businesses across NJ that want to compound revenue.",
     images: ["https://elenos.ai/images/og-cover.jpg"],
   },
 };
@@ -36,7 +37,7 @@ export default function HomePage() {
       {/* HERO */}
       <section className="home-hero">
         <div className="home-hero-eyebrow reveal">
-          <span className="eyebrow">Elenos / Software Studio</span>
+          <span className="eyebrow">Elenos / New Jersey Software Studio</span>
         </div>
 
         <h1 className="display display-hero home-hero-title reveal" data-delay="120">
@@ -78,7 +79,7 @@ export default function HomePage() {
           </div>
           <div>
             <span className="mute">Based</span>
-            <b>Remote / USA</b>
+            <b>New Jersey, USA</b>
           </div>
           <div>
             <span className="mute">Est.</span>
