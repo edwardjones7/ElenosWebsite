@@ -6,8 +6,8 @@ export function Footer() {
           <img className="footer-mark" src="/images/logo.png" alt="" aria-hidden="true" />
           <h3>Elenos</h3>
           <p>
-            A software studio building websites, custom systems, and AI operators for compounding
-            businesses.
+            A New Jersey software studio building websites, custom systems, and AI operators for
+            compounding businesses. Serving businesses across New Jersey and the USA.
           </p>
         </div>
         <div className="footer-col">
