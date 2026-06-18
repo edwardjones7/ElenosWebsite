@@ -248,6 +248,17 @@ export default function HomePage() {
             </span>
           </a>
         </div>
+        <div className="selected-cta reveal">
+          <a
+            className="btn btn-primary"
+            href="https://calendly.com/ed-elenos/30min"
+            target="_blank"
+            rel="noopener"
+            data-track="caps_calendly"
+          >
+            Book a discovery call <span className="btn-arrow">→</span>
+          </a>
+        </div>
       </section>
 
       {/* SELECTED WORK */}

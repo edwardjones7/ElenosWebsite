@@ -461,29 +461,68 @@
 
 .principle-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--sp-6);
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-5);
 }
 .principle {
-    padding: var(--sp-6) 0 0 0;
-    border-top: 1px solid var(--line);
+    padding: var(--sp-7) var(--sp-6);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.015);
     position: relative;
+    overflow: hidden;
+    transition: transform 0.4s var(--ease-out), background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
 }
-.principle-num {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
+.principle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent 70%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.7s var(--ease-out);
+}
+.principle:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-soft);
+    background: linear-gradient(180deg, var(--accent-faint), rgba(255, 255, 255, 0.015) 70%);
+}
+.principle:hover::before { transform: scaleX(1); }
+.principle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 13px;
+    background: var(--accent-faint);
+    border: 1px solid var(--line-2);
     color: var(--accent-2);
-    margin-bottom: var(--sp-4);
+    font-size: 1.4rem;
+    margin-bottom: var(--sp-5);
+    transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+.principle:hover .principle-icon {
+    transform: scale(1.06);
+    border-color: var(--accent-soft);
+    box-shadow: 0 0 26px var(--accent-glow);
 }
 .principle h3 {
     font-family: var(--font-display);
     font-size: var(--fs-xl);
     font-weight: 400;
-    line-height: 1;
-    margin-bottom: var(--sp-4);
+    line-height: 1.08;
+    margin-bottom: var(--sp-3);
+    max-width: 18ch;
 }
-.principle p { color: var(--ink-3); font-size: var(--fs-sm); line-height: 1.6; }
+.principle p { color: var(--ink-3); font-size: var(--fs-sm); line-height: 1.6; max-width: 42ch; }
+@media (prefers-reduced-motion: reduce) {
+    .principle:hover { transform: none; }
+    .principle::before { transition: none; }
+}
 
 /* ============================================================
    HOME — final CTA
@@ -1498,7 +1537,7 @@
     .selected-grid .project,
     .selected-grid .project:nth-child(3),
     .selected-grid .project:nth-child(4) { grid-column: span 12; }
-    .principle-grid { grid-template-columns: 1fr; }
+    .principle-grid { grid-template-columns: repeat(2, 1fr); }
     .value-row { grid-template-columns: 50px 1fr; gap: var(--sp-4); }
     .service-row { grid-template-columns: 60px 1fr; }
     .service-body, .service-cta { grid-column: 1 / -1; padding-left: 60px; }
@@ -1540,4 +1579,5 @@
     .founder-portrait { width: 96px; height: 96px; }
     .founder-initials { font-size: 2.4rem; }
     .founder-info { padding-top: 0; }
+    .principle-grid { grid-template-columns: 1fr; }
 }
