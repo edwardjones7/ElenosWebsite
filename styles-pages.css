@@ -259,31 +259,48 @@
 }
 
 .d-tags {
-    display: flex;
-    gap: var(--sp-5);
-    flex-wrap: wrap;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-top: var(--sp-2);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-3);
+    margin-top: var(--sp-5);
 }
 .d-tags span {
-    position: relative;
-    padding-left: 0.95rem;
-    transition: color 0.35s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.75rem;
+    padding: var(--sp-5) var(--sp-3);
+    min-height: 112px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.015);
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1.35;
+    color: var(--ink-2);
+    transition: border-color 0.3s var(--ease-out), background 0.3s var(--ease-out), transform 0.3s var(--ease-out);
 }
-.d-tags span::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 6px;
-    height: 1px;
-    background: var(--accent-2);
+.d-tags span i {
+    font-size: 1.55rem;
+    color: var(--accent-2);
+    transition: transform 0.3s var(--ease-out), filter 0.3s var(--ease-out);
 }
-.discipline:hover .d-tags span { color: var(--ink-2); }
+.d-tags span:hover {
+    border-color: var(--accent-soft);
+    background: var(--accent-faint);
+    transform: translateY(-3px);
+}
+.d-tags span:hover i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px var(--accent)) drop-shadow(0 0 22px var(--accent-glow));
+}
+@media (prefers-reduced-motion: reduce) {
+    .d-tags span, .d-tags span:hover { transform: none; }
+}
 
 .d-arrow {
     font-family: var(--font-mono);
@@ -1477,7 +1494,7 @@
     .d-lane { display: none; }
     .d-arrow { grid-column: 2; align-self: end; padding-top: var(--sp-4); text-align: left; }
     .d-title { font-size: clamp(1.75rem, 6vw, 2.4rem); }
-    .d-tags { gap: var(--sp-3); }
+    .d-tags { grid-template-columns: repeat(2, 1fr); gap: var(--sp-2); }
     .selected-grid .project,
     .selected-grid .project:nth-child(3),
     .selected-grid .project:nth-child(4) { grid-column: span 12; }
