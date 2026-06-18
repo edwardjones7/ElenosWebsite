@@ -266,7 +266,7 @@
     font-size: 0.68rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-4);
+    color: var(--ink-3);
     margin-top: var(--sp-2);
 }
 .d-tags span {
@@ -283,7 +283,7 @@
     height: 1px;
     background: var(--accent-2);
 }
-.discipline:hover .d-tags span { color: var(--ink-3); }
+.discipline:hover .d-tags span { color: var(--ink-2); }
 
 .d-arrow {
     font-family: var(--font-mono);
