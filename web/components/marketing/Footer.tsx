@@ -3,8 +3,7 @@ export function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <img className="footer-mark" src="/images/logo.png" alt="" aria-hidden="true" />
-          <h3>Elenos</h3>
+          <img className="footer-wordmark" src="/images/wordmark-white.png" alt="Elenos" />
           <p>
             A New Jersey software studio building websites, custom systems, and AI operators for
             compounding businesses. Serving businesses across New Jersey and the USA.

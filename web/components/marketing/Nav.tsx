@@ -2,8 +2,7 @@ export function Nav() {
   return (
     <nav className="nav" data-nav>
       <a href="/" className="nav-brand" aria-label="Elenos home">
-        <span className="nav-mark" aria-hidden="true"></span>
-        <span className="nav-wordmark">ELENOS</span>
+        <img className="nav-wordmark" src="/images/wordmark-white.png" alt="Elenos" />
       </a>
       <div className="nav-links">
         <a href="/work/">Work</a>

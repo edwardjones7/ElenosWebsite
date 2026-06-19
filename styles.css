@@ -244,14 +244,14 @@ body::-webkit-scrollbar-thumb:hover { background: rgba(162, 0, 255, 0.5); }
 
 .nav-brand {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0.5rem;
     color: var(--ink);
     position: relative;
 }
 .nav-mark {
     width: 24px; height: 24px;
-    background: url('images/logo.png') center / contain no-repeat;
+    background: url('images/E-mark.png') center / contain no-repeat;
     filter: drop-shadow(0 0 8px rgba(162, 0, 255, 0.55));
     animation: navPulse 3.4s var(--ease-in-out) infinite;
     align-self: center;
@@ -261,12 +261,10 @@ body::-webkit-scrollbar-thumb:hover { background: rgba(162, 0, 255, 0.5); }
     50% { opacity: 1; filter: drop-shadow(0 0 14px rgba(162, 0, 255, 0.75)); }
 }
 .nav-wordmark {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    letter-spacing: 0.02em;
-    font-weight: 400;
-    font-variation-settings: "opsz" 144, "SOFT" 80;
-    font-style: italic;
+    display: block;
+    height: 0.95rem;
+    width: auto;
+    align-self: center;
 }
 
 .nav-links {
@@ -462,12 +460,11 @@ body::-webkit-scrollbar-thumb:hover { background: rgba(162, 0, 255, 0.5); }
     grid-template-columns: 1.2fr 1fr 1fr 1fr 1.4fr;
     gap: var(--sp-7);
 }
-.footer-mark {
+.footer-wordmark {
     display: block;
-    width: 48px;
-    height: 48px;
+    height: 1.5rem;
+    width: auto;
     margin-bottom: var(--sp-4);
-    filter: drop-shadow(0 0 14px rgba(162, 0, 255, 0.4));
 }
 .footer-brand h3 {
     font-family: var(--font-display);

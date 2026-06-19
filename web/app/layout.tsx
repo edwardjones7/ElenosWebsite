@@ -4,7 +4,12 @@ import type { ReactNode } from "react";
 export const metadata: Metadata = {
   metadataBase: new URL("https://elenos.ai"),
   icons: {
-    icon: "/images/favicon.png",
+    icon: [
+      { url: "/images/favicon.ico", sizes: "any" },
+      { url: "/images/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/images/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+    ],
+    apple: "/images/apple-touch-icon.png",
   },
 };
 
