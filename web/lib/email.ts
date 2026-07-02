@@ -38,6 +38,14 @@ function unlockHtml(firstName: string, pdfUrl: string, discordUrl: string): stri
           <p style="margin:28px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,0.45);">
             Hit reply if anything's broken — a human reads this inbox.
           </p>
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-top:28px;border-top:1px solid rgba(255,255,255,0.12);">
+            <tr><td style="padding-top:24px;">
+              <p style="margin:0 0 6px;font-family:monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:${BRAND_PURPLE};">P.S.</p>
+              <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,0.55);">
+                When you're ready to get <em>paid</em> for this stuff — <a href="https://elenos.ai/course/" style="color:#ffffff;text-decoration:underline;">Getting Your First AI Client</a> is the $49 playbook: positioning, outreach scripts, and the sales call, start to finish.
+              </p>
+            </td></tr>
+          </table>
         </td></tr>
         <tr><td align="center" style="padding-top:24px;">
           <p style="margin:0;font-family:monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.35);">© Elenos Systems Co. · elenos.ai</p>
