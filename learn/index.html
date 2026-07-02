@@ -115,6 +115,12 @@
                 <span class="learn-micro mono">Free · Instant · No spam, ever.</span>
             </div>
         </section>
+
+        <!-- Coda — quiet plug for the paid course -->
+        <aside class="learn-plug reveal">
+            <span class="learn-plug-eyebrow mono">Ready to get paid for this stuff?</span>
+            <p><a href="/course/" data-plug>Getting Your First AI Client</a> — the $49 playbook: positioning, outreach scripts, and the sales call, start to finish. <span class="learn-plug-arrow">→</span></p>
+        </aside>
     </main>
 
     <footer class="learn-footer mono">
@@ -128,5 +134,12 @@
     <script src="/js/scroll.js"></script>
     <script src="/js/scene-ambient.js"></script>
     <script src="/js/learn.js"></script>
+    <script>
+        document.querySelectorAll('[data-plug]').forEach(function (a) {
+            a.addEventListener('click', function () {
+                if (typeof window.elenosTrack === 'function') window.elenosTrack('course_plug_click', { from: '/learn/' });
+            });
+        });
+    </script>
 </body>
 </html>
