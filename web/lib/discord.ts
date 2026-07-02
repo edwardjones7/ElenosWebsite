@@ -8,7 +8,7 @@ type Notification = {
 
 /** Which webhook channel to post to. Falls back to DISCORD_WEBHOOK_URL if the
  *  channel-specific var isn't set, so a single legacy var keeps working. */
-type Channel = "contacts" | "subscribers";
+type Channel = "contacts" | "subscribers" | "leads" | "tickets" | "sales";
 
 const BRAND_PURPLE = 0xa200ff;
 
@@ -16,7 +16,13 @@ function webhookFor(channel: Channel): string | undefined {
   const specific =
     channel === "contacts"
       ? process.env.DISCORD_WEBHOOK_URL_CONTACTS
-      : process.env.DISCORD_WEBHOOK_URL_SUBSCRIBERS;
+      : channel === "leads"
+        ? process.env.DISCORD_WEBHOOK_URL_LEADS
+        : channel === "tickets"
+          ? process.env.DISCORD_WEBHOOK_URL_TICKETS
+          : channel === "sales"
+            ? process.env.DISCORD_WEBHOOK_URL_SALES
+            : process.env.DISCORD_WEBHOOK_URL_SUBSCRIBERS;
   return specific || process.env.DISCORD_WEBHOOK_URL;
 }
 
