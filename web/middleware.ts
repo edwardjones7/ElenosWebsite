@@ -14,6 +14,11 @@ function isPortalHost(host: string | null): boolean {
   return h.startsWith("app.") || h.startsWith("portal.");
 }
 
+function isAdminHost(host: string | null): boolean {
+  if (!host) return false;
+  return host.toLowerCase().startsWith("admin.");
+}
+
 // Refresh the Supabase auth cookies on every portal-host request.
 // @supabase/ssr requires this to keep server-rendered pages in sync.
 async function refreshPortalSession(
@@ -63,6 +68,12 @@ export async function middleware(req: NextRequest) {
   // Apex domain: portal routes must come in via the subdomain only.
   if (pathname.startsWith("/portal")) {
     return new NextResponse(null, { status: 404 });
+  }
+
+  // Admin subdomain: land on the dashboard, not the marketing site.
+  // /api must stay reachable — the static site posts to admin.elenos.ai/api/*.
+  if (isAdminHost(host) && !pathname.startsWith("/admin") && !pathname.startsWith("/api")) {
+    return NextResponse.redirect(new URL("/admin", req.url));
   }
 
   // Admin auth (unchanged behaviour).
