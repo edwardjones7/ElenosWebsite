@@ -1,0 +1,7 @@
+name = "calendly-discord-notify"
+main = "worker.js"
+compatibility_date = "2026-06-15"
+
+# The Discord webhook URL is NOT stored here — it's a secret.
+# Set it once with:
+#   npx wrangler secret put DISCORD_WEBHOOK_URL

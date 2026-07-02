@@ -40,6 +40,41 @@ create table if not exists subscribers (
 );
 create index if not exists subscribers_created_idx on subscribers (created_at desc);
 
+-- Funnel leads (/learn): unlock the guide PDF + Discord invite by email.
+create table if not exists leads (
+  id            bigserial primary key,
+  created_at    timestamptz not null default now(),
+  name          text not null,
+  email         text not null unique,
+  source_path   text,
+  utm_source    text,
+  utm_medium    text,
+  utm_campaign  text,
+  ip_hash       text,
+  status        text not null default 'new',      -- new | emailed | email_failed | unsubscribed
+  emailed_at    timestamptz
+);
+create index if not exists leads_created_idx on leads (created_at desc);
+create index if not exists leads_utm_source_idx on leads (utm_source);
+
+-- Course purchases (/course): Stripe Checkout via Payment Link.
+-- Rows are written by the Stripe webhook (checkout.session.completed).
+create table if not exists purchases (
+  id                     bigserial primary key,
+  created_at             timestamptz not null default now(),
+  name                   text,
+  email                  text not null,
+  product                text not null default 'first-ai-client',
+  stripe_session_id      text not null unique,
+  stripe_payment_intent  text,
+  amount_cents           integer,
+  currency               text,
+  status                 text not null default 'paid',  -- paid | delivered | delivery_failed | refunded
+  delivered_at           timestamptz
+);
+create index if not exists purchases_created_idx on purchases (created_at desc);
+create index if not exists purchases_email_idx on purchases (email);
+
 -- Client portal: clients, tickets, threaded messages.
 -- Clients log in via Supabase Auth; one row per auth user.
 

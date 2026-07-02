@@ -9,6 +9,8 @@ const nav = [
   { label: "Overview", href: "/admin" },
   { label: "Inbox", href: "/admin/inbox" },
   { label: "Subscribers", href: "/admin/subscribers" },
+  { label: "Leads", href: "/admin/leads" },
+  { label: "Customers", href: "/admin/customers" },
 ];
 
 export function Shell({ children }: { children: ReactNode }) {
