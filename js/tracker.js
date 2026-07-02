@@ -179,8 +179,13 @@
   }
 
   // ---- Replace the stub + drain anything script.js already queued ----
+  // Custom events fan out to both sinks: our Supabase pipeline and GA4.
   window.elenosTrack = function (type, meta) {
-    if (type) send(type, meta || null);
+    if (!type) return;
+    send(type, meta || null);
+    try {
+      if (typeof window.gtag === "function") window.gtag("event", type, meta || {});
+    } catch (e) {}
   };
   var queued = window.__elenosQueue;
   if (queued && queued.length) {
