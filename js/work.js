@@ -53,13 +53,13 @@
     // ============================================
     const SPACING = 32;
     const PROJECTS = [
-        { id: 'ironbound',    y: -1 * SPACING, x: 5.5, make: makeIronboundScene },
-        { id: 'sr71',         y: -2 * SPACING, x: -6,  make: makeSR71Scene },
-        { id: 'edthestatman', y: -3 * SPACING, x: 5.5, make: makeStatmanScene },
-        { id: 'alpha',        y: -4 * SPACING, x: -6,  make: makeAlphaScene },
-        { id: 'sheriff',     y: -5 * SPACING, x: 5.5,  make: makeSheriffScene },
-        { id: 'acuityiq',     y: -6 * SPACING, x: -6,  make: makeAcuityIQScene },
-        { id: 'tristate',     y: -7 * SPACING, x: 5.5, make: makeTristateScene },
+        { id: 'tristate',     y: -1 * SPACING, x: 5.5, make: makeTristateScene },
+        { id: 'ironbound',    y: -2 * SPACING, x: -6,  make: makeIronboundScene },
+        { id: 'sr71',         y: -3 * SPACING, x: 5.5, make: makeSR71Scene },
+        { id: 'edthestatman', y: -4 * SPACING, x: -6,  make: makeStatmanScene },
+        { id: 'alpha',        y: -5 * SPACING, x: 5.5, make: makeAlphaScene },
+        { id: 'sheriff',      y: -6 * SPACING, x: -6,  make: makeSheriffScene },
+        { id: 'acuityiq',     y: -7 * SPACING, x: 5.5, make: makeAcuityIQScene },
         { id: 'elenos',       y: -8 * SPACING, x: 0,   make: makeElenosScene },
     ];
 
@@ -983,35 +983,35 @@
     scene.add(keyLight);
 
     // Fill lights — positioned at each planet's y, on the same side as the 3D object.
-    // Order: ironbound(-1), sr71(-2), edthestatman(-3), alpha(-4), sheriff(-5), acuityiq(-6), tristate(-7), elenos(-8)
+    // Order: tristate(-1), ironbound(-2), sr71(-3), edthestatman(-4), alpha(-5), sheriff(-6), acuityiq(-7), elenos(-8)
+
+    const goldFill = new THREE.PointLight(0xd4af37, 1.8, 40);        // TriState VMF — memorial gold
+    goldFill.position.set(5.5, -1 * SPACING, 3);
+    scene.add(goldFill);
 
     const amberFill = new THREE.PointLight(0xff9555, 2.2, 40);      // Ironbound — warm amber
-    amberFill.position.set(5.5, -1 * SPACING, 3);
+    amberFill.position.set(-6, -2 * SPACING, 3);
     scene.add(amberFill);
 
     const steelFill = new THREE.PointLight(0xc8d4ff, 1.5, 40);      // SR-71 — cool steel
-    steelFill.position.set(-6, -2 * SPACING, 3);
+    steelFill.position.set(5.5, -3 * SPACING, 3);
     scene.add(steelFill);
 
     const greenFill = new THREE.PointLight(0x6effbf, 1.4, 40);      // EdTheStatMan — data green
-    greenFill.position.set(5.5, -3 * SPACING, 3);
+    greenFill.position.set(-6, -4 * SPACING, 3);
     scene.add(greenFill);
 
     const creamFill = new THREE.PointLight(0xd4c4a8, 1.8, 40);      // Alpha Painting — warm cream
-    creamFill.position.set(-6, -4 * SPACING, 3);
+    creamFill.position.set(5.5, -5 * SPACING, 3);
     scene.add(creamFill);
 
     const cyanFill = new THREE.PointLight(0x00d4ff, 2, 40);          // Solana Sheriff — cyan
-    cyanFill.position.set(5.5, -5 * SPACING, 3);
+    cyanFill.position.set(-6, -6 * SPACING, 3);
     scene.add(cyanFill);
 
     const purpleFill = new THREE.PointLight(0xa200ff, 2.5, 50);      // AcuityIQ — purple
-    purpleFill.position.set(-6, -6 * SPACING, 3);
+    purpleFill.position.set(5.5, -7 * SPACING, 3);
     scene.add(purpleFill);
-
-    const goldFill = new THREE.PointLight(0xd4af37, 1.8, 40);        // TriState VMF — memorial gold
-    goldFill.position.set(5.5, -7 * SPACING, 3);
-    scene.add(goldFill);
 
     // ============================================
     // INTERACTION
