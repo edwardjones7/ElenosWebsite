@@ -3,6 +3,8 @@ import { getSupabase } from "@/lib/supabase";
 import { clientIp, hashIp } from "@/lib/track-headers";
 import { preflight, withCors } from "@/lib/cors";
 import { notifyDiscord } from "@/lib/discord";
+import { sendSubscribeWelcomeEmail } from "@/lib/email";
+import { unsubscribeUrl } from "@/lib/unsubscribe";
 
 export const runtime = "nodejs";
 
@@ -44,7 +46,13 @@ export async function POST(req: NextRequest) {
     return withCors(req, NextResponse.json({ ok: false, error: "db" }, { status: 500 }));
   }
 
+  // Only first-time subscribers get the welcome + Discord ping (ignoreDuplicates
+  // returns an empty array for repeats).
   if (data && data.length > 0) {
+    await sendSubscribeWelcomeEmail({
+      email,
+      unsubscribeUrl: unsubscribeUrl(req.nextUrl.origin, email),
+    });
     await notifyDiscord("subscribers", {
       title: "New newsletter subscriber",
       fields: [

@@ -153,6 +153,117 @@ export async function sendCoursePurchaseEmail({ name, email }: { name: string | 
   }
 }
 
+/** Shared shell for the simpler follow-up emails (welcome / acknowledgment):
+ *  wordmark header, dark card with the given inner HTML, footer. */
+function cardShell(inner: string): string {
+  return `<!DOCTYPE html>
+<html>
+<body style="margin:0;padding:0;background-color:#000000;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#000000;">
+    <tr><td align="center" style="padding:48px 20px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;">
+        <tr><td style="padding-bottom:32px;" align="center">
+          <img src="https://elenos.ai/images/wordmark-white.png" alt="Elenos" width="120" style="display:block;">
+        </td></tr>
+        <tr><td style="border:1px solid rgba(255,255,255,0.12);background-color:#05030a;padding:40px 32px;">
+          ${inner}
+        </td></tr>
+        <tr><td align="center" style="padding-top:24px;">
+          <p style="margin:0;font-family:monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.35);">© Elenos Systems Co. · elenos.ai</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+async function sendViaResend(to: string, subject: string, html: string): Promise<SendResult> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return { sent: false };
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${apiKey}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        from: process.env.LEAD_FROM_EMAIL || "Elenos <ed@elenos.ai>",
+        to: [to],
+        subject,
+        html,
+      }),
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
+    if (!res.ok) console.error("resend failed", res.status, await res.text().catch(() => ""));
+    return { sent: res.ok };
+  } catch (err) {
+    console.error("resend request failed", err);
+    return { sent: false };
+  }
+}
+
+/** Welcome email for new newsletter subscribers. Never throws. */
+export async function sendSubscribeWelcomeEmail({
+  email,
+  unsubscribeUrl,
+}: {
+  email: string;
+  unsubscribeUrl: string;
+}): Promise<SendResult> {
+  const discordUrl = process.env.DISCORD_INVITE_URL;
+  const inner = `
+          <p style="margin:0 0 8px;font-family:monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:${BRAND_PURPLE};">You're on the list</p>
+          <h1 style="margin:0 0 16px;font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#ffffff;">Welcome to the other side.</h1>
+          <p style="margin:0 0 28px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.72);">
+            No hype, no tool roundups. Occasional dispatches on the AI systems real businesses run to make money — what's working, what's worth copying, and what to ignore.
+          </p>
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+            <tr><td style="padding-bottom:12px;">
+              <a href="https://elenos.ai/learn/" style="display:block;text-align:center;background-color:${BRAND_PURPLE};color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:14px 24px;border-radius:999px;">Get the free guide →</a>
+            </td></tr>${
+              discordUrl
+                ? `
+            <tr><td>
+              <a href="${discordUrl}" style="display:block;text-align:center;background-color:transparent;border:1px solid rgba(255,255,255,0.25);color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:13px 24px;border-radius:999px;">Join the Discord →</a>
+            </td></tr>`
+                : ""
+            }
+          </table>
+          <p style="margin:28px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,0.45);">
+            Hit reply anytime — a human reads this inbox. Don't want these? <a href="${unsubscribeUrl}" style="color:rgba(255,255,255,0.45);text-decoration:underline;">Unsubscribe</a>.
+          </p>`;
+  return sendViaResend(email, "You're in — Elenos", cardShell(inner));
+}
+
+/** Acknowledgment for contact-form submissions. Never throws. */
+export async function sendContactAckEmail({
+  name,
+  email,
+}: {
+  name: string;
+  email: string;
+}): Promise<SendResult> {
+  const firstName = name.split(/\s+/)[0] || "there";
+  const inner = `
+          <p style="margin:0 0 8px;font-family:monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:${BRAND_PURPLE};">Message received</p>
+          <h1 style="margin:0 0 16px;font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#ffffff;">Got it, ${firstName}.</h1>
+          <p style="margin:0 0 28px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.72);">
+            Your message landed in a real inbox — no ticket queue, no autoresponder maze. Ed reads every one and you'll hear back within one business day, usually sooner.
+          </p>
+          <p style="margin:0 0 28px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.72);">
+            In the meantime, if you want to see how we work: <a href="https://elenos.ai/work/" style="color:#ffffff;text-decoration:underline;">recent builds</a>.
+          </p>
+          <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,0.45);">
+            Need to add something? Just reply to this email — it threads straight to Ed.
+          </p>`;
+  return sendViaResend(email, `Got your message, ${firstName} — Elenos`, cardShell(inner));
+}
+
 /** Sends the /learn unlock email. Resolves { sent: false } (never throws) when
  *  RESEND_API_KEY is unset or Resend errors, so the lead is still captured. */
 export async function sendLeadUnlockEmail({ name, email }: UnlockEmail): Promise<SendResult> {
