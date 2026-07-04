@@ -59,7 +59,8 @@
         { id: 'alpha',        y: -4 * SPACING, x: -6,  make: makeAlphaScene },
         { id: 'sheriff',     y: -5 * SPACING, x: 5.5,  make: makeSheriffScene },
         { id: 'acuityiq',     y: -6 * SPACING, x: -6,  make: makeAcuityIQScene },
-        { id: 'elenos',       y: -7 * SPACING, x: 0,   make: makeElenosScene },
+        { id: 'tristate',     y: -7 * SPACING, x: 5.5, make: makeTristateScene },
+        { id: 'elenos',       y: -8 * SPACING, x: 0,   make: makeElenosScene },
     ];
 
     // ============================================
@@ -778,6 +779,106 @@
         return g;
     }
 
+    // 7 · TriState Veterans Memorial Fund — solemn slate planet, honor-star ring, flag-color mist
+    function makeTristateScene(x, y) {
+        const g = new THREE.Group();
+        g.position.set(x, y, -2);
+
+        // Memorial planet — dark slate granite
+        const sphereGeo = new THREE.SphereGeometry(2, 48, 48);
+        const sphereMat = new THREE.MeshStandardMaterial({
+            color: 0x2f3b52,
+            roughness: 0.75,
+            metalness: 0.15,
+            emissive: 0x151d30,
+            emissiveIntensity: 0.4,
+        });
+        g.add(new THREE.Mesh(sphereGeo, sphereMat));
+
+        // Honor ring — gold band with a guard of stars orbiting it
+        const starRing = new THREE.Group();
+        const bandGeo = new THREE.TorusGeometry(3.1, 0.05, 8, 96);
+        const bandMat = new THREE.MeshBasicMaterial({
+            color: 0xd4af37,
+            transparent: true,
+            opacity: 0.5,
+        });
+        starRing.add(new THREE.Mesh(bandGeo, bandMat));
+
+        const STAR_COUNT = 13;
+        const stars = [];
+        for (let i = 0; i < STAR_COUNT; i++) {
+            const starGeo = new THREE.OctahedronGeometry(0.12, 0);
+            const starMat = new THREE.MeshStandardMaterial({
+                color: 0xd4af37,
+                emissive: 0xd4af37,
+                emissiveIntensity: 0.9,
+                roughness: 0.3,
+                metalness: 0.6,
+            });
+            const star = new THREE.Mesh(starGeo, starMat);
+            const a = (i / STAR_COUNT) * Math.PI * 2;
+            star.position.set(Math.cos(a) * 3.1, Math.sin(a) * 3.1, 0);
+            star.userData = { phase: a };
+            stars.push(star);
+            starRing.add(star);
+        }
+        starRing.rotation.x = Math.PI * 0.42;
+        g.add(starRing);
+        g.userData.starRing = starRing;
+        g.userData.stars = stars;
+
+        // Flag-color mist — red / white / blue particles drifting around the planet
+        const mistCount = isMobile ? 180 : 360;
+        const mistGeo = new THREE.BufferGeometry();
+        const mistPos = new Float32Array(mistCount * 3);
+        const mistColors = new Float32Array(mistCount * 3);
+        const flagPalette = [
+            new THREE.Color(0xb22234),
+            new THREE.Color(0xf0f0f5),
+            new THREE.Color(0x5a6ecf),
+        ];
+        for (let i = 0; i < mistCount; i++) {
+            const r = 2.5 + Math.random() * 1.8;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(Math.random() * 2 - 1);
+            mistPos[i*3]   = r * Math.sin(phi) * Math.cos(theta);
+            mistPos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+            mistPos[i*3+2] = r * Math.cos(phi);
+            const c = flagPalette[Math.floor(Math.random() * flagPalette.length)];
+            mistColors[i*3] = c.r;
+            mistColors[i*3+1] = c.g;
+            mistColors[i*3+2] = c.b;
+        }
+        mistGeo.setAttribute('position', new THREE.BufferAttribute(mistPos, 3));
+        mistGeo.setAttribute('color', new THREE.BufferAttribute(mistColors, 3));
+        const mistMat = new THREE.PointsMaterial({
+            size: 0.07,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.55,
+            depthWrite: false,
+        });
+        const mist = new THREE.Points(mistGeo, mistMat);
+        g.add(mist);
+        g.userData.mist = mist;
+
+        // Halo — soft gold glow
+        g.add(new THREE.Mesh(
+            new THREE.SphereGeometry(4, 24, 24),
+            new THREE.MeshBasicMaterial({
+                color: 0xd4af37,
+                transparent: true,
+                opacity: 0.05,
+                side: THREE.BackSide,
+                depthWrite: false,
+            })
+        ));
+
+        g.userData.type = 'tristate';
+        return g;
+    }
+
     // 5 · Elenos — destination core: layered wireframe + particles + orbital rings
     function makeElenosScene(x, y) {
         const g = new THREE.Group();
@@ -882,7 +983,7 @@
     scene.add(keyLight);
 
     // Fill lights — positioned at each planet's y, on the same side as the 3D object.
-    // Order: ironbound(-1), sr71(-2), edthestatman(-3), alpha(-4), sheriff(-5), acuityiq(-6), elenos(-7)
+    // Order: ironbound(-1), sr71(-2), edthestatman(-3), alpha(-4), sheriff(-5), acuityiq(-6), tristate(-7), elenos(-8)
 
     const amberFill = new THREE.PointLight(0xff9555, 2.2, 40);      // Ironbound — warm amber
     amberFill.position.set(5.5, -1 * SPACING, 3);
@@ -907,6 +1008,10 @@
     const purpleFill = new THREE.PointLight(0xa200ff, 2.5, 50);      // AcuityIQ — purple
     purpleFill.position.set(-6, -6 * SPACING, 3);
     scene.add(purpleFill);
+
+    const goldFill = new THREE.PointLight(0xd4af37, 1.8, 40);        // TriState VMF — memorial gold
+    goldFill.position.set(5.5, -7 * SPACING, 3);
+    scene.add(goldFill);
 
     // ============================================
     // INTERACTION
@@ -1146,6 +1251,22 @@
                     pulsePos.setZ(i, a.z + (b.z - a.z) * p.t);
                 });
                 pulsePos.needsUpdate = true;
+            } else if (type === 'tristate') {
+                // Solemn slow spin — honor ring processes, stars twinkle, mist drifts
+                g.rotation.y = t * 0.06;
+                if (g.userData.starRing) {
+                    g.userData.starRing.rotation.z = t * 0.12;
+                }
+                if (g.userData.stars) {
+                    g.userData.stars.forEach((s) => {
+                        s.material.emissiveIntensity = 0.7 + Math.sin(t * 1.5 + s.userData.phase) * 0.35;
+                        s.rotation.y = t * 0.8 + s.userData.phase;
+                    });
+                }
+                if (g.userData.mist) {
+                    g.userData.mist.rotation.y = -t * 0.04;
+                    g.userData.mist.rotation.x = Math.sin(t * 0.05) * 0.1;
+                }
             } else if (type === 'elenos') {
                 if (g.userData.shell) {
                     g.userData.shell.rotation.y = t * 0.1;
