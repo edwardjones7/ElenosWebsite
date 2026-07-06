@@ -23,7 +23,7 @@ export function Footer() {
           <ul>
             <li>
               <a
-                href="https://calendly.com/ed-elenos/30min"
+                href="https://calendly.com/edjjones07/30min"
                 target="_blank"
                 rel="noopener"
                 data-track="footer_calendly"

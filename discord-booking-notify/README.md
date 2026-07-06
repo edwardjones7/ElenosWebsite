@@ -68,7 +68,7 @@ booking emails:
 
 ### 4. Test
 
-Book a slot on https://calendly.com/ed-elenos/30min (use a different email).
+Book a slot on https://calendly.com/edjjones07/30min (use a different email).
 Within a few seconds you should see the Discord message. Tail logs while testing:
 
 ```bash

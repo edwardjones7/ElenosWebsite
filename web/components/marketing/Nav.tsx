@@ -13,7 +13,7 @@ export function Nav() {
       </div>
       <a
         className="nav-cta"
-        href="https://calendly.com/ed-elenos/30min"
+        href="https://calendly.com/edjjones07/30min"
         target="_blank"
         rel="noopener"
         data-track="nav_calendly"
