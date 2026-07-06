@@ -59,7 +59,7 @@ export default function HomePage() {
           <div className="home-hero-actions">
             <a
               className="btn btn-primary"
-              href="https://calendly.com/ed-elenos/30min"
+              href="https://calendly.com/edjjones07/30min"
               target="_blank"
               rel="noopener"
               data-track="hero_calendly"
@@ -251,7 +251,7 @@ export default function HomePage() {
         <div className="selected-cta reveal">
           <a
             className="btn btn-primary"
-            href="https://calendly.com/ed-elenos/30min"
+            href="https://calendly.com/edjjones07/30min"
             target="_blank"
             rel="noopener"
             data-track="caps_calendly"
@@ -458,7 +458,7 @@ export default function HomePage() {
         <a
           className="btn btn-primary reveal"
           data-delay="200"
-          href="https://calendly.com/ed-elenos/30min"
+          href="https://calendly.com/edjjones07/30min"
           target="_blank"
           rel="noopener"
           data-track="final_cta_calendly"
