@@ -1190,6 +1190,56 @@
 }
 .service-body ul li:last-child { border-bottom: 0; }
 .service-cta { text-align: right; padding-top: 0.4rem; }
+.service-cta .btn { display: inline-flex; }
+.service-cta .btn + .btn { margin-top: var(--sp-3); }
+.service-title h3 a:hover { color: var(--accent-2); }
+
+/* ============================================================
+   SERVICE DETAIL PAGES
+   ============================================================ */
+
+.sd-hero { min-height: 62vh; }
+.sd-breadcrumb {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+}
+.sd-breadcrumb a { color: var(--ink-3); transition: color 0.3s var(--ease-out); }
+.sd-breadcrumb a:hover { color: var(--accent-2); }
+
+.sd-section {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: var(--sp-8) var(--pad-x);
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--sp-7);
+    align-items: start;
+}
+.sd-section-head h2 { margin-top: var(--sp-4); max-width: 14ch; }
+.sd-prose p { color: var(--ink-2); line-height: 1.7; }
+.sd-prose p + p { margin-top: var(--sp-4); }
+.sd-checklist { margin-top: var(--sp-5); }
+.sd-checklist li {
+    padding: 0.55rem 0;
+    color: var(--ink-3);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--line);
+}
+.sd-checklist li:first-child { border-top: 1px solid var(--line); }
+
+.sd-related {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: var(--sp-8) var(--pad-x) 0;
+}
+.sd-related-head { margin-bottom: var(--sp-6); }
+.sd-related-head h2 { margin-top: var(--sp-4); }
 
 /* ============================================================
    ABOUT
@@ -1750,6 +1800,8 @@
     .home-hero-meta > div { flex: 1 1 45%; }
     .scroll-indicator { display: none; }
     .process-grid { grid-template-columns: 1fr; }
+    .sd-section { grid-template-columns: 1fr; gap: var(--sp-5); }
+    .sd-section-head h2 { max-width: none; }
 
     /* Mobile iframe guard — heavy scroll-driven previews (e.g. SR-71)
        must not capture page-scroll gestures. pointer-events:none is
