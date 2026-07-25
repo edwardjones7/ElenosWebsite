@@ -105,6 +105,7 @@
                         project_type: data.get('project_type') || '',
                         message: data.get('message') || '',
                         source_path: location.pathname,
+                        _gotcha: data.get('_gotcha') || '',
                     };
                     const res = await fetch(API_BASE + '/api/contact/', {
                         method: 'POST',

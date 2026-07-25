@@ -20,6 +20,12 @@ export async function POST(req: NextRequest) {
     return withCors(req, NextResponse.json({ ok: false, error: "bad_body" }, { status: 400 }));
   }
 
+  // Honeypot: humans never see or fill `_gotcha`. If it's set, silently drop
+  // (return a fake success so bots don't learn they were filtered).
+  if (String(body._gotcha || "").trim()) {
+    return withCors(req, NextResponse.json({ ok: true }));
+  }
+
   const name = String(body.name || "").trim();
   const email = String(body.email || "").trim();
   const message = String(body.message || "").trim();
