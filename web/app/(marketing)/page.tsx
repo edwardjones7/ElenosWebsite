@@ -69,7 +69,7 @@ export default function HomePage() {
         <div className="home-hero-meta reveal" data-delay="360">
           <div>
             <span className="mute">Studio</span>
-            <b>Elenos Systems Co.</b>
+            <b>Elenos Solutions</b>
           </div>
           <div>
             <span className="mute">Based</span>
