@@ -75,14 +75,15 @@
         });
     });
 
-    // CTA / Calendly click tracking
+    // CTA / booking click tracking
     document.querySelectorAll('a').forEach((a) => {
         const href = a.getAttribute('href') || '';
-        const isCalendly = /calendly\.com/i.test(href);
+        // A booking link is the internal /book path (or any legacy Calendly URL).
+        const isBooking = /\/book\/?($|[?#])/.test(href) || /calendly\.com/i.test(href);
         const isCta = a.classList.contains('btn-primary') || a.classList.contains('nav-cta');
-        if (!isCalendly && !isCta) return;
+        if (!isBooking && !isCta) return;
         a.addEventListener('click', () => {
-            if (isCalendly) track('calendly_click', { href });
+            if (isBooking) track('book_click', { href });
             else track('cta_click', { href, label: (a.textContent || '').trim().slice(0, 60) });
         });
     });

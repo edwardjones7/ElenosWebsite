@@ -22,12 +22,7 @@ export function Footer() {
           <h5>Contact</h5>
           <ul>
             <li>
-              <a
-                href="https://calendly.com/edjjones07/30min"
-                target="_blank"
-                rel="noopener"
-                data-track="footer_calendly"
-              >
+              <a href="/book/" data-track="footer_book">
                 Book a call
               </a>
             </li>

@@ -5,7 +5,9 @@ import { preflight, withCors } from "@/lib/cors";
 
 export const runtime = "nodejs";
 
-const ALLOWED_TYPES = new Set(["pageview", "cta_click", "calendly_click", "form_submit"]);
+// "calendly_click" retained for historical events; "book_click" is the current
+// booking-CTA event name.
+const ALLOWED_TYPES = new Set(["pageview", "cta_click", "calendly_click", "book_click", "form_submit"]);
 
 export function OPTIONS(req: NextRequest) {
   return preflight(req);

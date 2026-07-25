@@ -11,13 +11,7 @@ export function Nav() {
         <a href="/products/">Products</a>
         <a href="/contact/">Contact</a>
       </div>
-      <a
-        className="nav-cta"
-        href="https://calendly.com/edjjones07/30min"
-        target="_blank"
-        rel="noopener"
-        data-track="nav_calendly"
-      >
+      <a className="nav-cta" href="/book/" data-track="nav_book">
         Book a call →
       </a>
       <button className="nav-toggle" aria-label="Toggle navigation">

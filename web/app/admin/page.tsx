@@ -51,7 +51,7 @@ export default async function AdminOverview({
           <section className="stats">
             <StatCard label="Sessions" value={data.totals.sessions} />
             <StatCard label="Pageviews" value={data.totals.pageviews} />
-            <StatCard label="Calendly clicks" value={data.totals.calendlyClicks} />
+            <StatCard label="Booking clicks" value={data.totals.bookClicks} />
             <StatCard label="Form submits" value={data.totals.formSubmits} />
           </section>
 
@@ -93,15 +93,15 @@ export default async function AdminOverview({
                 <span className="widget-title">Conversion rates</span>
               </div>
               <div className="widget-row">
-                <span className="label">Any click (CTA + Calendly)</span>
+                <span className="label">Any click (CTA + booking)</span>
                 <span className="value">
-                  {pct(data.funnel.ctaClicks + data.funnel.calendlyClicks, data.funnel.pageviews)}
+                  {pct(data.funnel.ctaClicks + data.funnel.bookClicks, data.funnel.pageviews)}
                 </span>
               </div>
               <div className="widget-row">
-                <span className="label">Calendly clicks</span>
+                <span className="label">Booking clicks</span>
                 <span className="value">
-                  {pct(data.funnel.calendlyClicks, data.funnel.pageviews)}
+                  {pct(data.funnel.bookClicks, data.funnel.pageviews)}
                 </span>
               </div>
               <div className="widget-row">

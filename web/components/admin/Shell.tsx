@@ -7,6 +7,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const nav = [
   { label: "Overview", href: "/admin" },
+  { label: "Bookings", href: "/admin/bookings" },
   { label: "Inbox", href: "/admin/inbox" },
   { label: "Subscribers", href: "/admin/subscribers" },
   { label: "Leads", href: "/admin/leads" },

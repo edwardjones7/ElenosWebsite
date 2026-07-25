@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage your booking — Elenos</title>
+    <meta name="description" content="Reschedule or cancel your Elenos discovery call.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,50..100;1,9..144,300..700,50..100&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles-pages.css">
+    <script>window.ELENOS_API_BASE = 'https://admin.elenos.ai';</script>
+    <script defer src="/js/tracker.js"></script>
+</head>
+<body>
+    <canvas id="scene-canvas" class="scene-canvas" aria-hidden="true"></canvas>
+
+    <nav class="nav" data-nav>
+        <a href="/" class="nav-brand" aria-label="Elenos home">
+            <img class="nav-wordmark" src="/images/wordmark-white.png" alt="Elenos">
+        </a>
+        <div class="nav-links">
+            <a href="/work/">Work</a>
+            <a href="/services/">Services</a>
+            <a href="/about/">About</a>
+            <a href="/products/">Products</a>
+            <a href="/contact/">Contact</a>
+        </div>
+        <a class="nav-cta" href="/book/">Book a call →</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main class="shell page-fade">
+        <section class="manage-wrap">
+            <div class="reveal book-wrap manage-card">
+                <div id="manage-widget">
+                    <span class="eyebrow">Manage / Your booking</span>
+                    <div class="book-loading" data-loading>Loading your booking…</div>
+                    <div class="book-error" data-error hidden></div>
+
+                    <div class="manage-view" hidden>
+                        <span class="status-pill" data-status-pill>Confirmed</span>
+                        <h3>Elenos discovery call</h3>
+                        <p class="book-chosen" data-when></p>
+
+                        <div class="contact-cta-block">
+                            <a class="btn btn-primary" data-meet target="_blank" rel="noopener" hidden>Join Google Meet <span class="btn-arrow">→</span></a>
+                        </div>
+
+                        <div class="manage-actions" hidden>
+                            <div class="manage-btn-row">
+                                <button type="button" class="btn" data-reschedule>Reschedule</button>
+                                <button type="button" class="btn book-cancel-btn" data-cancel>Cancel call</button>
+                            </div>
+                            <div class="manage-reschedule" hidden>
+                                <p class="book-tz">Pick a new time:</p>
+                                <div class="book-picker" data-picker></div>
+                            </div>
+                        </div>
+
+                        <div class="mono" data-msg style="margin-top: 1rem;"></div>
+                        <p class="manage-rebook"><a href="/book/">← Book another call</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img class="footer-wordmark" src="/images/wordmark-white.png" alt="Elenos">
+                <p>A New Jersey software studio building websites, custom systems, and AI operators for compounding businesses. Serving businesses across New Jersey and the USA.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Studio</h5>
+                <ul>
+                    <li><a href="/work/">Work</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/products/">Products</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="/book/">Book a call</a></li>
+                    <li><a href="/contact/">Start a project</a></li>
+                    <li><a href="mailto:ed@elenos.ai">ed@elenos.ai</a></li>
+                    <li><a href="tel:+18564421180">Call: (856) 442-1180</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-col-newsletter">
+                <h5>Get updates</h5>
+                <form id="newsletter-form" class="newsletter-form" novalidate>
+                    <div class="newsletter-row">
+                        <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                        <button type="submit" aria-label="Subscribe">→</button>
+                    </div>
+                    <span id="newsletter-status" class="newsletter-status" aria-live="polite"></span>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© <span data-year>2026</span> ELENOS SYSTEMS CO. · ALL RIGHTS RESERVED</span>
+            <span>elenos.ai</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="/script.js"></script>
+    <script src="/js/scroll.js"></script>
+    <script src="/js/scene-ambient.js"></script>
+    <script src="/js/book.js"></script>
+</body>
+</html>

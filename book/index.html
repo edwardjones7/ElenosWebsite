@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact Elenos — New Jersey Software &amp; Web Studio</title>
-    <meta name="description" content="Start a project with Elenos, a New Jersey software studio. Book a discovery call or send a brief — serving businesses across NJ and the USA.">
-    <link rel="canonical" href="https://elenos.ai/contact/">
+    <title>Book a call — Elenos, a New Jersey Software Studio</title>
+    <meta name="description" content="Book a 30-minute discovery call with Elenos, a New Jersey software studio. Pick a time that works — we listen, then tell you what we'd build.">
+    <link rel="canonical" href="https://elenos.ai/book/">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="geo.region" content="US-NJ">
     <meta name="geo.placename" content="New Jersey">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Elenos">
-    <meta property="og:title" content="Contact Elenos — New Jersey Software &amp; Web Studio">
-    <meta property="og:description" content="Start a project with Elenos, a New Jersey software studio. Book a discovery call or send a brief — serving businesses across NJ and the USA.">
-    <meta property="og:url" content="https://elenos.ai/contact/">
+    <meta property="og:title" content="Book a call — Elenos">
+    <meta property="og:description" content="Book a 30-minute discovery call with Elenos, a New Jersey software studio.">
+    <meta property="og:url" content="https://elenos.ai/book/">
     <meta property="og:image" content="https://elenos.ai/images/og-cover.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Elenos — a New Jersey software studio building systems that compound revenue.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Contact Elenos — New Jersey Software &amp; Web Studio">
-    <meta name="twitter:description" content="Start a project with Elenos, a New Jersey software studio. Book a discovery call or send a brief — serving businesses across NJ and the USA.">
+    <meta name="twitter:title" content="Book a call — Elenos">
+    <meta name="twitter:description" content="Book a 30-minute discovery call with Elenos, a New Jersey software studio.">
     <meta name="twitter:image" content="https://elenos.ai/images/og-cover.jpg">
 
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -68,90 +68,76 @@
     </nav>
 
     <main class="shell page-fade">
-        <section class="contact-wrap">
-            <div class="contact-left">
-                <div class="reveal"><span class="eyebrow">Contact / Begin</span></div>
-                <h1 class="display display-xl reveal" data-delay="120">Let's talk.</h1>
-                <p class="lede reveal" data-delay="240">The fastest way in is a 30-minute discovery call. If you'd rather write first, the brief below lands in our inbox within minutes.</p>
-                <div class="contact-points reveal" data-delay="360">
-                    <div class="contact-point">
-                        <span class="label">Email</span>
-                        <span class="value"><a href="mailto:ed@elenos.ai">ed@elenos.ai</a></span>
-                    </div>
-                    <div class="contact-point">
-                        <span class="label">Call · AI receptionist</span>
-                        <span class="value"><a href="tel:+18564421180">(856) 442-1180</a></span>
-                    </div>
-                    <div class="contact-point">
-                        <span class="label">Based</span>
-                        <span class="value">New Jersey, USA · serving NJ &amp; nationwide</span>
-                    </div>
-                    <div class="contact-point">
-                        <span class="label">Response</span>
-                        <span class="value">Within 1–2 business days</span>
-                    </div>
-                </div>
-                <ol class="next-steps reveal" data-delay="480">
-                    <li><span class="ns-num">01</span><span><b>We read it the day it lands.</b> Every brief goes straight to the builder — not a queue.</span></li>
-                    <li><span class="ns-num">02</span><span><b>You get an honest reply.</b> Within 1–2 business days: what we'd build, or who to call instead.</span></li>
-                    <li><span class="ns-num">03</span><span><b>Then a fixed number.</b> Scope, price, and timeline within 48 hours of the call — before you spend a dollar.</span></li>
-                </ol>
+        <section class="book-page">
+            <div class="book-intro reveal">
+                <span class="eyebrow">Book / Discovery call</span>
+                <h1 class="display book-intro-title" data-delay="120">Let's talk.</h1>
+                <p class="lede" data-delay="240">Thirty minutes, no slides. Pick a time — we listen first, then tell you honestly what we'd build.</p>
             </div>
 
-            <div class="contact-right reveal" data-delay="180">
-                <span class="status-pill">Accepting 2 projects · Q2/Q3</span>
-                <h3>Book a discovery call</h3>
-                <p>30 minutes. No slides. We listen, then tell you what we'd build.</p>
-                <div class="contact-cta-block">
-                    <a class="btn btn-primary" href="/book/">
-                        Book a discovery call <span class="btn-arrow">→</span>
-                    </a>
+            <div class="reveal book-wrap" data-delay="120">
+                <div id="book-widget">
+                    <!-- STEP 1: pick a time -->
+                    <div class="book-step book-step-pick">
+                        <span class="status-pill">30-minute discovery call</span>
+                        <h3>Pick a time</h3>
+                        <p class="book-tz">Times shown in <strong data-tzname>your local time</strong>.</p>
+                        <div class="book-loading" data-loading>Loading available times…</div>
+                        <div class="book-error" data-error hidden>Couldn't load times right now. <a href="mailto:ed@elenos.ai">Email us</a> and we'll find a slot.</div>
+                        <div class="book-picker" data-picker></div>
+                    </div>
+
+                    <!-- STEP 2: details -->
+                    <div class="book-step book-step-details" hidden>
+                        <button type="button" class="book-back" data-back>← Back to times</button>
+                        <h3>Your details</h3>
+                        <p class="book-chosen" data-chosen></p>
+                        <form id="book-form" class="contact-form" novalidate>
+                            <!-- Honeypot: hidden from humans, tempting to bots. Leave empty. -->
+                            <div class="hp-field" aria-hidden="true">
+                                <label for="b-website">Website</label>
+                                <input id="b-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+                            </div>
+                            <div class="contact-form-row">
+                                <div>
+                                    <label for="b-name">Name</label>
+                                    <input id="b-name" name="name" type="text" required>
+                                </div>
+                                <div>
+                                    <label for="b-email">Email</label>
+                                    <input id="b-email" name="email" type="email" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="b-company">Company</label>
+                                <input id="b-company" name="company" type="text">
+                            </div>
+                            <div>
+                                <label for="b-brief">What do you want to build? <span class="mute">(optional)</span></label>
+                                <textarea id="b-brief" name="message" placeholder="A sentence or two so we come prepared."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Confirm booking <span class="btn-arrow">→</span>
+                            </button>
+                            <div class="mono mute" data-status style="margin-top: 0.5rem;"></div>
+                        </form>
+                    </div>
+
+                    <!-- STEP 3: confirmed -->
+                    <div class="book-step book-step-done" hidden>
+                        <span class="status-pill">Confirmed</span>
+                        <h3>You're booked.</h3>
+                        <p class="book-chosen" data-done-when></p>
+                        <p class="book-done-note">A confirmation email is on its way with your Meet link and a calendar invite.</p>
+                        <div class="contact-cta-block">
+                            <a class="btn btn-primary" data-meet target="_blank" rel="noopener" hidden>Join Google Meet <span class="btn-arrow">→</span></a>
+                            <a class="btn" data-manage href="#">Reschedule or cancel</a>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="contact-divider">or send a brief</div>
-
-                <form id="contact-form" class="contact-form" novalidate>
-                    <!-- Honeypot: hidden from humans, tempting to bots. Leave empty. -->
-                    <div class="hp-field" aria-hidden="true">
-                        <label for="c-website">Website</label>
-                        <input id="c-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
-                    </div>
-                    <div class="contact-form-row">
-                        <div>
-                            <label for="c-name">Name</label>
-                            <input id="c-name" name="name" type="text" required>
-                        </div>
-                        <div>
-                            <label for="c-email">Email</label>
-                            <input id="c-email" name="email" type="email" required>
-                        </div>
-                    </div>
-                    <div class="contact-form-row">
-                        <div>
-                            <label for="c-company">Company</label>
-                            <input id="c-company" name="company" type="text">
-                        </div>
-                        <div>
-                            <label for="c-type">Project type</label>
-                            <select id="c-type" name="project_type">
-                                <option>Website or web app</option>
-                                <option>Custom software / internal tool</option>
-                                <option>AI integration / automation</option>
-                                <option>Systems audit / consulting</option>
-                                <option>Not sure yet</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="c-brief">Project brief</label>
-                        <textarea id="c-brief" name="message" placeholder="What are you trying to build, why now, and what does success look like?" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        Transmit brief <span class="btn-arrow">→</span>
-                    </button>
-                    <div id="contact-status" class="mono mute" style="margin-top: 0.5rem;"></div>
-                </form>
             </div>
+
+            <p class="book-alt reveal">Prefer to write? <a href="/contact/">Send a brief</a> · <a href="mailto:ed@elenos.ai">ed@elenos.ai</a></p>
         </section>
     </main>
 
@@ -210,5 +196,6 @@
     <script src="/script.js"></script>
     <script src="/js/scroll.js"></script>
     <script src="/js/scene-ambient.js"></script>
+    <script src="/js/book.js"></script>
 </body>
 </html>
