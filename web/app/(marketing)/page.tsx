@@ -57,13 +57,7 @@ export default function HomePage() {
             that want to get out of their own way — and into their next trajectory.
           </p>
           <div className="home-hero-actions">
-            <a
-              className="btn btn-primary"
-              href="https://calendly.com/edjjones07/30min"
-              target="_blank"
-              rel="noopener"
-              data-track="hero_calendly"
-            >
+            <a className="btn btn-primary" href="/book/" data-track="hero_book">
               Book a discovery call <span className="btn-arrow">→</span>
             </a>
             <a className="btn btn-ghost" href="/work/">
@@ -249,13 +243,7 @@ export default function HomePage() {
           </a>
         </div>
         <div className="selected-cta reveal">
-          <a
-            className="btn btn-primary"
-            href="https://calendly.com/edjjones07/30min"
-            target="_blank"
-            rel="noopener"
-            data-track="caps_calendly"
-          >
+          <a className="btn btn-primary" href="/book/" data-track="caps_book">
             Book a discovery call <span className="btn-arrow">→</span>
           </a>
         </div>
@@ -458,10 +446,8 @@ export default function HomePage() {
         <a
           className="btn btn-primary reveal"
           data-delay="200"
-          href="https://calendly.com/edjjones07/30min"
-          target="_blank"
-          rel="noopener"
-          data-track="final_cta_calendly"
+          href="/book/"
+          data-track="final_cta_book"
         >
           Book a discovery call <span className="btn-arrow">→</span>
         </a>

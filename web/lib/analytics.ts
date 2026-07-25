@@ -10,7 +10,7 @@ export type AnalyticsSummary = {
     sessions: number;
     pageviews: number;
     ctaClicks: number;
-    calendlyClicks: number;
+    bookClicks: number;
     formSubmits: number;
   };
   topPages: { path: string; count: number }[];
@@ -18,7 +18,7 @@ export type AnalyticsSummary = {
   funnel: {
     pageviews: number;
     ctaClicks: number;
-    calendlyClicks: number;
+    bookClicks: number;
     formSubmits: number;
   };
   recent: { id: number; occurred_at: string; type: string; path: string; referrer: string | null }[];
@@ -47,7 +47,7 @@ export async function getAnalytics(range: Range): Promise<AnalyticsSummary> {
   const sessionSet = new Set<string>();
   let pageviews = 0;
   let ctaClicks = 0;
-  let calendlyClicks = 0;
+  let bookClicks = 0;
   let formSubmits = 0;
 
   const pagesByPath = new Map<string, number>();
@@ -60,8 +60,9 @@ export async function getAnalytics(range: Range): Promise<AnalyticsSummary> {
       pagesByPath.set(e.path, (pagesByPath.get(e.path) || 0) + 1);
     } else if (e.type === "cta_click") {
       ctaClicks += 1;
-    } else if (e.type === "calendly_click") {
-      calendlyClicks += 1;
+    } else if (e.type === "book_click" || e.type === "calendly_click") {
+      // Count legacy calendly_click alongside the current book_click.
+      bookClicks += 1;
     } else if (e.type === "form_submit") {
       formSubmits += 1;
     }
@@ -90,10 +91,10 @@ export async function getAnalytics(range: Range): Promise<AnalyticsSummary> {
   return {
     range,
     windowStart: startIso,
-    totals: { sessions: sessionSet.size, pageviews, ctaClicks, calendlyClicks, formSubmits },
+    totals: { sessions: sessionSet.size, pageviews, ctaClicks, bookClicks, formSubmits },
     topPages,
     topReferrers,
-    funnel: { pageviews, ctaClicks, calendlyClicks, formSubmits },
+    funnel: { pageviews, ctaClicks, bookClicks, formSubmits },
     recent,
   };
 }

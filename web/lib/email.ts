@@ -264,6 +264,124 @@ export async function sendContactAckEmail({
   return sendViaResend(email, `Got your message, ${firstName} — Elenos`, cardShell(inner));
 }
 
+function primaryBtn(href: string, label: string): string {
+  return `<a href="${href}" style="display:block;text-align:center;background-color:${BRAND_PURPLE};color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:14px 24px;border-radius:999px;">${label}</a>`;
+}
+function ghostBtn(href: string, label: string): string {
+  return `<a href="${href}" style="display:block;text-align:center;background-color:transparent;border:1px solid rgba(255,255,255,0.25);color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:13px 24px;border-radius:999px;">${label}</a>`;
+}
+
+type BookingEmail = {
+  name: string;
+  email: string;
+  whenLabel: string; // date/time already formatted in the visitor's timezone
+  meetUrl?: string | null;
+  addToCalendarUrl?: string | null;
+  manageUrl?: string | null;
+};
+
+/** Confirmation for a new booking: time, Google Meet link, add-to-calendar,
+ *  and reschedule/cancel links. Never throws. */
+export async function sendBookingConfirmationEmail({
+  name,
+  email,
+  whenLabel,
+  meetUrl,
+  addToCalendarUrl,
+  manageUrl,
+}: BookingEmail): Promise<SendResult> {
+  const firstName = name.split(/\s+/)[0] || "there";
+  const meetRow = meetUrl
+    ? `<tr><td style="padding-bottom:12px;">${primaryBtn(meetUrl, "Join the Google Meet →")}</td></tr>`
+    : "";
+  const calRow = addToCalendarUrl
+    ? `<tr><td style="padding-bottom:12px;">${ghostBtn(addToCalendarUrl, "Add to calendar →")}</td></tr>`
+    : "";
+  const meetLine = meetUrl
+    ? `Your Google Meet link is below — it's also on the calendar invite.`
+    : `We'll send your video link before the call.`;
+  const inner = `
+          <p style="margin:0 0 8px;font-family:monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:${BRAND_PURPLE};">Call confirmed</p>
+          <h1 style="margin:0 0 16px;font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#ffffff;">You're booked, ${firstName}.</h1>
+          <p style="margin:0 0 8px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.72);">
+            <strong style="color:#ffffff;">${whenLabel}</strong>
+          </p>
+          <p style="margin:0 0 28px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.72);">
+            30 minutes, no slides. ${meetLine}
+          </p>
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+            ${meetRow}${calRow}
+          </table>${
+            manageUrl
+              ? `
+          <p style="margin:28px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,0.45);">
+            Need a different time? <a href="${manageUrl}" style="color:#ffffff;text-decoration:underline;">Reschedule or cancel</a> — no login needed.
+          </p>`
+              : ""
+          }
+          <p style="margin:16px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,0.45);">
+            Or just reply to this email — a human reads it.
+          </p>`;
+  return sendViaResend(email, `You're booked, ${firstName} — Elenos`, cardShell(inner));
+}
+
+/** Confirmation that a booking was moved to a new time. Never throws. */
+export async function sendBookingRescheduleEmail({
+  name,
+  email,
+  whenLabel,
+  meetUrl,
+  manageUrl,
+}: BookingEmail): Promise<SendResult> {
+  const firstName = name.split(/\s+/)[0] || "there";
+  const meetRow = meetUrl
+    ? `<tr><td style="padding-bottom:12px;">${primaryBtn(meetUrl, "Join the Google Meet →")}</td></tr>`
+    : "";
+  const inner = `
+          <p style="margin:0 0 8px;font-family:monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:${BRAND_PURPLE};">Call rescheduled</p>
+          <h1 style="margin:0 0 16px;font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#ffffff;">New time locked in, ${firstName}.</h1>
+          <p style="margin:0 0 8px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.72);">
+            <strong style="color:#ffffff;">${whenLabel}</strong>
+          </p>
+          <p style="margin:0 0 28px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.72);">
+            Same call, new slot. The video link is unchanged.
+          </p>
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+            ${meetRow}
+          </table>${
+            manageUrl
+              ? `
+          <p style="margin:28px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,0.45);">
+            Need to change it again? <a href="${manageUrl}" style="color:#ffffff;text-decoration:underline;">Reschedule or cancel</a>.
+          </p>`
+              : ""
+          }`;
+  return sendViaResend(email, `Rescheduled — Elenos discovery call`, cardShell(inner));
+}
+
+/** Confirmation that a booking was canceled. Never throws. */
+export async function sendBookingCancelEmail({
+  name,
+  email,
+  rebookUrl,
+}: {
+  name: string;
+  email: string;
+  rebookUrl: string;
+}): Promise<SendResult> {
+  const firstName = name.split(/\s+/)[0] || "there";
+  const inner = `
+          <p style="margin:0 0 8px;font-family:monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:${BRAND_PURPLE};">Call canceled</p>
+          <h1 style="margin:0 0 16px;font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#ffffff;">All set, ${firstName} — that's canceled.</h1>
+          <p style="margin:0 0 28px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.72);">
+            Your discovery call has been removed from the calendar. No hard feelings — when the timing's right, the door's open.
+          </p>
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+            <tr><td>${primaryBtn(rebookUrl, "Book another time →")}</td></tr>
+          </table>`;
+  return sendViaResend(email, `Canceled — Elenos discovery call`, cardShell(inner));
+}
+
 /** Sends the /learn unlock email. Resolves { sent: false } (never throws) when
  *  RESEND_API_KEY is unset or Resend errors, so the lead is still captured. */
 export async function sendLeadUnlockEmail({ name, email }: UnlockEmail): Promise<SendResult> {
