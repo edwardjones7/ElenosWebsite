@@ -111,6 +111,11 @@
                 <div class="contact-divider">or send a brief</div>
 
                 <form id="contact-form" class="contact-form" novalidate>
+                    <!-- Honeypot: hidden from humans, tempting to bots. Leave empty. -->
+                    <div class="hp-field" aria-hidden="true">
+                        <label for="c-website">Website</label>
+                        <input id="c-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+                    </div>
                     <div class="contact-form-row">
                         <div>
                             <label for="c-name">Name</label>
