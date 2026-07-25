@@ -359,6 +359,80 @@ export async function sendBookingRescheduleEmail({
   return sendViaResend(email, `Rescheduled — Elenos discovery call`, cardShell(inner));
 }
 
+/** Copy for each step of the pre-call reminder sequence. Reminders only — the
+ *  job is to get them on the call, so no other links compete with the Meet button. */
+const REMINDER_COPY = {
+  "3d": {
+    subject: "In 3 days — your Elenos discovery call",
+    eyebrow: "In 3 days",
+    heading: (n: string) => `Three days out, ${n}.`,
+    body: "Nothing to prepare. Come with the thing you're trying to fix and we'll talk through it.",
+    showManage: true,
+  },
+  "24h": {
+    subject: "Tomorrow — your Elenos discovery call",
+    eyebrow: "Tomorrow",
+    heading: (n: string) => `See you tomorrow, ${n}.`,
+    body: "30 minutes, no slides. Your Google Meet link is below and on the calendar invite.",
+    showManage: true,
+  },
+  "20m": {
+    subject: "Starting in 20 minutes — Elenos discovery call",
+    eyebrow: "Starting soon",
+    heading: (n: string) => `20 minutes out, ${n}.`,
+    body: "Good time to grab coffee and find a quiet spot. Link's below.",
+    showManage: false,
+  },
+  start: {
+    subject: "Starting now — Elenos discovery call",
+    eyebrow: "Starting now",
+    heading: (n: string) => `We're live, ${n}.`,
+    body: "Jumping on now — join whenever you're ready.",
+    showManage: false,
+  },
+} as const;
+
+export type ReminderEmailKind = keyof typeof REMINDER_COPY;
+
+/** One step of the pre-call sequence. Never throws. */
+export async function sendBookingReminderEmail({
+  kind,
+  name,
+  email,
+  whenLabel,
+  meetUrl,
+  manageUrl,
+}: BookingEmail & { kind: ReminderEmailKind }): Promise<SendResult> {
+  const firstName = name.split(/\s+/)[0] || "there";
+  const copy = REMINDER_COPY[kind];
+  const meetRow = meetUrl
+    ? `<tr><td>${primaryBtn(meetUrl, "Join the Google Meet →")}</td></tr>`
+    : "";
+  const inner = `
+          <p style="margin:0 0 8px;font-family:monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:${BRAND_PURPLE};">${copy.eyebrow}</p>
+          <h1 style="margin:0 0 16px;font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#ffffff;">${copy.heading(firstName)}</h1>
+          <p style="margin:0 0 8px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.72);">
+            <strong style="color:#ffffff;">${whenLabel}</strong>
+          </p>
+          <p style="margin:0 0 28px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.72);">
+            ${copy.body}
+          </p>
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+            ${meetRow}
+          </table>${
+            copy.showManage && manageUrl
+              ? `
+          <p style="margin:28px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,0.45);">
+            Something come up? <a href="${manageUrl}" style="color:#ffffff;text-decoration:underline;">Reschedule or cancel</a> — no login needed.
+          </p>`
+              : `
+          <p style="margin:28px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,0.45);">
+            Running late? Just reply — a human reads it.
+          </p>`
+          }`;
+  return sendViaResend(email, copy.subject, cardShell(inner));
+}
+
 /** Confirmation that a booking was canceled. Never throws. */
 export async function sendBookingCancelEmail({
   name,
