@@ -54,7 +54,7 @@ export function Footer() {
       </div>
       <div className="footer-bottom">
         <span>
-          © <span data-year>2026</span> ELENOS SYSTEMS CO. · ALL RIGHTS RESERVED
+          © <span data-year>2026</span> ELENOS SOLUTIONS · ALL RIGHTS RESERVED
         </span>
         <span>elenos.ai</span>
       </div>

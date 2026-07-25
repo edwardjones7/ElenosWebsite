@@ -48,7 +48,7 @@ function unlockHtml(firstName: string, pdfUrl: string, discordUrl: string): stri
           </table>
         </td></tr>
         <tr><td align="center" style="padding-top:24px;">
-          <p style="margin:0;font-family:monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.35);">© Elenos Systems Co. · elenos.ai</p>
+          <p style="margin:0;font-family:monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.35);">© Elenos Solutions · elenos.ai</p>
         </td></tr>
       </table>
     </td></tr>
@@ -107,7 +107,7 @@ function courseHtml(firstName: string, modules: CourseModule[], discordUrl: stri
           </p>
         </td></tr>
         <tr><td align="center" style="padding-top:24px;">
-          <p style="margin:0;font-family:monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.35);">© Elenos Systems Co. · elenos.ai</p>
+          <p style="margin:0;font-family:monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.35);">© Elenos Solutions · elenos.ai</p>
         </td></tr>
       </table>
     </td></tr>
@@ -169,7 +169,7 @@ function cardShell(inner: string): string {
           ${inner}
         </td></tr>
         <tr><td align="center" style="padding-top:24px;">
-          <p style="margin:0;font-family:monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.35);">© Elenos Systems Co. · elenos.ai</p>
+          <p style="margin:0;font-family:monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.35);">© Elenos Solutions · elenos.ai</p>
         </td></tr>
       </table>
     </td></tr>
