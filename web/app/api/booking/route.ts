@@ -26,8 +26,13 @@ export async function POST(req: NextRequest) {
     return withCors(req, NextResponse.json({ ok: false, error: "bad_body" }, { status: 400 }));
   }
 
-  // Honeypot: silently drop bots with a fake success (mirrors /api/contact).
-  if (String(body._gotcha || "").trim()) {
+  // Bot traps — silently drop with a fake success so bots don't learn.
+  //  1. Honeypot: the hidden _gotcha field only bots fill (mirrors /api/contact).
+  //  2. Time-trap: a real person can't select a slot, fill the form, and submit
+  //     in under ~0.8s; a script can. form_ms is the ms between the details form
+  //     appearing and submit. Missing/invalid (non-form clients) is not penalized.
+  const formMs = Number(body.form_ms);
+  if (String(body._gotcha || "").trim() || (Number.isFinite(formMs) && formMs >= 0 && formMs < 800)) {
     return withCors(req, NextResponse.json({ ok: true }));
   }
 
