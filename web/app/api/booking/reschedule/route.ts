@@ -4,6 +4,7 @@ import { assertSlotBookable } from "@/lib/booking-slots";
 import { getByToken, rescheduleBooking } from "@/lib/bookings";
 import { updateEvent } from "@/lib/google-calendar";
 import { notifyDiscord } from "@/lib/discord";
+import { clearReminders } from "@/lib/booking-reminders";
 import { sendBookingRescheduleEmail } from "@/lib/email";
 import { BOOKING_CONFIG } from "@/lib/booking-config";
 import { formatWhen, manageUrl } from "@/lib/booking-format";
@@ -48,6 +49,10 @@ export async function POST(req: NextRequest) {
   if (!moved.ok) {
     return withCors(req, NextResponse.json({ ok: false, error: "slot_taken" }, { status: 409 }));
   }
+
+  // Re-arm the reminder sequence against the new time: a call moved from next
+  // week to tomorrow should still get its 24-hour note.
+  await clearReminders(booking.id);
 
   if (booking.gcal_event_id) {
     try {

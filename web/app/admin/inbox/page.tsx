@@ -37,8 +37,8 @@ export default async function AdminInbox({
         <div className="widget">
           <div className="widget-empty">
             Couldn’t load contacts: {error}. Set <code>SUPABASE_URL</code> and{" "}
-            <code>SUPABASE_SERVICE_ROLE_KEY</code> in <code>.env.local</code> and run the schema in{" "}
-            <code>web/lib/schema.sql</code>.
+            <code>SUPABASE_SERVICE_ROLE_KEY</code> in <code>.env.local</code> and run the migrations in{" "}
+            <code>web/migrations/</code>.
           </div>
         </div>
       ) : (

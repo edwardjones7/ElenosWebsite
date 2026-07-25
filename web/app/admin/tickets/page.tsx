@@ -35,8 +35,8 @@ export default async function AdminTickets({
       {error ? (
         <div className="widget">
           <div className="widget-empty">
-            Couldn’t load tickets: {error}. Ensure the portal schema in{" "}
-            <code>web/lib/schema.sql</code> has been run in Supabase.
+            Couldn’t load tickets: {error}. Ensure the portal migrations in{" "}
+            <code>web/migrations/</code> have been run in Supabase.
           </div>
         </div>
       ) : (

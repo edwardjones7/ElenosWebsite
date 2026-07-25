@@ -40,8 +40,8 @@ export default async function AdminOverview({
         <div className="widget" style={{ marginBottom: 20 }}>
           <div className="widget-empty">
             Couldn’t load analytics: {error}. Set <code>SUPABASE_URL</code> and{" "}
-            <code>SUPABASE_SERVICE_ROLE_KEY</code> in <code>.env.local</code> and run the schema in{" "}
-            <code>web/lib/schema.sql</code>.
+            <code>SUPABASE_SERVICE_ROLE_KEY</code> in <code>.env.local</code> and run the migrations in{" "}
+            <code>web/migrations/</code>.
           </div>
         </div>
       )}
