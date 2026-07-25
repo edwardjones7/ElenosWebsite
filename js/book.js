@@ -13,6 +13,8 @@
     }
   })();
 
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   function track(type, meta) {
     if (typeof window.elenosTrack === "function") window.elenosTrack(type, meta || null);
   }
@@ -207,6 +209,7 @@
     var backBtn = root.querySelector("[data-back]");
     var tzNameEl = root.querySelector("[data-tzname]");
     var selected = null;
+    var detailsShownAt = 0; // time-trap: when the details form was revealed
 
     if (tzNameEl) tzNameEl.textContent = tzName();
 
@@ -232,6 +235,7 @@
           }
           mountCalendar(pickerEl, slots, function (iso) {
             selected = iso;
+            detailsShownAt = Date.now();
             if (chosenEl) chosenEl.textContent = fullLabel(iso);
             show(stepDetails);
           });
@@ -249,6 +253,14 @@
         e.preventDefault();
         if (!selected) { show(stepPick); return; }
         var data = new FormData(form);
+
+        // Client-side validation so the user gets a clear message up front.
+        var nm = (data.get("name") || "").toString().trim();
+        var em = (data.get("email") || "").toString().trim();
+        function warn(msg) { if (statusEl) { statusEl.textContent = msg; statusEl.style.color = "#c0392b"; } }
+        if (!nm) { warn("Please enter your name."); return; }
+        if (!EMAIL_RE.test(em)) { warn("Please enter a valid email address."); return; }
+
         var submitBtn = form.querySelector('button[type="submit"]');
         if (submitBtn) submitBtn.disabled = true;
         if (statusEl) { statusEl.textContent = "Booking…"; statusEl.style.color = ""; }
@@ -257,14 +269,15 @@
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
-            name: data.get("name") || "",
-            email: data.get("email") || "",
+            name: nm,
+            email: em,
             company: data.get("company") || "",
             message: data.get("message") || "",
             slot: selected,
             timezone: TZ,
             source_path: location.pathname,
             _gotcha: data.get("_gotcha") || "",
+            form_ms: detailsShownAt ? Date.now() - detailsShownAt : 0,
           }),
         })
           .then(function (res) {
@@ -280,6 +293,8 @@
               selected = null;
               show(stepPick);
               load();
+            } else if (r.res.status === 400) {
+              if (statusEl) { statusEl.textContent = "Please enter a valid name and email address."; statusEl.style.color = "#c0392b"; }
             } else {
               if (statusEl) { statusEl.textContent = "Couldn't book. Email ed@elenos.ai."; statusEl.style.color = "#c0392b"; }
             }

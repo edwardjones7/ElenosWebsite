@@ -1860,8 +1860,11 @@ button.book-cal-day.selected { background: var(--bk-accent); color: #fff; }
     justify-content: center;
 }
 .manage-card { max-width: 520px; width: 100%; }
-#manage-widget .eyebrow { display: block; color: var(--bk-mute); margin-bottom: 0.8rem; }
-#manage-widget a { color: var(--bk-accent); }
+/* flex (not block) so the base .eyebrow dot keeps its gap and vertical centering */
+#manage-widget .eyebrow { display: flex; color: var(--bk-mute); margin-bottom: 0.9rem; }
+/* :not(.btn) — otherwise this beats .btn-primary and paints its label the same purple as its background */
+#manage-widget a:not(.btn) { color: var(--bk-accent); }
+#manage-widget .btn-primary { color: #fff; }
 .manage-btn-row { display: flex; gap: 0.7rem; margin-top: 1.3rem; }
 .manage-btn-row .btn { flex: 1; justify-content: center; }
 .book-cancel-btn { color: #c0392b !important; border-color: rgba(192, 57, 43, 0.35) !important; }
