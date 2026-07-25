@@ -13,10 +13,14 @@ import { formatWhen, manageUrl } from "@/lib/booking-format";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/** Vercel Cron sends `Authorization: Bearer $CRON_SECRET`. Any other scheduler
- *  can send the same header. Without CRON_SECRET set the route refuses to run
- *  rather than sitting open — an unauthenticated caller could otherwise drain
- *  the send quota by hammering it. */
+/** Driven by an external scheduler (cron-job.org) every 5 minutes, NOT by a
+ *  `crons` entry in vercel.json — Vercel Hobby caps cron at once per day, which
+ *  can't serve a 20-minutes-before reminder. Adding a sub-daily crons block
+ *  here fails the deploy outright. Any caller works as long as it sends
+ *  `Authorization: Bearer $CRON_SECRET`.
+ *
+ *  Without CRON_SECRET set the route refuses to run rather than sitting open —
+ *  an unauthenticated caller could otherwise drain the send quota. */
 function authorized(req: NextRequest): boolean {
   const secret = process.env.CRON_SECRET;
   if (!secret) return false;
