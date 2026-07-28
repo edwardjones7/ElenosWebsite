@@ -50,6 +50,25 @@ export async function listConfirmedBetween(
   return (data || []) as Pick<Booking, "starts_at" | "ends_at">[];
 }
 
+/** Confirmed bookings in a range, with the fields the calendar reconcile needs:
+ *  id + created_at (grace) + start/end + event id. */
+export async function listConfirmedForReconcile(
+  fromISO: string,
+  toISO: string,
+): Promise<Pick<Booking, "id" | "created_at" | "starts_at" | "ends_at" | "gcal_event_id">[]> {
+  const { data, error } = await getSupabase()
+    .from("bookings")
+    .select("id, created_at, starts_at, ends_at, gcal_event_id")
+    .eq("status", "confirmed")
+    .gte("starts_at", fromISO)
+    .lt("starts_at", toISO);
+  if (error) throw error;
+  return (data || []) as Pick<
+    Booking,
+    "id" | "created_at" | "starts_at" | "ends_at" | "gcal_event_id"
+  >[];
+}
+
 /** Inserts a confirmed booking. The partial unique index on (starts_at) where
  *  status='confirmed' is the authoritative double-booking guard: a race that
  *  hits the same slot fails with Postgres 23505 → { slotTaken: true }. */

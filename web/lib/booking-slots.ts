@@ -2,7 +2,7 @@ import "server-only";
 import { DateTime } from "luxon";
 import { BOOKING_CONFIG, DAY_KEYS, type Window } from "@/lib/booking-config";
 import { getBusy, googleConfigured, type BusyInterval } from "@/lib/google-calendar";
-import { listConfirmedBetween } from "@/lib/bookings";
+import { listConfirmedBetween, listConfirmedForReconcile, cancelBooking } from "@/lib/bookings";
 
 const { timezone, slotMinutes, weeklyHours, minNoticeHours, horizonDays, bufferMinutes } =
   BOOKING_CONFIG;
@@ -64,8 +64,59 @@ function overlapsAny(startMs: number, endMs: number, blocks: { start: number; en
   return blocks.some((b) => startMs < b.end && endMs > b.start);
 }
 
+/** Grace window: don't reconcile a booking this new — its just-created calendar
+ *  event may not have propagated into free/busy yet, which would falsely look
+ *  "deleted" and cancel a real booking. */
+const RECONCILE_GRACE_MINUTES = 15;
+
+/** The calendar is the source of truth for availability. If a confirmed booking's
+ *  Google Calendar event has been deleted (its time no longer shows as busy on
+ *  the calendar), cancel that booking so the slot reopens on the booking page.
+ *  Only touches bookings older than the grace window (free/busy propagation lag).
+ *  Best-effort — a failure here must never break slot listing. */
+async function reconcileDeletedEvents(
+  busy: BusyInterval[],
+  rangeStart: DateTime,
+  rangeEnd: DateTime,
+): Promise<void> {
+  const graceCutoff = DateTime.utc().minus({ minutes: RECONCILE_GRACE_MINUTES });
+  let confirmed: Awaited<ReturnType<typeof listConfirmedForReconcile>>;
+  try {
+    confirmed = await listConfirmedForReconcile(rangeStart.toISO()!, rangeEnd.toISO()!);
+  } catch (e) {
+    console.error("reconcile: list failed", e);
+    return;
+  }
+  const busyMs = busy
+    .map((b) => ({
+      start: DateTime.fromISO(b.start, { zone: "utc" }),
+      end: DateTime.fromISO(b.end, { zone: "utc" }),
+    }))
+    .filter((b) => b.start.isValid && b.end.isValid)
+    .map((b) => ({ start: b.start.toMillis(), end: b.end.toMillis() }));
+
+  for (const bk of confirmed) {
+    if (DateTime.fromISO(bk.created_at, { zone: "utc" }) > graceCutoff) continue;
+    const s = DateTime.fromISO(bk.starts_at, { zone: "utc" });
+    const e = DateTime.fromISO(bk.ends_at, { zone: "utc" });
+    if (!s.isValid || !e.isValid) continue;
+    const stillOnCalendar = busyMs.some(
+      (b) => s.toMillis() < b.end && e.toMillis() > b.start,
+    );
+    if (!stillOnCalendar) {
+      try {
+        await cancelBooking(bk.id);
+        console.log(`reconcile: canceled booking ${bk.id} — calendar event was removed`);
+      } catch (err) {
+        console.error("reconcile: cancel failed", bk.id, err);
+      }
+    }
+  }
+}
+
 /** Available slots between fromISO and toISO, clamped to notice/horizon and with
- *  Google-busy and existing confirmed bookings removed. */
+ *  Google-busy and existing confirmed bookings removed. The calendar is the
+ *  source of truth: a booking whose event has been deleted is reconciled away. */
 export async function getAvailableSlots(fromISO: string, toISO: string): Promise<SlotsResult> {
   const now = DateTime.utc();
   const earliest = now.plus({ hours: minNoticeHours });
@@ -89,6 +140,9 @@ export async function getAvailableSlots(fromISO: string, toISO: string): Promise
   const blocks: { start: number; end: number }[] = [];
   if (googleConfigured()) {
     const busy = await getBusy(rangeStart.toISO()!, rangeEnd.toISO()!);
+    // Calendar is the source of truth — free any slot whose booking's event has
+    // been deleted from the calendar, before we read confirmed bookings below.
+    await reconcileDeletedEvents(busy, rangeStart, rangeEnd);
     blocks.push(...busyToMillis(busy));
   }
   const booked = await listConfirmedBetween(rangeStart.toISO()!, rangeEnd.toISO()!);
