@@ -5,17 +5,21 @@
     const canvas = document.getElementById('scene-canvas');
     if (!canvas) return;
 
+    // Size from the canvas (CSS 100lvh), not the window: mobile URL-bar
+    // collapse changes innerHeight mid-scroll and would jump the fixed backdrop.
+    let vw = canvas.clientWidth || innerWidth, vh = canvas.clientHeight || innerHeight;
+
     const isMobile = window.matchMedia('(max-width: 900px)').matches;
     const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x000000, 0.011);
-    const camera = new THREE.PerspectiveCamera(52, innerWidth / innerHeight, 0.1, 800);
+    const camera = new THREE.PerspectiveCamera(52, vw / vh, 0.1, 800);
     camera.position.set(0, 0, 11);
 
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isMobile });
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.setSize(innerWidth, innerHeight);
+    renderer.setSize(vw, vh, false);
     renderer.setClearColor(0x000000, 0);
 
     // ============================================
@@ -1025,9 +1029,12 @@
     }
 
     function resize() {
-        camera.aspect = innerWidth / innerHeight;
+        const w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight;
+        if (w === vw && h === vh) return;
+        vw = w; vh = h;
+        camera.aspect = w / h;
         camera.updateProjectionMatrix();
-        renderer.setSize(innerWidth, innerHeight);
+        renderer.setSize(w, h, false);
     }
     window.addEventListener('resize', resize);
 
