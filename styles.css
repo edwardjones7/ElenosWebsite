@@ -90,6 +90,8 @@ body::-webkit-scrollbar-thumb:hover { background: rgba(162, 0, 255, 0.5); }
     inset: 0;
     width: 100vw;
     height: 100vh;
+    /* lvh = largest viewport: stays put when the mobile URL bar collapses */
+    height: 100lvh;
     z-index: 0;
     pointer-events: none;
 }

@@ -20,6 +20,8 @@
         // Sync with GSAP ScrollTrigger if loaded
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
+            // Mobile URL-bar show/hide fires resize; refreshing mid-scroll jumps the page.
+            ScrollTrigger.config({ ignoreMobileResize: true });
             lenis.on('scroll', ScrollTrigger.update);
             gsap.ticker.add((time) => {
                 lenis.raf(time * 1000);
