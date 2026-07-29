@@ -10,6 +10,17 @@ export const runtime = "nodejs";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/** Gmail ignores dots and +tags in the local part; list-bombing bots exploit
+ *  that to re-add one inbox many times past the unique constraint. Store the
+ *  canonical form (delivery is unaffected). */
+function canonicalEmail(email: string): string {
+  const [local, domain] = email.split("@");
+  if (domain === "gmail.com" || domain === "googlemail.com") {
+    return `${local.split("+")[0].replace(/\./g, "")}@gmail.com`;
+  }
+  return email;
+}
+
 export function OPTIONS(req: NextRequest) {
   return preflight(req);
 }
@@ -22,7 +33,17 @@ export async function POST(req: NextRequest) {
     return withCors(req, NextResponse.json({ ok: false, error: "bad_body" }, { status: 400 }));
   }
 
-  const email = String(body.email || "").trim().toLowerCase();
+  // Bot traps — fake success so bots don't learn (mirrors /api/booking):
+  //  1. Honeypot: hidden _gotcha field only bots fill.
+  //  2. Time-trap: form_ms is ms from first focus on the email field to submit.
+  //     Unlike the other forms, missing form_ms is ALSO rejected here — this
+  //     endpoint is a list-bombing target and our own client always sends it.
+  const formMs = Number(body.form_ms);
+  if (String(body._gotcha || "").trim() || !Number.isFinite(formMs) || formMs < 800) {
+    return withCors(req, NextResponse.json({ ok: true }));
+  }
+
+  const email = canonicalEmail(String(body.email || "").trim().toLowerCase());
   const sourcePath = body.source_path ? String(body.source_path).trim().slice(0, 300) : null;
 
   if (!EMAIL_RE.test(email) || email.length > 200) {
