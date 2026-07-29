@@ -154,6 +154,15 @@
         const status = document.getElementById('newsletter-status');
         const input = document.getElementById('newsletter-email');
         const button = newsletterForm.querySelector('button[type="submit"]');
+        const gotcha = newsletterForm.querySelector('input[name="_gotcha"]');
+        // Time-trap start: first human interaction with the email field. The
+        // API rejects submissions without a plausible form_ms.
+        let startedAt = 0;
+        const markStart = () => { if (!startedAt) startedAt = performance.now(); };
+        if (input) {
+            input.addEventListener('focus', markStart);
+            input.addEventListener('input', markStart);
+        }
         newsletterForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = (input && input.value || '').trim();
@@ -164,7 +173,12 @@
                 const res = await fetch(API_BASE + '/api/subscribe/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, source_path: location.pathname }),
+                    body: JSON.stringify({
+                        email,
+                        source_path: location.pathname,
+                        _gotcha: (gotcha && gotcha.value) || '',
+                        form_ms: startedAt ? Math.round(performance.now() - startedAt) : 0,
+                    }),
                 });
                 if (res.ok) {
                     if (status) { status.textContent = 'Subscribed. Thanks.'; status.style.color = '#6effbf'; }
