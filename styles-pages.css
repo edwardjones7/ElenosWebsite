@@ -1566,6 +1566,15 @@
     height: 1px;
     overflow: hidden;
 }
+/* Turnstile mounts here. In interaction-only mode it stays zero-height for
+   nearly every visitor and only takes space when a challenge is actually
+   shown, so the container must collapse rather than reserve a gap. */
+.turnstile-holder:empty {
+    display: none;
+}
+.turnstile-holder {
+    margin-top: var(--sp-3);
+}
 .contact-form label {
     font-family: var(--font-mono);
     font-size: var(--fs-micro);

@@ -265,21 +265,30 @@
         if (submitBtn) submitBtn.disabled = true;
         if (statusEl) { statusEl.textContent = "Booking…"; statusEl.style.color = ""; }
 
-        fetch(API_BASE + "/api/booking/", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({
-            name: nm,
-            email: em,
-            company: data.get("company") || "",
-            message: data.get("message") || "",
-            slot: selected,
-            timezone: TZ,
-            source_path: location.pathname,
-            _gotcha: data.get("_gotcha") || "",
-            form_ms: detailsShownAt ? Date.now() - detailsShownAt : 0,
-          }),
-        })
+        // Turnstile helper lives in /script.js, which loads before this file.
+        var tokenPromise = window.elenosTurnstile
+          ? window.elenosTurnstile.getToken(form)
+          : Promise.resolve("");
+
+        tokenPromise
+          .then(function (turnstileToken) {
+            return fetch(API_BASE + "/api/booking/", {
+              method: "POST",
+              headers: { "Content-Type": "application/json", Accept: "application/json" },
+              body: JSON.stringify({
+                name: nm,
+                email: em,
+                company: data.get("company") || "",
+                message: data.get("message") || "",
+                slot: selected,
+                timezone: TZ,
+                source_path: location.pathname,
+                _gotcha: data.get("_gotcha") || "",
+                form_ms: detailsShownAt ? Date.now() - detailsShownAt : 0,
+                turnstile_token: turnstileToken,
+              }),
+            });
+          })
           .then(function (res) {
             return res.json().then(function (body) { return { res: res, body: body }; });
           })
@@ -295,6 +304,8 @@
               load();
             } else if (r.res.status === 400) {
               if (statusEl) { statusEl.textContent = "Please enter a valid name and email address."; statusEl.style.color = "#c0392b"; }
+            } else if (r.res.status === 403) {
+              if (statusEl) { statusEl.textContent = "Verification failed — please try again."; statusEl.style.color = "#c0392b"; }
             } else {
               if (statusEl) { statusEl.textContent = "Couldn't book. Email ed@elenos.ai."; statusEl.style.color = "#c0392b"; }
             }
