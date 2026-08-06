@@ -8,7 +8,7 @@
     // own secret is set, so the forms keep working while keys are provisioned.
     // Set it here once for the whole site, or override per page with
     // window.ELENOS_TURNSTILE_SITE_KEY alongside window.ELENOS_API_BASE.
-    const TURNSTILE_SITE_KEY = window.ELENOS_TURNSTILE_SITE_KEY || '';
+    const TURNSTILE_SITE_KEY = window.ELENOS_TURNSTILE_SITE_KEY || '0x4AAAAAAEIn_cvjSQADt9pj';
 
     function track(type, meta) {
         if (typeof window.elenosTrack === 'function') window.elenosTrack(type, meta || null);
