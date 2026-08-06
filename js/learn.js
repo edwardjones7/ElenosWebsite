@@ -47,8 +47,10 @@
     }
 
     // Shared bot guard helpers, defined in /script.js (loaded before this file).
-    const turnstileToken = (form) =>
-        (window.elenosTurnstile ? window.elenosTurnstile.getToken(form) : Promise.resolve(''));
+    const turnstileToken = (form, onInteractive) =>
+        (window.elenosTurnstile
+            ? window.elenosTurnstile.getToken(form, onInteractive)
+            : Promise.resolve(''));
 
     document.querySelectorAll('.lead-form').forEach((form) => {
         // Time-trap start: first interaction with the form. The API requires a
@@ -92,7 +94,12 @@
                         utm_campaign: utm.utm_campaign,
                         _gotcha: (form.elements._gotcha && form.elements._gotcha.value) || '',
                         form_ms: startedAt ? Math.round(performance.now() - startedAt) : 0,
-                        turnstile_token: await turnstileToken(form),
+                        turnstile_token: await turnstileToken(form, () => {
+                            if (status) {
+                                status.textContent = 'One quick check below — tick the box to continue.';
+                                status.style.color = '';
+                            }
+                        }),
                     }),
                 });
                 body = await res.json().catch(() => ({}));

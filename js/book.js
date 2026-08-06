@@ -267,7 +267,9 @@
 
         // Turnstile helper lives in /script.js, which loads before this file.
         var tokenPromise = window.elenosTurnstile
-          ? window.elenosTurnstile.getToken(form)
+          ? window.elenosTurnstile.getToken(form, function () {
+              if (statusEl) { statusEl.textContent = "One quick check below — tick the box to book."; statusEl.style.color = ""; }
+            })
           : Promise.resolve("");
 
         tokenPromise

@@ -47,6 +47,7 @@
             let entry = widgets.get(form);
             if (entry) return entry;
 
+
             const holder = document.createElement('div');
             holder.className = 'turnstile-holder';
             form.appendChild(holder);
@@ -64,6 +65,13 @@
                 callback: (token) => settle(token || ''),
                 'error-callback': () => settle(''),
                 'expired-callback': () => settle(''),
+                // Fires when Cloudflare decides this visitor has to click
+                // something. They've already pressed submit by then and are
+                // watching a "Sending…" message, so the checkbox appearing
+                // below the button needs pointing out or they'll just wait.
+                'before-interactive-callback': () => {
+                    if (entry.onInteractive) entry.onInteractive();
+                },
             });
 
             widgets.set(form, entry);
@@ -76,7 +84,7 @@
          * whether to accept it — so a Cloudflare outage degrades rather than
          * locking every visitor out of the form.
          */
-        async function getToken(form) {
+        async function getToken(form, onInteractive) {
             if (!TURNSTILE_SITE_KEY || !form) return '';
             try {
                 await loadApi();
@@ -87,18 +95,20 @@
 
             try {
                 const entry = widgetFor(form);
+                entry.onInteractive = onInteractive || null;
                 return await new Promise((resolve) => {
                     entry.pending = resolve;
                     window.turnstile.reset(entry.id);
                     window.turnstile.execute(entry.id);
                     // A challenge the visitor never completes must not wedge the
-                    // submit button forever.
+                    // submit button forever. Long enough that someone who has to
+                    // read the prompt and click still makes it.
                     setTimeout(() => {
                         if (entry.pending === resolve) {
                             entry.pending = null;
                             resolve('');
                         }
-                    }, 30000);
+                    }, 60000);
                 });
             } catch (_) {
                 return '';
@@ -221,7 +231,12 @@
                         source_path: location.pathname,
                         _gotcha: data.get('_gotcha') || '',
                         form_ms: contactStartedAt ? Math.round(performance.now() - contactStartedAt) : 0,
-                        turnstile_token: await turnstile.getToken(contactForm),
+                        turnstile_token: await turnstile.getToken(contactForm, () => {
+                            if (status) {
+                                status.textContent = 'One quick check below — tick the box to send.';
+                                status.style.color = '';
+                            }
+                        }),
                     };
                     const res = await fetch(API_BASE + '/api/contact/', {
                         method: 'POST',
@@ -304,7 +319,12 @@
                         source_path: location.pathname,
                         _gotcha: (gotcha && gotcha.value) || '',
                         form_ms: startedAt ? Math.round(performance.now() - startedAt) : 0,
-                        turnstile_token: await turnstile.getToken(newsletterForm),
+                        turnstile_token: await turnstile.getToken(newsletterForm, () => {
+                            if (status) {
+                                status.textContent = 'One quick check below — tick the box to subscribe.';
+                                status.style.color = '';
+                            }
+                        }),
                     }),
                 });
                 if (res.ok) {
