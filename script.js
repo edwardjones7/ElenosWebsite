@@ -63,7 +63,7 @@
                 appearance: 'interaction-only',
                 callback: (token) => settle(token || ''),
                 'error-callback': () => settle(''),
-                'timeout-callback': () => settle(''),
+                'expired-callback': () => settle(''),
             });
 
             widgets.set(form, entry);
