@@ -46,7 +46,18 @@
         );
     }
 
+    // Shared bot guard helpers, defined in /script.js (loaded before this file).
+    const turnstileToken = (form) =>
+        (window.elenosTurnstile ? window.elenosTurnstile.getToken(form) : Promise.resolve(''));
+
     document.querySelectorAll('.lead-form').forEach((form) => {
+        // Time-trap start: first interaction with the form. The API requires a
+        // plausible form_ms, which a cold scripted POST can't produce.
+        let startedAt = 0;
+        const markStart = () => { if (!startedAt) startedAt = performance.now(); };
+        form.addEventListener('focusin', markStart);
+        form.addEventListener('input', markStart);
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const status = form.querySelector('.lead-status');
@@ -79,6 +90,9 @@
                         utm_source: utm.utm_source,
                         utm_medium: utm.utm_medium,
                         utm_campaign: utm.utm_campaign,
+                        _gotcha: (form.elements._gotcha && form.elements._gotcha.value) || '',
+                        form_ms: startedAt ? Math.round(performance.now() - startedAt) : 0,
+                        turnstile_token: await turnstileToken(form),
                     }),
                 });
                 body = await res.json().catch(() => ({}));
@@ -91,9 +105,9 @@
                 else form.outerHTML = html;
                 track('form_submit', { kind: 'lead', utm_source: utm.utm_source || null });
             } else {
-                const msg = body && body.error === 'invalid_email'
-                    ? 'Enter a valid email.'
-                    : 'Something broke on our end. Email ed@elenos.ai and we’ll send it directly.';
+                let msg = 'Something broke on our end. Email ed@elenos.ai and we’ll send it directly.';
+                if (body && body.error === 'invalid_email') msg = 'Enter a valid email.';
+                else if (res && res.status === 403) msg = 'Verification failed — please try again.';
                 if (status) { status.textContent = msg; status.style.color = '#ff8a8a'; }
                 if (button) button.disabled = false;
             }
