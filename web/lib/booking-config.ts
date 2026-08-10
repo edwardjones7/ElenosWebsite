@@ -22,11 +22,11 @@ export const BOOKING_CONFIG = {
   /** Weekly working hours, in the owner timezone. */
   weeklyHours: {
     sun: [] as Window[],
-    mon: [["10:00", "16:00"]] as Window[],
-    tue: [["10:00", "16:00"]] as Window[],
-    wed: [["10:00", "16:00"]] as Window[],
-    thu: [["10:00", "16:00"]] as Window[],
-    fri: [["10:00", "15:00"]] as Window[],
+    mon: [["10:00", "20:00"]] as Window[],
+    tue: [["10:00", "20:00"]] as Window[],
+    wed: [["10:00", "20:00"]] as Window[],
+    thu: [["10:00", "20:00"]] as Window[],
+    fri: [["10:00", "20:00"]] as Window[],
     sat: [] as Window[],
   } as Record<DayKey, Window[]>,
 
