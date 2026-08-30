@@ -1641,7 +1641,8 @@
 }
 .book-intro { text-align: center; margin-bottom: var(--sp-6); }
 .book-intro-title { font-size: var(--fs-2xl); margin: var(--sp-4) 0 var(--sp-3); }
-.book-intro .lede { max-width: 46ch; margin: 0 auto; }
+.book-intro .lede { max-width: 52ch; margin: 0 auto; }
+.book-intro .lede + .lede { margin-top: var(--sp-3); }
 .book-alt {
     text-align: center;
     margin-top: var(--sp-6);
