@@ -76,64 +76,9 @@
             </div>
 
             <div class="reveal book-wrap" data-delay="120">
-                <div id="book-widget">
-                    <!-- STEP 1: pick a time -->
-                    <div class="book-step book-step-pick">
-                        <span class="status-pill">30-minute discovery call</span>
-                        <h3>Pick a time</h3>
-                        <p class="book-tz">Times shown in <strong data-tzname>your local time</strong>.</p>
-                        <div class="book-loading" data-loading>Loading available times…</div>
-                        <div class="book-error" data-error hidden>Couldn't load times right now. <a href="mailto:ed@elenos.ai">Email us</a> and we'll find a slot.</div>
-                        <div class="book-picker" data-picker></div>
-                    </div>
-
-                    <!-- STEP 2: details -->
-                    <div class="book-step book-step-details" hidden>
-                        <button type="button" class="book-back" data-back>← Back to times</button>
-                        <h3>Your details</h3>
-                        <p class="book-chosen" data-chosen></p>
-                        <form id="book-form" class="contact-form" novalidate>
-                            <!-- Honeypot: hidden from humans, tempting to bots. Leave empty. -->
-                            <div class="hp-field" aria-hidden="true">
-                                <label for="b-website">Website</label>
-                                <input id="b-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
-                            </div>
-                            <div class="contact-form-row">
-                                <div>
-                                    <label for="b-name">Name</label>
-                                    <input id="b-name" name="name" type="text" required>
-                                </div>
-                                <div>
-                                    <label for="b-email">Email</label>
-                                    <input id="b-email" name="email" type="email" required>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="b-company">Company</label>
-                                <input id="b-company" name="company" type="text">
-                            </div>
-                            <div>
-                                <label for="b-brief">What do you want to build? <span class="mute">(optional)</span></label>
-                                <textarea id="b-brief" name="message" placeholder="A sentence or two so we come prepared."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">
-                                Confirm booking <span class="btn-arrow">→</span>
-                            </button>
-                            <div class="mono mute" data-status style="margin-top: 0.5rem;"></div>
-                        </form>
-                    </div>
-
-                    <!-- STEP 3: confirmed -->
-                    <div class="book-step book-step-done" hidden>
-                        <span class="status-pill">Confirmed</span>
-                        <h3>You're booked.</h3>
-                        <p class="book-chosen" data-done-when></p>
-                        <p class="book-done-note">A confirmation email is on its way with your Meet link and a calendar invite.</p>
-                        <div class="contact-cta-block">
-                            <a class="btn btn-primary" data-meet target="_blank" rel="noopener" hidden>Join Google Meet <span class="btn-arrow">→</span></a>
-                            <a class="btn" data-manage href="#">Reschedule or cancel</a>
-                        </div>
-                    </div>
+                <div id="book-embed">
+                    <iframe src="https://api.leadconnectorhq.com/widget/booking/6TGkVpGd6xpyj9gnxulo" allow="payment" style="width: 100%;border:none;overflow: hidden;" scrolling="no" id="6TGkVpGd6xpyj9gnxulo_1788049523350"></iframe>
+                    <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
                 </div>
             </div>
 
@@ -199,6 +144,5 @@
     <script src="/script.js"></script>
     <script src="/js/scroll.js"></script>
     <script src="/js/scene-ambient.js"></script>
-    <script src="/js/book.js"></script>
 </body>
 </html>
