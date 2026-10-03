@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elenos · Blog</title>
+    <link>https://elenos.ai/blog/</link>
+    <atom:link href="https://elenos.ai/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>What we built, what broke, and how we got around it.</description>
+    <language>en-us</language>
+    <item>
+      <title>Cloudflare gave me 10ms of CPU. One slide needed 1,500.</title>
+      <link>https://elenos.ai/blog/statmanposterbot/</link>
+      <guid isPermaLink="true">https://elenos.ai/blog/statmanposterbot/</guid>
+      <pubDate>Sat, 03 Oct 2026 12:00:00 GMT</pubDate>
+      <description>How I built an X to Instagram pipeline for EdTheStatMan that runs on free tiers, and the two storage mistakes I made on the way.</description>
+      <content:encoded><![CDATA[<p><a href="/work/#edthestatman">EdTheStatMan</a> posts sports research on X. Records, odds, picks. Most of it never made it to Instagram, because rebuilding every post by hand is a chore nobody keeps up with.</p>
+<p>So I built a bot that does it. A post goes up on X. A branded Instagram carousel lands on my phone for approval. One tap and it&#39;s live.</p>
+<p>It costs $0 a month. Getting it there meant working around one number.</p>
+<figure class="figure"><img src="/images/blog/statmanposterbot/example-single.jpg" alt="A tweet rendered as a branded 1080 by 1350 Instagram post" width="540" height="675" loading="eager" decoding="async"><figcaption>One tweet, rendered in the EdTheStatMan design system.</figcaption></figure>
+<h2 id="what-it-does">What it does</h2>
+<ol>
+<li><strong>It spots new posts.</strong> Every 5 minutes it checks @EdTheStatMan. New posts show up in Telegram with a Build button.</li>
+<li><strong>It designs the post.</strong> The tweet becomes a 1080×1350 image in the brand&#39;s design system. A thread becomes a carousel of up to 10 slides.</li>
+<li><strong>It writes the caption.</strong> AI rewrites the tweet for Instagram in the brand voice.</li>
+<li><strong>A person approves it.</strong> The preview arrives in Telegram with Post, Edit caption, New caption and Reject.</li>
+<li><strong>It publishes.</strong> One tap posts through Instagram&#39;s official API.</li>
+</ol>
+<p>Nothing goes out without a human tapping Post. On a betting account, that part isn&#39;t optional.</p>
+<h2 id="the-constraint">The constraint</h2>
+<p>I wanted the whole thing on Cloudflare Workers. Always on, free, fast to deploy.</p>
+<p>The problem is CPU. Laying out one slide with Satori and turning it into an image with resvg takes about 1.5 seconds of CPU. Cloudflare&#39;s free plan allows 10 milliseconds per request.</p>
+<p>That&#39;s 150 times over budget. Per slide.</p>
+<h2 id="the-split">The split</h2>
+<p>Waiting on the network doesn&#39;t count against that 10ms. Only computation does. Almost everything the bot does is network calls: Telegram, Instagram, the AI caption, the database. Only the rendering is heavy.</p>
+<p>So I split the system in two:</p>
+<ul>
+<li><strong>An always-on Cloudflare Worker.</strong> It runs the Telegram bot, writes captions, stores state and publishes. It stays well under 10ms per request.</li>
+<li><strong>An on-demand GitHub Actions job.</strong> It fetches the tweet and renders the slides. Actions are free on public repos and have no 10ms limit.</li>
+</ul>
+<figure class="figure-wide"><img src="/images/blog/statmanposterbot/x-thread.jpg" alt="Architecture diagram: X feeds a Cloudflare Worker, which dispatches a GitHub Actions render job, then publishes to Instagram after approval in Telegram" width="1437" height="397" loading="lazy" decoding="async"><figcaption>The Worker does the talking. GitHub Actions does the rendering.</figcaption></figure>
+<p>The cost is speed. A GitHub runner takes about 20 to 60 seconds to start. That&#39;s fine here, because a person reviews every post anyway.</p>
+<h2 id="two-wrong-turns">Two wrong turns</h2>
+<p>Both are in the commit history.</p>
+<h3 id="images-r2-needed-a-card">Images: R2 needed a card</h3>
+<p>Cloudflare&#39;s file storage, R2, asks for a credit card even on the free tier. The goal was a system that runs with no card anywhere. So slide images moved to KV, Cloudflare&#39;s key-value store. It allows 1,000 writes a day on the free plan, and each slide is one write.</p>
+<h3 id="job-state-kv-was-too-slow-to-agree-with-itself">Job state: KV was too slow to agree with itself</h3>
+<p>I first kept each post&#39;s status in KV too. It broke in a way that wasn&#39;t obvious.</p>
+<p>KV is eventually consistent. A write in one Cloudflare location can take up to about 60 seconds to show up in another. The render job reports &quot;ready&quot; from GitHub&#39;s servers. Button taps arrive through Telegram&#39;s servers, often at a different location.</p>
+<p>So I&#39;d get the preview, tap Post, and the bot would answer &quot;Already rendering.&quot; It wasn&#39;t. That location just hadn&#39;t heard yet.</p>
+<p>The fix was moving job state to D1, Cloudflare&#39;s SQL database, where reads are always current. Images stayed in KV, because nobody reads them until minutes later.</p>
+<p>D1 also made double posting impossible. Posting claims the job in one statement:</p>
+<pre><code class="language-sql">UPDATE jobs SET status = &#39;posting&#39;
+WHERE id = ? AND status = &#39;ready&#39;;
+</code></pre>
+<p>It only publishes if exactly one row changed. A double tap, a second phone, or a Telegram retry all hit a no-op.</p>
+<h2 id="the-part-nobody-asked-about">The part nobody asked about</h2>
+<p>The captions are AI-written, and AI likes to invent numbers. On a betting account, an invented record is misleading. It&#39;s also a legal exposure.</p>
+<p>So every caption goes through a check before I ever see it:</p>
+<ul>
+<li><strong>Every number in the caption must appear in the tweet.</strong> Records, odds, times. If the AI writes a number the tweet doesn&#39;t contain, the caption is thrown out.</li>
+<li><strong>Hype wording is banned.</strong> &quot;Lock,&quot; &quot;guaranteed,&quot; &quot;can&#39;t lose,&quot; &quot;free money,&quot; &quot;risk-free&quot; and a few more.</li>
+<li><strong>One retry, then a template.</strong> If the second attempt fails too, the bot falls back to a plain template caption.</li>
+</ul>
+<p>On this account, that check is the feature.</p>
+<figure class="figure-wide"><img src="/images/blog/statmanposterbot/example-carousel.jpg" alt="A four-tweet thread rendered as a four-slide carousel" width="1476" height="450" loading="lazy" decoding="async"><figcaption>A four-tweet thread becomes a four-slide carousel, same card size and text size on every slide.</figcaption></figure>
+<h2 id="spec-sheet">Spec sheet</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bot, publishing, cron</td>
+<td>Cloudflare Workers</td>
+</tr>
+<tr>
+<td>Job state</td>
+<td>Cloudflare D1</td>
+</tr>
+<tr>
+<td>Slide images</td>
+<td>Cloudflare KV</td>
+</tr>
+<tr>
+<td>Captions</td>
+<td>Workers AI, Llama 3.3 70B</td>
+</tr>
+<tr>
+<td>Rendering</td>
+<td>Satori and resvg on GitHub Actions</td>
+</tr>
+<tr>
+<td>Interface</td>
+<td>Telegram</td>
+</tr>
+<tr>
+<td>Publishing</td>
+<td>Instagram API with Instagram Login</td>
+</tr>
+<tr>
+<td>Monthly cost</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>First commit to first live post</td>
+<td>Under two hours, same day</td>
+</tr>
+</tbody></table></div>
+<h2 id="what-it-doesnt-do-yet">What it doesn&#39;t do yet</h2>
+<ul>
+<li><strong>Video.</strong> Video tweets aren&#39;t turned into Reels.</li>
+<li><strong>Official tweet data.</strong> Reading from X&#39;s official API costs money, so it uses X&#39;s embed endpoint and FxTwitter. Both are free and unofficial. If either breaks, I get an alert and can still paste links by hand.</li>
+</ul>
+<p>The code is public. The artifact link below goes straight to it.</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

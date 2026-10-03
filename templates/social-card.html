@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- Rendered to images/blog/<slug>/card.png by scripts/social-cards.js. 1200x630. -->
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,380,80&family=JetBrains+Mono:wght@500;600&display=block" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; background: #000; overflow: hidden; }
+  body {
+    position: relative;
+    padding: 64px 72px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    background:
+      radial-gradient(70% 90% at 92% 0%, rgba(162, 0, 255, 0.38), transparent 60%),
+      radial-gradient(50% 60% at 0% 100%, rgba(162, 0, 255, 0.14), transparent 70%),
+      #000;
+  }
+  .stars { position: absolute; inset: 0; }
+  .top { display: flex; justify-content: space-between; align-items: center; position: relative; }
+  .mark { height: 26px; }
+  .label {
+    font: 600 16px/1 "JetBrains Mono", monospace;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #c466ff;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .label::before { content: ""; width: 10px; height: 10px; border-radius: 999px; background: #a200ff; box-shadow: 0 0 14px #a200ff; }
+  h1 {
+    position: relative;
+    margin-top: auto;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 380;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+    font-size: 76px;
+    max-width: 1000px;
+    text-wrap: balance;
+  }
+  .foot {
+    position: relative;
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    display: flex; justify-content: space-between;
+    font: 500 17px/1 "JetBrains Mono", monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.62);
+  }
+  .foot b { color: #fff; font-weight: 500; }
+</style>
+</head>
+<body>
+  <svg class="stars" width="1200" height="630" aria-hidden="true">{{stars}}</svg>
+  <div class="top">
+    <img class="mark" src="{{wordmark}}" alt="">
+    <span class="label">Blog</span>
+  </div>
+  <h1>{{title}}</h1>
+  <div class="foot"><b>elenos.ai/blog</b><span>{{date}}</span></div>
+</body>
+</html>

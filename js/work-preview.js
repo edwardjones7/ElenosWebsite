@@ -63,6 +63,9 @@
             iframe.addEventListener('load', onLoad);
             // Fallback — if load takes too long, hide shimmer anyway
             setTimeout(() => preview.classList.add('loaded'), 5000);
+        } else if (!iframe) {
+            // Static screenshot: nothing to wait for.
+            preview.classList.add('loaded');
         }
 
         // Expand orb → frame after pulse

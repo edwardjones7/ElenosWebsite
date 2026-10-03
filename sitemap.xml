@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://elenos.ai/</loc>
-    <lastmod>2026-07-03</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -13,43 +13,13 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://elenos.ai/services/web-design/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://elenos.ai/services/custom-software/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://elenos.ai/services/ai-automation/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://elenos.ai/services/systems-audit/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://elenos.ai/work/</loc>
-    <lastmod>2026-07-03</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://elenos.ai/about/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://elenos.ai/products/</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -67,15 +37,19 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://elenos.ai/learn/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <loc>https://elenos.ai/work/tristate/</loc>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- @blog:sitemap -->
   <url>
-    <loc>https://elenos.ai/course/</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://elenos.ai/blog/</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
+  <url>
+    <loc>https://elenos.ai/blog/statmanposterbot/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <!-- /@blog:sitemap -->
 </urlset>

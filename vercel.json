@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    { "source": "/products", "destination": "/services/", "permanent": true },
+    { "source": "/products/(.*)", "destination": "/services/", "permanent": true },
+    { "source": "/services/systems-audit", "destination": "/services/#audit", "permanent": true },
+    { "source": "/services/systems-audit/", "destination": "/services/#audit", "permanent": true },
+    { "source": "/services/web-design/(.*)", "destination": "/services/#build", "permanent": true },
+    { "source": "/services/web-design", "destination": "/services/#build", "permanent": true },
+    { "source": "/services/custom-software/(.*)", "destination": "/services/#build", "permanent": true },
+    { "source": "/services/custom-software", "destination": "/services/#build", "permanent": true },
+    { "source": "/services/ai-automation/(.*)", "destination": "/services/#build", "permanent": true },
+    { "source": "/services/ai-automation", "destination": "/services/#build", "permanent": true }
+  ]
+}

@@ -1,0 +1,71 @@
+# Publishing pipeline for the blog.
+#
+# Anything that can commit a Markdown file to posts/ on main can publish a
+# post (a person, the admin dashboard, or an agent) without running the
+# build locally. This job runs `node build.js` and commits the generated
+# pages back; Vercel then deploys that commit like any other.
+#
+# Pushes made with GITHUB_TOKEN don't trigger workflows, so the commit-back
+# can't loop.
+
+name: Build blog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'posts/**'
+      - 'templates/**'
+      - 'partials/**'
+      - 'build.js'
+      - 'scripts/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-blog
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build
+        run: node build.js
+
+      # Share cards need a headless browser. Only installed here, never on Vercel.
+      - name: Install Playwright
+        run: |
+          npm i --no-save --no-package-lock playwright@1.58
+          npx playwright install --with-deps chromium
+
+      - name: Render social cards
+        run: node scripts/social-cards.js
+
+      - name: Rebuild with the new cards
+        run: node build.js
+
+      - name: Verify
+        run: node build.js --check
+
+      - name: Commit generated pages
+        run: |
+          # Line endings follow whatever is on disk, so a Linux checkout stays LF.
+          git config core.autocrlf input
+          git config user.name "elenos-build"
+          git config user.email "build@elenos.ai"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "Rebuild blog from posts/"
+            git push
+          fi

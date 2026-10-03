@@ -289,11 +289,13 @@
         });
     }
 
-    // Newsletter signup (footer, present on all pages)
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (newsletterForm && API_BASE) {
-        const status = document.getElementById('newsletter-status');
-        const input = document.getElementById('newsletter-email');
+    // Newsletter signup: the footer form on every page, plus any form marked
+    // data-newsletter (the capture at the end of every blog post). All post to
+    // the same guarded endpoint; source_path records which page converted.
+    document.querySelectorAll('#newsletter-form, form[data-newsletter]').forEach((newsletterForm) => {
+        if (!API_BASE) return;
+        const status = newsletterForm.querySelector('.newsletter-status');
+        const input = newsletterForm.querySelector('input[type="email"]');
         const button = newsletterForm.querySelector('button[type="submit"]');
         const gotcha = newsletterForm.querySelector('input[name="_gotcha"]');
         // Time-trap start: first human interaction with the email field. The
@@ -328,7 +330,7 @@
                     }),
                 });
                 if (res.ok) {
-                    if (status) { status.textContent = 'Subscribed. Thanks.'; status.style.color = '#6effbf'; }
+                    if (status) { status.textContent = 'You’re on the list. Next write-up comes to you.'; status.style.color = '#6effbf'; }
                     newsletterForm.reset();
                     track('form_submit', { kind: 'newsletter' });
                 } else {
@@ -344,7 +346,7 @@
                 if (button) button.disabled = false;
             }
         });
-    }
+    });
 
     // Product image fallback for missing assets
     document.querySelectorAll('.product-visual img').forEach((img) => {

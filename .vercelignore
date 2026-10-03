@@ -1,0 +1,5 @@
+# Sources for build.js. The built pages in blog/ are what ships; without
+# this, unpublished drafts would be readable at elenos.ai/posts/<slug>.md.
+/posts
+/templates
+/partials

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Manage your booking — Elenos</title>
-    <meta name="description" content="Reschedule or cancel your Elenos discovery call.">
+    <title>Manage your booking · Elenos</title>
+    <meta name="description" content="Reschedule or cancel your call with Elenos.">
     <meta name="robots" content="noindex, nofollow">
 
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -24,6 +24,7 @@
 <body>
     <canvas id="scene-canvas" class="scene-canvas" aria-hidden="true"></canvas>
 
+    <!-- @chrome:nav -->
     <nav class="nav" data-nav>
         <a href="/" class="nav-brand" aria-label="Elenos home">
             <img class="nav-wordmark" src="/images/wordmark-white.png" alt="Elenos">
@@ -31,15 +32,15 @@
         <div class="nav-links">
             <a href="/work/">Work</a>
             <a href="/services/">Services</a>
+            <a href="/blog/">Blog</a>
             <a href="/about/">About</a>
-            <a href="/products/">Products</a>
-            <a href="/contact/">Contact</a>
         </div>
         <a class="nav-cta" href="/book/">Book a call →</a>
         <button class="nav-toggle" aria-label="Toggle navigation">
             <span></span><span></span><span></span>
         </button>
     </nav>
+    <!-- /@chrome:nav -->
 
     <main class="shell page-fade">
         <section class="manage-wrap">
@@ -51,7 +52,7 @@
 
                     <div class="manage-view" hidden>
                         <span class="status-pill" data-status-pill>Confirmed</span>
-                        <h3>Elenos discovery call</h3>
+                        <h3>Your call with Elenos</h3>
                         <p class="book-chosen" data-when></p>
 
                         <div class="contact-cta-block">
@@ -77,38 +78,49 @@
         </section>
     </main>
 
+    <!-- @chrome:footer -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand">
                 <img class="footer-wordmark" src="/images/wordmark-white.png" alt="Elenos">
-                <p>A New Jersey software studio building websites, custom systems, and AI operators for compounding businesses. Serving businesses across New Jersey and the USA.</p>
+                <p>A software studio for founders who aren't technical. Technical audits, scoped builds and a standing technical seat. Based in New Jersey, working across the US.</p>
             </div>
             <div class="footer-col">
                 <h5>Studio</h5>
                 <ul>
                     <li><a href="/work/">Work</a></li>
                     <li><a href="/services/">Services</a></li>
+                    <li><a href="/blog/">Blog</a></li>
                     <li><a href="/about/">About</a></li>
-                    <li><a href="/products/">Products</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h5>Contact</h5>
                 <ul>
                     <li><a href="/book/">Book a call</a></li>
-                    <li><a href="/contact/">Start a project</a></li>
+                    <li><a href="/contact/">Send a brief</a></li>
                     <li><a href="mailto:ed@elenos.ai">ed@elenos.ai</a></li>
-                    <li><a href="tel:+18564421180">Call: (856) 442-1180</a></li>
+                    <li><a href="tel:+18564421180">(856) 442-1180</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Elsewhere</h5>
+                <ul>
+                    <li><a href="https://www.instagram.com/elenos.ai" target="_blank" rel="noopener">Instagram ↗</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=61590983014169" target="_blank" rel="noopener">Facebook ↗</a></li>
+                    <li><a href="https://x.com/elenos_ai" target="_blank" rel="noopener">X ↗</a></li>
+                    <li><a href="https://discord.gg/UH3a34eUvd" target="_blank" rel="noopener">Discord ↗</a></li>
                 </ul>
             </div>
             <div class="footer-col footer-col-newsletter">
-                <h5>Get updates</h5>
+                <h5>Newsletter</h5>
+                <p class="footer-promise">New blog posts by email. Usually weekly.</p>
                 <form id="newsletter-form" class="newsletter-form" novalidate>
                     <div class="hp-field" aria-hidden="true">
                         <input name="_gotcha" type="text" tabindex="-1" autocomplete="off">
                     </div>
                     <div class="newsletter-row">
-                        <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                        <input id="newsletter-email" type="email" name="email" placeholder="you@company.com" autocomplete="email" required aria-label="Email address">
                         <button type="submit" aria-label="Subscribe">→</button>
                     </div>
                     <span id="newsletter-status" class="newsletter-status" aria-live="polite"></span>
@@ -116,10 +128,11 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <span>© <span data-year>2026</span> ELENOS SOLUTIONS · ALL RIGHTS RESERVED</span>
+            <span>© <span data-year>2026</span> ELENOS SOLUTIONS LLC</span>
             <span>elenos.ai</span>
         </div>
     </footer>
+    <!-- /@chrome:footer -->
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script>

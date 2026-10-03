@@ -17,3 +17,6 @@ Thumbs.db
 npm-debug.log*
 .vercel
 .env*
+
+# Installed by the Build blog workflow for social cards
+node_modules/
